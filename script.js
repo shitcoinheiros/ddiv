@@ -66,6 +66,7 @@
     
       //Paraná
         { titulo: '', nome: 'Thiago Scheifer ⚙ NR:004.2025', telefone: '(42)999455826', email: 'tsrvistoria@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Ponta Grossa e Adjacências.', estado: 'PR' , imagem: 'https://postimg.cc/qgBz51Q9', verificado: false },
+       { titulo: '', nome: 'João Pierozan ⚙ NR:011.2025', telefone: '(45)999273137', email: 'pierozan@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Cascavel e Adjacências.', estado: 'PR' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
     
       
      
