@@ -3,16 +3,22 @@
       // Rio de janeiro
       { titulo: '', nome: 'William Garcia ⚙ NR:007.2023', telefone: '(21)975279648 ', email: 'horus.inspetoria@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Teresópolis.', estado: 'RJ', imagem: 'https://lh3.googleusercontent.com/a/ACg8ocK1_7DgQrOzDmXyiqNCdXKsO3Xpl8Wf47BIIVq5jxpTR3Q=s260-c-no', verificado: true },
      { titulo: '', nome: 'Fabricio Abreu ⚙ NR:026.2023', telefone: '(22)997837643', email: 'famape1800@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Região dos Lagos, Macaé e Campos dos Goytacazes.', estado: 'RJ', imagem: 'https://i.postimg.cc/7h6qjKrX/IMG-20231217-153245116.jpg', verificado: false },
-     
+        { titulo: '', nome: 'Marcio Costa  ⚙ NR:008.2025', telefone: '(21)969916718', email: 'marciocosta77@live.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Rio de Janeiro.', estado: 'RJ', imagem: 'https://postimg.cc/PppxPLV1', verificado: false },
+      
       { titulo: '', nome: 'Augusto Costa ⚙ NR:015.2023', telefone: '(24)992167810', email: 'gutocosta2011@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'São José do Vale do Rio Preto, Três Rios, Sumidouro, Paraiba do sul, Além Paraíba, Petrópolis, Juiz de Fora e adjacências.', estado: 'RJ', imagem: 'https://i.postimg.cc/VvNfrjxt/SAM-2026.jpg', verificado: false },
        { titulo: '', nome: 'Claudio Gomes ⚙ NR:017.2023', telefone: '(24)981890714', email: 'claudio.gomes@atenderreguladora.com.br', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Toda região sudeste.', estado: 'RJ', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
       
       // São Paulo
+
+          { titulo: '', nome: 'Sérgio Eloy ⚙ NR:006.2025', telefone: '(11)911682446', email: 'sergioeloy99@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'São Paulo e Adjacências', estado: 'SP', imagem: 'https://postimg.cc/BLH7S9bR', verificado: false },
+       
          { titulo: '', nome: 'Reinaldo Araujo ⚙ NR:001.2025', telefone: '(11)964100064', email: 'elrei2@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Mogi das Cruzes, Aruja, Suzano, Guararema,  Sabauna, Biritiba mirim', estado: 'SP', imagem: 'https://postimg.cc/BjtQBRg9', verificado: false },
        
         { titulo: '', nome: 'Adelio Reis ⚙ NR:029.2023', telefone: '(11)981897316', email: 'adeliotorquato@hotmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Capital e adjacências', estado: 'SP', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
          { titulo: '', nome: 'Paulo Santos ⚙ NR:031.2023', telefone: '(19)996271200', email: 'paulosergio_s@yahoo.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Araras, Leme, Limeira, Conchal e Rio Claro', estado: 'SP', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
        
+       // Espirito Santo
+          { titulo: '', nome: 'Adeildo Pereira ⚙ NR:009.2025', telefone: '(27)999077327', email: 'adeildobmg@hotmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Ecoporanga, Barra de São Francisco, Ponto Belo, Mucurici e Adjacências', estado: 'ES', imagem: 'https://postimg.cc/FdkyJVpt', verificado: false },
        
       
       // Mato Grosso do Sul
@@ -62,7 +68,9 @@
     
       
      
-     
+     //Rondônia
+              { titulo: '', nome: 'Mauro Toneto  ⚙ NR:007.2025', telefone: '(69)992466804 ', email: 'mauromackert@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Jaru e Adjacências.', estado: 'RO' , imagem: 'https://postimg.cc/8j0mHKh5', verificado: false },
+    
       
       
        // Término
