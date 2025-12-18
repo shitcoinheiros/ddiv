@@ -9,7 +9,8 @@
        { titulo: '', nome: 'Claudio Gomes ⚙ NR:017.2023', telefone: '(24)981890714', email: 'claudio.gomes@atenderreguladora.com.br', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Toda região sudeste.', estado: 'RJ', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
       
       // São Paulo
-
+     { titulo: '', nome: 'Alessandro ⚙ NR:010.2025', telefone: '(11)973933648', email: 'vendas.cotta@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'São Paulo, Cotia, Osasco, Cajamar e Adjacências', estado: 'SP', imagem: 'https://postimg.cc/5jFTQ6sZ', verificado: false },
+       
           { titulo: '', nome: 'Sérgio Eloy ⚙ NR:006.2025', telefone: '(11)911682446', email: 'sergioeloy99@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'São Paulo e Adjacências', estado: 'SP', imagem: 'https://postimg.cc/BLH7S9bR', verificado: false },
        
          { titulo: '', nome: 'Reinaldo Araujo ⚙ NR:001.2025', telefone: '(11)964100064', email: 'elrei2@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Mogi das Cruzes, Aruja, Suzano, Guararema,  Sabauna, Biritiba mirim', estado: 'SP', imagem: 'https://postimg.cc/BjtQBRg9', verificado: false },
