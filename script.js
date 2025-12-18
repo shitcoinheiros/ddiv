@@ -27,6 +27,10 @@
     
       
       // Minas Gerais 
+
+       { titulo: '', nome: 'Tiago Silva ⚙ NR:012.0025', telefone: '(37)988437360', email: 'tiagosilva14@yahoo.com.br', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Divinópolis e Adjacências', estado: 'MG', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
+   
+      
         { titulo: '', nome: 'Rubem Amorim ⚙ NR:002.0025', telefone: '(31)973540477', email: 'negociosonline.evo@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Betim, Brumadinho e adjacências', estado: 'MG', imagem: 'https://postimg.cc/xqpdksXQ', verificado: false },
    
        { titulo: '', nome: 'Luiz Silva ⚙ NR:022.0023', telefone: '(34)991118014', email: 'luizhcastros@outlook.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Patos de Minas e adjacências', estado: 'MG', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
