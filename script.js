@@ -85,7 +85,7 @@
       
      
      //Rondônia
-              { titulo: '', nome: 'Mauro Toneto  ⚙ NR:007.2025', telefone: '(69)992466804 ', email: 'mauromackert@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Jaru e Adjacências.', estado: 'RO' , imagem: 'https://postimg.cc/8j0mHKh5', verificado: false },
+              { titulo: '', nome: 'Mauro Toneto  ⚙ NR:007.2025', telefone: '(69)992466804 ', email: 'mauromackert@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Jaru e Adjacências.', estado: 'RO' , imagem: 'https://i.postimg.cc/jSs3RB2z/inbound8824273639350211215.jpg', verificado: false },
     
       
       
