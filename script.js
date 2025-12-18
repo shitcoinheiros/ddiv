@@ -20,6 +20,8 @@
     
       
       // Minas Gerais 
+        { titulo: '', nome: 'Rubem Amorim ⚙ NR:002.0025', telefone: '(31)973540477', email: 'negociosonline.evo@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Betim, Brumadinho e adjacências', estado: 'MG', imagem: 'https://postimg.cc/xqpdksXQ', verificado: false },
+   
        { titulo: '', nome: 'Luiz Silva ⚙ NR:022.0023', telefone: '(34)991118014', email: 'luizhcastros@outlook.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Patos de Minas e adjacências', estado: 'MG', imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
    
      
@@ -28,8 +30,9 @@
       
       
       
-      // Bahia
-      
+      // Bahia   
+        { titulo: '', nome: 'Douglas Pereira  ⚙ NR:005.2025', telefone: '(71)992043428', email: 'doug23ibpn@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Salvador e Adjacências.', estado: 'BA' , imagem: 'https://postimg.cc/LhP5qxw0', verificado: false },
+                                                                                                                                                                                                                                                                                                                         
       
       
     //Distrito federal
@@ -43,7 +46,10 @@
       { titulo: '', nome: 'Marcio Bichueti ⚙ NR:019.2023', telefone: '(55)999958181', email: 'marcio.bichueti@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Santa Maria e Adjacências.', estado: 'RS' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
    
       //Goiás
-         { titulo: '', nome: 'Renato Sales ⚙ NR:020.2023', telefone: '(62)996782704', email: 'renato.sb69@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Todo o estado de Goiás.', estado: 'GO' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
+             { titulo: '', nome: 'Silas Santos  ⚙ NR:003.2025', telefone: '(62)985266379', email: 'silasvidaplena@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Goiânia, Aparecida de Goiânia.', estado: 'GO' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
+   
+      
+      { titulo: '', nome: 'Renato Sales ⚙ NR:020.2023', telefone: '(62)996782704', email: 'renato.sb69@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Todo o estado de Goiás.', estado: 'GO' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
     { titulo: '', nome: 'Cesar Teixeira de Barros ⚙ NR:021.2023', telefone: '(64)984380592', email: 'cesarteixeira823@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Quirinópolis.', estado: 'GO' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
     { titulo: '', nome: 'Flavio Dias ⚙ NR:028.2023', telefone: '(62)994364343', email: 'flaviooliveira85846@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Goiânia.', estado: 'GO' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
   
@@ -51,7 +57,9 @@
         { titulo: '', nome: 'Marcos Ribeiro ⚙ NR:025.2023', telefone: '(49)991752182', email: 'ribeirocarsmo@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Região Oeste.', estado: 'SC' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
      { titulo: '', nome: 'José Santos ⚙ NR:027.2023',  telefone: '(47)996216053', email: 'josepereira.sb@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Santa Catarina.', estado: 'SC' , imagem: 'https://i.postimg.cc/0jWGphbG/OIP.jpg', verificado: false },
     
-
+      //Paraná
+        { titulo: '', nome: 'Thiago Scheifer ⚙ NR:004.2025', telefone: '(42)999455826', email: 'tsrvistoria@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Ponta Grossa e Adjacências.', estado: 'PR' , imagem: 'https://postimg.cc/qgBz51Q9', verificado: false },
+    
       
      
      
