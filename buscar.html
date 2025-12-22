@@ -290,16 +290,15 @@
 
 
 
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-  import { 
-    getAuth, 
-    signInWithEmailAndPassword, 
-    onAuthStateChanged 
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-  // CONFIGURAÇÃO FIREBASE (SEUS DADOS)
+  // 🔥 CONFIGURAÇÃO FIREBASE
   const firebaseConfig = {
     apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
     authDomain: "octolusco.firebaseapp.com",
@@ -310,47 +309,59 @@
     measurementId: "G-PLDK083FV8"
   };
 
-  // INICIALIZA FIREBASE
+  // 🚀 INICIALIZA FIREBASE
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // CONTROLE GLOBAL DE LOGIN
+  // 🔐 CONTROLE GLOBAL
   window.usuarioLogado = false;
 
-  // OBSERVA LOGIN / LOGOUT
+  // 👀 OBSERVA LOGIN / LOGOUT
   onAuthStateChanged(auth, (user) => {
     window.usuarioLogado = !!user;
 
     if (user) {
       fecharModal();
-      // recarrega os cards para mostrar contatos
+
+      // Atualiza cards para mostrar contato
       if (typeof buscarEstado === "function") {
         buscarEstado();
       }
     }
   });
 
-  // FUNÇÃO LOGIN
+  // 🔑 LOGIN
   window.loginFirebase = function () {
     const email = document.getElementById("loginEmail").value;
     const senha = document.getElementById("loginSenha").value;
 
     signInWithEmailAndPassword(auth, email, senha)
       .catch(() => {
-        document.getElementById("loginErro").innerText =
-          "Email ou senha inválidos";
+        const erro = document.getElementById("loginErro");
+        if (erro) erro.innerText = "Email ou senha inválidos";
       });
   };
-function abrirModal() {
-  document.getElementById('modalLogin').style.display = 'flex';
-}
 
-function fecharModal() {
-  document.getElementById('modalLogin').style.display = 'none';
-}
+  // 🪟 ABRIR MODAL
+  window.abrirModal = function () {
+    document.getElementById("modalLogin").style.display = "flex";
+  };
 
+  // ❌ FECHAR MODAL
+  window.fecharModal = function () {
+    document.getElementById("modalLogin").style.display = "none";
+  };
+
+  // 🖱️ FECHAR AO CLICAR FORA DO CARD
+  document.addEventListener("click", (e) => {
+    const modal = document.getElementById("modalLogin");
+    const card = document.querySelector(".modal-card");
+
+    if (modal.style.display === "flex" && !card.contains(e.target)) {
+      fecharModal();
+    }
+  });
 </script>
-
 
 
 
