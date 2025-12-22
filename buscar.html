@@ -341,16 +341,14 @@
           "Email ou senha inválidos";
       });
   };
+function abrirModal() {
+  document.getElementById('modalLogin').style.display = 'flex';
+}
 
-  // ABRIR MODAL
-  window.abrirModal = function () {
-    document.getElementById("loginModal").style.display = "block";
-  };
+function fecharModal() {
+  document.getElementById('modalLogin').style.display = 'none';
+}
 
-  // FECHAR MODAL
-  window.fecharModal = function () {
-    document.getElementById("loginModal").style.display = "none";
-  };
 </script>
 
 
