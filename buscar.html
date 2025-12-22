@@ -245,32 +245,45 @@
 
 
 
+<div class="modal-card">
 
-<!-- MODAL LOGIN -->
-<div id="modalLogin" class="modal-overlay">
-  <div class="modal-card">
-    
-    <img
-      src="https://i.postimg.cc/1XH3dmb2/vistoria-fotogr-fica-logo-removebg-preview.png"
-      alt="DDVF"
-      class="modal-avatar"
-    />
+  <!-- LOGIN -->
+  <div id="formLogin">
+    <h3>Entrar</h3>
 
-    <div class="modal-content">
-      <h4>Área restrita</h4>
-      <p>Entre para visualizar telefone e e-mail dos profissionais</p>
+    <input id="loginEmail" placeholder="Email">
+    <input id="loginSenha" type="password" placeholder="Senha">
 
-      <input type="email" id="loginEmail" placeholder="E-mail" />
-      <input type="password" id="loginSenha" placeholder="Senha" />
+    <p id="loginErro" class="erro"></p>
 
-      <button class="btn-login-modal" onclick="loginFirebase()">
-        Entrar
-      </button>
+    <button onclick="loginFirebase()">Entrar</button>
 
-      <p class="modal-fechar" onclick="fecharModal()">Cancelar</p>
-    </div>
-
+    <p>
+      Não tem conta?
+      <a href="#" onclick="mostrarCadastro()">Cadastre-se</a>
+    </p>
   </div>
+
+  <!-- CADASTRO -->
+  <div id="formCadastro" style="display:none">
+    <h3>Criar conta</h3>
+
+    <input id="cadEmpresa" placeholder="Nome da empresa">
+    <input id="cadCnpj" placeholder="CNPJ (obrigatório)">
+    <input id="cadEmail" placeholder="Email">
+    <input id="cadSenha" type="password" placeholder="Senha">
+    <input id="cadConfirmar" type="password" placeholder="Confirmar senha">
+
+    <p id="cadErro" class="erro"></p>
+
+    <button onclick="cadastrarUsuario()">Cadastrar</button>
+
+    <p>
+      Já tem conta?
+      <a href="#" onclick="mostrarLogin()">Entrar</a>
+    </p>
+  </div>
+
 </div>
 
 
@@ -297,8 +310,15 @@
   import {
     getAuth,
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
     onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    setDoc
+  } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
   /* ===============================
      🔧 CONFIGURAÇÃO FIREBASE
@@ -314,26 +334,22 @@
   };
 
   /* ===============================
-     🚀 INICIALIZA FIREBASE
+     🚀 INIT
   =============================== */
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
-  /* ===============================
-     🔐 ESTADO GLOBAL
-  =============================== */
   window.usuarioLogado = false;
 
   /* ===============================
-     👀 OBSERVA LOGIN / LOGOUT
+     👀 OBSERVA LOGIN
   =============================== */
   onAuthStateChanged(auth, (user) => {
     window.usuarioLogado = !!user;
 
     if (user) {
       window.fecharModal();
-
-      // Atualiza os cards para liberar telefone/email
       if (typeof window.buscarEstado === "function") {
         window.buscarEstado();
       }
@@ -341,7 +357,7 @@
   });
 
   /* ===============================
-     🔑 LOGIN FIREBASE
+     🔑 LOGIN
   =============================== */
   window.loginFirebase = function () {
     const email = document.getElementById("loginEmail")?.value;
@@ -349,54 +365,80 @@
     const erro = document.getElementById("loginErro");
 
     if (!email || !senha) {
-      if (erro) erro.innerText = "Preencha email e senha";
+      erro.innerText = "Preencha email e senha";
       return;
     }
 
     signInWithEmailAndPassword(auth, email, senha)
-      .then(() => {
-        if (erro) erro.innerText = "";
-      })
       .catch(() => {
-        if (erro) erro.innerText = "Email ou senha inválidos";
+        erro.innerText = "Email ou senha inválidos";
       });
   };
 
   /* ===============================
-     🪟 ABRIR MODAL
+     🆕 CADASTRO
   =============================== */
-  window.abrirModal = function () {
-    const modal = document.getElementById("modalLogin");
-    if (modal) modal.style.display = "flex";
-  };
+  window.cadastrarUsuario = async function () {
+    const empresa = document.getElementById("cadEmpresa").value;
+    const cnpj = document.getElementById("cadCnpj").value;
+    const email = document.getElementById("cadEmail").value;
+    const senha = document.getElementById("cadSenha").value;
+    const confirmar = document.getElementById("cadConfirmar").value;
+    const erro = document.getElementById("cadErro");
 
-  /* ===============================
-     ❌ FECHAR MODAL
-  =============================== */
-  window.fecharModal = function () {
-    const modal = document.getElementById("modalLogin");
-    if (modal) modal.style.display = "none";
-  };
-
-  /* ===============================
-     🖱️ FECHAR AO CLICAR FORA
-  =============================== */
-  document.addEventListener("click", (e) => {
-    const modal = document.getElementById("modalLogin");
-    const card = document.querySelector(".modal-card");
-
-    if (
-      modal &&
-      modal.style.display === "flex" &&
-      card &&
-      !card.contains(e.target) &&
-      !e.target.classList.contains("btn-login")
-    ) {
-      window.fecharModal();
+    if (!empresa || !cnpj || !email || !senha || !confirmar) {
+      erro.innerText = "Preencha todos os campos";
+      return;
     }
-  });
-</script>
 
+    if (cnpj.length < 14) {
+      erro.innerText = "CNPJ inválido";
+      return;
+    }
+
+    if (senha !== confirmar) {
+      erro.innerText = "As senhas não conferem";
+      return;
+    }
+
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, senha);
+
+      // salva dados extras
+      await setDoc(doc(db, "usuarios", cred.user.uid), {
+        empresa,
+        cnpj,
+        email,
+        criadoEm: new Date()
+      });
+
+      erro.innerText = "";
+    } catch (e) {
+      erro.innerText = "Erro ao cadastrar. Email já existe?";
+    }
+  };
+
+  /* ===============================
+     🪟 MODAL
+  =============================== */
+  window.abrirModal = () => {
+    document.getElementById("modalLogin").style.display = "flex";
+  };
+
+  window.fecharModal = () => {
+    document.getElementById("modalLogin").style.display = "none";
+  };
+
+  window.mostrarCadastro = () => {
+    document.getElementById("formLogin").style.display = "none";
+    document.getElementById("formCadastro").style.display = "block";
+  };
+
+  window.mostrarLogin = () => {
+    document.getElementById("formCadastro").style.display = "none";
+    document.getElementById("formLogin").style.display = "block";
+  };
+</script>
     
 
 
