@@ -260,7 +260,74 @@
 
 
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged 
+  } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
+  // CONFIGURAÇÃO FIREBASE (SEUS DADOS)
+  const firebaseConfig = {
+    apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
+    authDomain: "octolusco.firebaseapp.com",
+    projectId: "octolusco",
+    storageBucket: "octolusco.firebasestorage.app",
+    messagingSenderId: "226020419549",
+    appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
+    measurementId: "G-PLDK083FV8"
+  };
+
+  // INICIALIZA FIREBASE
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // CONTROLE GLOBAL DE LOGIN
+  window.usuarioLogado = false;
+
+  // OBSERVA LOGIN / LOGOUT
+  onAuthStateChanged(auth, (user) => {
+    window.usuarioLogado = !!user;
+
+    if (user) {
+      fecharModal();
+      // recarrega os cards para mostrar contatos
+      if (typeof buscarEstado === "function") {
+        buscarEstado();
+      }
+    }
+  });
+
+  // FUNÇÃO LOGIN
+  window.loginFirebase = function () {
+    const email = document.getElementById("loginEmail").value;
+    const senha = document.getElementById("loginSenha").value;
+
+    signInWithEmailAndPassword(auth, email, senha)
+      .catch(() => {
+        document.getElementById("loginErro").innerText =
+          "Email ou senha inválidos";
+      });
+  };
+
+  // ABRIR MODAL
+  window.abrirModal = function () {
+    document.getElementById("loginModal").style.display = "block";
+  };
+
+  // FECHAR MODAL
+  window.fecharModal = function () {
+    document.getElementById("loginModal").style.display = "none";
+  };
+</script>
+
+
+
+
+
+
+    
 
 
 
