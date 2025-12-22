@@ -238,23 +238,54 @@
 
 
 
+
+
+
+
+
+
+
+
+
 <!-- MODAL LOGIN -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">&times;</span>
+<div id="modalLogin" class="modal-overlay">
+  <div class="modal-card">
+    
+    <img
+      src="https://i.postimg.cc/1XH3dmb2/vistoria-fotogr-fica-logo-removebg-preview.png"
+      alt="DDVF"
+      class="modal-avatar"
+    />
 
-    <h2>Entrar</h2>
+    <div class="modal-content">
+      <h4>Área restrita</h4>
+      <p>Entre para visualizar telefone e e-mail dos profissionais</p>
 
-    <input type="email" id="loginEmail" placeholder="Email" />
-    <input type="password" id="loginSenha" placeholder="Senha" />
+      <input type="email" id="loginEmail" placeholder="E-mail" />
+      <input type="password" id="loginSenha" placeholder="Senha" />
 
-    <button onclick="loginFirebase()">Entrar</button>
+      <button class="btn-login-modal" onclick="loginFirebase()">
+        Entrar
+      </button>
 
-    <p id="loginErro" style="color:red; font-size:14px;"></p>
+      <p class="modal-fechar" onclick="fecharModal()">Cancelar</p>
+    </div>
+
   </div>
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
