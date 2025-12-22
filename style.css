@@ -624,4 +624,27 @@ footer {
 
 
 
+.contato-bloqueado {
+  background: #111;
+  color: #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.btn-login {
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+
+
 
