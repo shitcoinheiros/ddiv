@@ -528,114 +528,208 @@ footer {
 
 
 
-/* OVERLAY */
-.modal-overlay {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   OVERLAY
+=============================== */
+#modalLogin {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
   display: none;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   z-index: 9999;
 }
 
-/* CARD DO MODAL (IGUAL AOS PROFISSIONAIS) */
+/* ===============================
+   CARD (BOTTOM SHEET)
+=============================== */
 .modal-card {
-  position: relative;
-  width: 600px;
+  width: 100%;
+  max-width: 420px;
+  background: #0f1115;
+  border-radius: 20px 20px 0 0;
+  padding: 24px;
+  animation: slideUp 0.35s ease-out;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+/* ===============================
+   ANIMAÇÃO
+=============================== */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   HEADER / LOGO
+=============================== */
+.modal-header {
   display: flex;
-  flex-direction: row;
-  background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  animation: zoomIn 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* AVATAR */
-.modal-avatar {
-  width: 100px;
-  height: 120px;
-  border-radius: 10px;
-  border: 1px solid #000;
-  margin: 15px;
-  object-fit: cover;
-}
-
-/* CONTEÚDO */
-.modal-content {
-  padding: 15px;
-  flex: 1;
-}
-
-.modal-content h4 {
-  margin-bottom: 5px;
-}
-
-.modal-content p {
-  font-size: 14px;
+.modal-header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
   margin-bottom: 10px;
 }
 
-/* INPUTS */
-.modal-content input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 8px;
-  border-radius: 5px;
-  border: 1px solid #999;
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
 }
 
-/* BOTÃO */
-.btn-login-modal {
+/* ===============================
+   BOTÕES PRINCIPAIS
+=============================== */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal-actions button {
   width: 100%;
-  padding: 10px;
-  background: #ffcc00;
+  padding: 14px;
+  border-radius: 12px;
   border: none;
-  border-radius: 6px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.btn-login-modal:hover {
-  background: #e6b800;
+/* Entrar */
+.btn-primary {
+  background: #4f46e5;
+  color: #fff;
 }
 
-/* FECHAR */
-.modal-fechar {
+/* Cadastrar */
+.btn-secondary {
+  background: #1f2933;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+/* ===============================
+   FORMULÁRIOS
+=============================== */
+form {
+  display: none;
+  margin-top: 16px;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #111827;
+  color: #fff;
+  font-size: 14px;
+}
+
+form input::placeholder {
+  color: #9ca3af;
+}
+
+form button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* ===============================
+   LINKS
+=============================== */
+.switch-link {
+  margin-top: 12px;
   text-align: center;
-  margin-top: 10px;
   font-size: 13px;
+  color: #9ca3af;
   cursor: pointer;
-  color: #333;
 }
 
-/* ANIMAÇÃO */
-@keyframes zoomIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.switch-link span {
+  color: #6366f1;
+  font-weight: 600;
 }
 
+/* ===============================
+   ERROS
+=============================== */
+.erro {
+  color: #f87171;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 8px;
+}
 
+/* ===============================
+   DESKTOP AJUSTE
+=============================== */
+@media (min-width: 768px) {
+  #modalLogin {
+    align-items: center;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
+  .modal-card {
+    border-radius: 20px;
+  }
+}
 
