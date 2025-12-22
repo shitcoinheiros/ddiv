@@ -290,6 +290,9 @@
 
 
 <script type="module">
+  /* ===============================
+     🔥 IMPORTS FIREBASE
+  =============================== */
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
   import {
     getAuth,
@@ -297,7 +300,9 @@
     onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-  // 🔥 CONFIGURAÇÃO FIREBASE
+  /* ===============================
+     🔧 CONFIGURAÇÃO FIREBASE
+  =============================== */
   const firebaseConfig = {
     apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
     authDomain: "octolusco.firebaseapp.com",
@@ -308,63 +313,89 @@
     measurementId: "G-PLDK083FV8"
   };
 
-  // 🚀 INICIALIZA FIREBASE
+  /* ===============================
+     🚀 INICIALIZA FIREBASE
+  =============================== */
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // 🔐 CONTROLE GLOBAL
+  /* ===============================
+     🔐 ESTADO GLOBAL
+  =============================== */
   window.usuarioLogado = false;
 
-  // 👀 OBSERVA LOGIN / LOGOUT
+  /* ===============================
+     👀 OBSERVA LOGIN / LOGOUT
+  =============================== */
   onAuthStateChanged(auth, (user) => {
     window.usuarioLogado = !!user;
 
     if (user) {
-      fecharModal();
+      window.fecharModal();
 
-      // Atualiza cards para mostrar contato
-      if (typeof buscarEstado === "function") {
-        buscarEstado();
+      // Atualiza os cards para liberar telefone/email
+      if (typeof window.buscarEstado === "function") {
+        window.buscarEstado();
       }
     }
   });
 
-  // 🔑 LOGIN
+  /* ===============================
+     🔑 LOGIN FIREBASE
+  =============================== */
   window.loginFirebase = function () {
-    const email = document.getElementById("loginEmail").value;
-    const senha = document.getElementById("loginSenha").value;
+    const email = document.getElementById("loginEmail")?.value;
+    const senha = document.getElementById("loginSenha")?.value;
+    const erro = document.getElementById("loginErro");
+
+    if (!email || !senha) {
+      if (erro) erro.innerText = "Preencha email e senha";
+      return;
+    }
 
     signInWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        if (erro) erro.innerText = "";
+      })
       .catch(() => {
-        const erro = document.getElementById("loginErro");
         if (erro) erro.innerText = "Email ou senha inválidos";
       });
   };
 
-  // 🪟 ABRIR MODAL
+  /* ===============================
+     🪟 ABRIR MODAL
+  =============================== */
   window.abrirModal = function () {
-    document.getElementById("modalLogin").style.display = "flex";
+    const modal = document.getElementById("modalLogin");
+    if (modal) modal.style.display = "flex";
   };
 
-  // ❌ FECHAR MODAL
+  /* ===============================
+     ❌ FECHAR MODAL
+  =============================== */
   window.fecharModal = function () {
-    document.getElementById("modalLogin").style.display = "none";
+    const modal = document.getElementById("modalLogin");
+    if (modal) modal.style.display = "none";
   };
 
-  // 🖱️ FECHAR AO CLICAR FORA DO CARD
+  /* ===============================
+     🖱️ FECHAR AO CLICAR FORA
+  =============================== */
   document.addEventListener("click", (e) => {
     const modal = document.getElementById("modalLogin");
     const card = document.querySelector(".modal-card");
 
-    if (modal.style.display === "flex" && !card.contains(e.target)) {
-      fecharModal();
+    if (
+      modal &&
+      modal.style.display === "flex" &&
+      card &&
+      !card.contains(e.target) &&
+      !e.target.classList.contains("btn-login")
+    ) {
+      window.fecharModal();
     }
   });
 </script>
-
-
-
-
 
     
 
