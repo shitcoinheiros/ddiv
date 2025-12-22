@@ -245,47 +245,50 @@
 
 
 
-<div class="modal-card">
+<!-- 🔐 MODAL LOGIN / CADASTRO -->
+<div id="modalLogin" class="modal-overlay" style="display:none">
 
-  <!-- LOGIN -->
-  <div id="formLogin">
-    <h3>Entrar</h3>
+  <div class="modal-card">
 
-    <input id="loginEmail" placeholder="Email">
-    <input id="loginSenha" type="password" placeholder="Senha">
+    <!-- LOGIN -->
+    <div id="formLogin">
+      <h3>Entrar</h3>
 
-    <p id="loginErro" class="erro"></p>
+      <input id="loginEmail" placeholder="Email">
+      <input id="loginSenha" type="password" placeholder="Senha">
 
-    <button onclick="loginFirebase()">Entrar</button>
+      <p id="loginErro" class="erro"></p>
 
-    <p>
-      Não tem conta?
-      <a href="#" onclick="mostrarCadastro()">Cadastre-se</a>
-    </p>
+      <button onclick="loginFirebase()">Entrar</button>
+
+      <p>
+        Não tem conta?
+        <a href="#" onclick="mostrarCadastro()">Cadastre-se</a>
+      </p>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="formCadastro" style="display:none">
+      <h3>Criar conta</h3>
+
+      <input id="cadEmpresa" placeholder="Nome da empresa">
+      <input id="cadCnpj" placeholder="CNPJ (obrigatório)">
+      <input id="cadEmail" placeholder="Email">
+      <input id="cadSenha" type="password" placeholder="Senha">
+      <input id="cadConfirmar" type="password" placeholder="Confirmar senha">
+
+      <p id="cadErro" class="erro"></p>
+
+      <button onclick="cadastrarUsuario()">Cadastrar</button>
+
+      <p>
+        Já tem conta?
+        <a href="#" onclick="mostrarLogin()">Entrar</a>
+      </p>
+    </div>
+
   </div>
-
-  <!-- CADASTRO -->
-  <div id="formCadastro" style="display:none">
-    <h3>Criar conta</h3>
-
-    <input id="cadEmpresa" placeholder="Nome da empresa">
-    <input id="cadCnpj" placeholder="CNPJ (obrigatório)">
-    <input id="cadEmail" placeholder="Email">
-    <input id="cadSenha" type="password" placeholder="Senha">
-    <input id="cadConfirmar" type="password" placeholder="Confirmar senha">
-
-    <p id="cadErro" class="erro"></p>
-
-    <button onclick="cadastrarUsuario()">Cadastrar</button>
-
-    <p>
-      Já tem conta?
-      <a href="#" onclick="mostrarLogin()">Entrar</a>
-    </p>
-  </div>
-
 </div>
-
 
 
 
@@ -303,143 +306,157 @@
 
 
 <script type="module">
-  /* ===============================
-     🔥 IMPORTS FIREBASE
-  =============================== */
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-  import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+/* ===============================
+   🔥 IMPORTS FIREBASE
+=============================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-  import {
-    getFirestore,
-    doc,
-    setDoc
-  } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-  /* ===============================
-     🔧 CONFIGURAÇÃO FIREBASE
-  =============================== */
-  const firebaseConfig = {
-    apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
-    authDomain: "octolusco.firebaseapp.com",
-    projectId: "octolusco",
-    storageBucket: "octolusco.firebasestorage.app",
-    messagingSenderId: "226020419549",
-    appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
-    measurementId: "G-PLDK083FV8"
-  };
+/* ===============================
+   🔧 CONFIG FIREBASE
+=============================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
+  authDomain: "octolusco.firebaseapp.com",
+  projectId: "octolusco",
+  storageBucket: "octolusco.firebasestorage.app",
+  messagingSenderId: "226020419549",
+  appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
+  measurementId: "G-PLDK083FV8"
+};
 
-  /* ===============================
-     🚀 INIT
-  =============================== */
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
+/* ===============================
+   🚀 INIT
+=============================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-  window.usuarioLogado = false;
+window.usuarioLogado = false;
 
-  /* ===============================
-     👀 OBSERVA LOGIN
-  =============================== */
-  onAuthStateChanged(auth, (user) => {
-    window.usuarioLogado = !!user;
+/* ===============================
+   👀 OBSERVA LOGIN
+=============================== */
+onAuthStateChanged(auth, (user) => {
+  window.usuarioLogado = !!user;
 
-    if (user) {
-      window.fecharModal();
-      if (typeof window.buscarEstado === "function") {
-        window.buscarEstado();
-      }
+  if (user) {
+    fecharModal();
+    if (typeof window.buscarEstado === "function") {
+      window.buscarEstado();
     }
-  });
+  }
+});
 
-  /* ===============================
-     🔑 LOGIN
-  =============================== */
-  window.loginFirebase = function () {
-    const email = document.getElementById("loginEmail")?.value;
-    const senha = document.getElementById("loginSenha")?.value;
-    const erro = document.getElementById("loginErro");
+/* ===============================
+   🔑 LOGIN
+=============================== */
+window.loginFirebase = async function () {
+  const email = document.getElementById("loginEmail")?.value;
+  const senha = document.getElementById("loginSenha")?.value;
+  const erro = document.getElementById("loginErro");
 
-    if (!email || !senha) {
-      erro.innerText = "Preencha email e senha";
-      return;
-    }
+  if (!email || !senha) {
+    if (erro) erro.innerText = "Preencha email e senha";
+    return;
+  }
 
-    signInWithEmailAndPassword(auth, email, senha)
-      .catch(() => {
-        erro.innerText = "Email ou senha inválidos";
-      });
-  };
+  try {
+    await signInWithEmailAndPassword(auth, email, senha);
+  } catch {
+    if (erro) erro.innerText = "Email ou senha inválidos";
+  }
+};
 
-  /* ===============================
-     🆕 CADASTRO
-  =============================== */
-  window.cadastrarUsuario = async function () {
-    const empresa = document.getElementById("cadEmpresa").value;
-    const cnpj = document.getElementById("cadCnpj").value;
-    const email = document.getElementById("cadEmail").value;
-    const senha = document.getElementById("cadSenha").value;
-    const confirmar = document.getElementById("cadConfirmar").value;
-    const erro = document.getElementById("cadErro");
+/* ===============================
+   🆕 CADASTRO
+=============================== */
+window.cadastrarUsuario = async function () {
+  const empresa = document.getElementById("cadEmpresa")?.value;
+  const cnpj = document.getElementById("cadCnpj")?.value;
+  const email = document.getElementById("cadEmail")?.value;
+  const senha = document.getElementById("cadSenha")?.value;
+  const confirmar = document.getElementById("cadConfirmar")?.value;
+  const erro = document.getElementById("cadErro");
 
-    if (!empresa || !cnpj || !email || !senha || !confirmar) {
-      erro.innerText = "Preencha todos os campos";
-      return;
-    }
+  if (!empresa || !cnpj || !email || !senha || !confirmar) {
+    if (erro) erro.innerText = "Preencha todos os campos";
+    return;
+  }
 
-    if (cnpj.length < 14) {
-      erro.innerText = "CNPJ inválido";
-      return;
-    }
+  if (cnpj.replace(/\D/g, "").length !== 14) {
+    if (erro) erro.innerText = "CNPJ inválido";
+    return;
+  }
 
-    if (senha !== confirmar) {
-      erro.innerText = "As senhas não conferem";
-      return;
-    }
+  if (senha !== confirmar) {
+    if (erro) erro.innerText = "As senhas não conferem";
+    return;
+  }
 
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, senha);
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, senha);
 
-      // salva dados extras
-      await setDoc(doc(db, "usuarios", cred.user.uid), {
-        empresa,
-        cnpj,
-        email,
-        criadoEm: new Date()
-      });
+    await setDoc(doc(db, "usuarios", cred.user.uid), {
+      empresa,
+      cnpj,
+      email,
+      criadoEm: new Date()
+    });
 
-      erro.innerText = "";
-    } catch (e) {
-      erro.innerText = "Erro ao cadastrar. Email já existe?";
-    }
-  };
+    if (erro) erro.innerText = "";
+  } catch {
+    if (erro) erro.innerText = "Erro ao cadastrar. Email já existe?";
+  }
+};
 
-  /* ===============================
-     🪟 MODAL
-  =============================== */
-  window.abrirModal = () => {
-    document.getElementById("modalLogin").style.display = "flex";
-  };
+/* ===============================
+   🪟 MODAL (ANTI-ERRO)
+=============================== */
+window.abrirModal = function () {
+  const modal = document.getElementById("modalLogin");
+  if (!modal) {
+    console.error("modalLogin não encontrado no HTML");
+    return;
+  }
+  modal.style.display = "flex";
+};
 
-  window.fecharModal = () => {
-    document.getElementById("modalLogin").style.display = "none";
-  };
+window.fecharModal = function () {
+  const modal = document.getElementById("modalLogin");
+  if (!modal) return;
+  modal.style.display = "none";
+};
 
-  window.mostrarCadastro = () => {
-    document.getElementById("formLogin").style.display = "none";
-    document.getElementById("formCadastro").style.display = "block";
-  };
+window.mostrarCadastro = function () {
+  const login = document.getElementById("formLogin");
+  const cadastro = document.getElementById("formCadastro");
+  if (!login || !cadastro) return;
 
-  window.mostrarLogin = () => {
-    document.getElementById("formCadastro").style.display = "none";
-    document.getElementById("formLogin").style.display = "block";
-  };
+  login.style.display = "none";
+  cadastro.style.display = "block";
+};
+
+window.mostrarLogin = function () {
+  const login = document.getElementById("formLogin");
+  const cadastro = document.getElementById("formCadastro");
+  if (!login || !cadastro) return;
+
+  cadastro.style.display = "none";
+  login.style.display = "block";
+};
 </script>
-    
 
 
 
