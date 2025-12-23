@@ -300,7 +300,7 @@
 
 
 
-<script>    
+<script type="module">
 /* ===============================
    🔥 IMPORTS FIREBASE
 =============================== */
@@ -430,7 +430,7 @@ window.cadastrarUsuario = async function () {
 };
 
 /* ===============================
-   🪟 MODAL FUNCTIONS
+   🪟 MODAL FUNCTIONS - APENAS ESTAS FUNÇÕES FORAM AJUSTADAS
 =============================== */
 window.abrirModal = function () {
   const modal = document.getElementById("modalLogin");
@@ -439,10 +439,8 @@ window.abrirModal = function () {
     return;
   }
   
-  // Sempre mostrar o formulário de login inicialmente
+  // Resetar para estado inicial
   mostrarLogin();
-  
-  // Limpar mensagens de erro
   document.getElementById("loginErro").innerText = "";
   document.getElementById("cadErro").innerText = "";
   
@@ -483,12 +481,6 @@ window.mostrarLogin = function () {
   cadastro.style.display = "none";
   login.style.display = "block";
 };
-
-// Inicialização do modal
-document.addEventListener('DOMContentLoaded', function() {
-  // Garante que o formulário de login esteja visível inicialmente
-  mostrarLogin();
-});
   </script>
 
 </body>
