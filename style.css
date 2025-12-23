@@ -694,8 +694,8 @@ form button {
   padding: 14px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  color: #fff;
+  background: linear-gradient(135deg, #022c22, #00ff88);
+  color: black;
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
