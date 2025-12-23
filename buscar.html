@@ -300,8 +300,7 @@
 
 
 
-    
-<script type="module">
+<script>    
 /* ===============================
    🔥 IMPORTS FIREBASE
 =============================== */
@@ -440,8 +439,10 @@ window.abrirModal = function () {
     return;
   }
   
-  // Resetar para estado inicial
+  // Sempre mostrar o formulário de login inicialmente
   mostrarLogin();
+  
+  // Limpar mensagens de erro
   document.getElementById("loginErro").innerText = "";
   document.getElementById("cadErro").innerText = "";
   
@@ -466,29 +467,29 @@ window.fecharModal = function () {
 window.mostrarCadastro = function () {
   const login = document.getElementById("formLogin");
   const cadastro = document.getElementById("formCadastro");
-  const mainActions = document.getElementById("mainActions");
   
-  if (!login || !cadastro || !mainActions) return;
+  if (!login || !cadastro) return;
 
   login.style.display = "none";
   cadastro.style.display = "block";
-  mainActions.style.display = "none";
 };
 
 window.mostrarLogin = function () {
   const login = document.getElementById("formLogin");
   const cadastro = document.getElementById("formCadastro");
-  const mainActions = document.getElementById("mainActions");
   
-  if (!login || !cadastro || !mainActions) return;
+  if (!login || !cadastro) return;
 
   cadastro.style.display = "none";
   login.style.display = "block";
-  mainActions.style.display = "flex";
 };
-</script>
 
-    
+// Inicialização do modal
+document.addEventListener('DOMContentLoaded', function() {
+  // Garante que o formulário de login esteja visível inicialmente
+  mostrarLogin();
+});
+  </script>
 
 </body>
 </html>
