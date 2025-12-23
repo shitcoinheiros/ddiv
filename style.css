@@ -680,12 +680,11 @@ form input {
 }
 
 form input:focus {
-  outline: none;
-  border-color: #4f46e5;
+  border-color: #16a34a; /* verde fluorescente */
 }
 
 form input::placeholder {
-  color: #9ca3af;
+  color: #6b7280; /* cinza neutro */
 }
 
 /* Botão dos formulários */
