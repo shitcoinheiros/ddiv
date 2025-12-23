@@ -245,60 +245,62 @@
 
 
 
-<!-- MODAL HTML -->
-<div id="modalLogin" onclick="fecharModal()">
-  <div class="modal-card" onclick="event.stopPropagation()">
-    <div class="modal-content">
-      <!-- Cabeçalho com logo centralizado -->
-      <div class="modal-header">
-        <div class="modal-logo"></div>
-        <h2>Acesso ao Sistema</h2>
-      </div>
-      
-  
-      <!-- Formulário de Login -->
-      <form id="formLogin">
-        <div class="form-group">
-          <input type="email" id="loginEmail" placeholder="Email">
+  <!-- MODAL HTML -->
+    <div id="modalLogin" onclick="fecharModal()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-content">
+                <!-- Cabeçalho com logo centralizado -->
+                <div class="modal-header">
+                    <div class="modal-logo"></div>
+                    <h2>Acesso ao Sistema</h2>
+                </div>
+                
+                <!-- Formulário de Login (sempre visível inicialmente) -->
+                <form id="formLogin">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginSenha" placeholder="Senha">
+                    </div>
+                    <div class="erro" id="loginErro"></div>
+                    <button type="button" class="btn-primary" onclick="loginFirebase()">Entrar</button>
+                    <div class="switch-link" onclick="mostrarCadastro()">
+                        Não tem conta? <span>Cadastre-se</span>
+                    </div>
+                </form>
+                
+                <!-- Formulário de Cadastro (inicialmente oculto) -->
+                <form id="formCadastro">
+                    <div class="form-group">
+                        <input type="text" id="cadEmpresa" placeholder="Nome da Empresa">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="cadCnpj" placeholder="CNPJ (apenas números)" 
+                               oninput="this.value = this.value.replace(/\D/g, '')">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="cadEmail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="cadSenha" placeholder="Senha">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="cadConfirmar" placeholder="Confirmar Senha">
+                    </div>
+                    <div class="erro" id="cadErro"></div>
+                    <button type="button" class="btn-primary" onclick="cadastrarUsuario()">Cadastrar</button>
+                    <div class="switch-link" onclick="mostrarLogin()">
+                        Já tem conta? <span>Faça login</span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-          <input type="password" id="loginSenha" placeholder="Senha">
-        </div>
-        <div class="erro" id="loginErro"></div>
-        <button type="button" onclick="loginFirebase()">Entrar</button>
-        <div class="switch-link" onclick="mostrarCadastro()">
-          Não tem conta? <span>Cadastre-se</span>
-        </div>
-      </form>
-      
-      <!-- Formulário de Cadastro -->
-      <form id="formCadastro">
-        <div class="form-group">
-          <input type="text" id="cadEmpresa" placeholder="Nome da Empresa">
-        </div>
-        <div class="form-group">
-          <input type="text" id="cadCnpj" placeholder="CNPJ (apenas números)" 
-                 oninput="this.value = this.value.replace(/\D/g, '')">
-        </div>
-        <div class="form-group">
-          <input type="email" id="cadEmail" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <input type="password" id="cadSenha" placeholder="Senha">
-        </div>
-        <div class="form-group">
-          <input type="password" id="cadConfirmar" placeholder="Confirmar Senha">
-        </div>
-        <div class="erro" id="cadErro"></div>
-        <button type="button" onclick="cadastrarUsuario()">Cadastrar</button>
-        <div class="switch-link" onclick="mostrarLogin()">
-          Já tem conta? <span>Faça login</span>
-        </div>
-      </form>
     </div>
-  </div>
-</div>
 
+
+
+    
 <script type="module">
 /* ===============================
    🔥 IMPORTS FIREBASE
