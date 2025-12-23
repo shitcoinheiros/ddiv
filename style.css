@@ -592,7 +592,7 @@ footer {
   animation: slideUp 0.35s ease-out;
   /* Box-shadow mais suave para combinar com os cards */
   box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-  color: #fff;
+  color: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   /* Borda igual aos cards */
   border: 1px solid rgba(204, 204, 204, 0.5);
   position: relative;
