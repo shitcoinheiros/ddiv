@@ -245,65 +245,64 @@
 
 
 
-<!-- 🔐 MODAL LOGIN / CADASTRO -->
-<div id="modalLogin" class="modal-overlay" style="display:none">
-
-  <div class="modal-card">
-
-    <!-- LOGIN -->
-    <div id="formLogin">
-      <h3>Entrar</h3>
-
-      <input id="loginEmail" placeholder="Email">
-      <input id="loginSenha" type="password" placeholder="Senha">
-
-      <p id="loginErro" class="erro"></p>
-
-      <button onclick="loginFirebase()">Entrar</button>
-
-      <p>
-        Não tem conta?
-        <a href="#" onclick="mostrarCadastro()">Cadastre-se</a>
-      </p>
+<!-- MODAL HTML -->
+<div id="modalLogin" onclick="fecharModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-content">
+      <!-- Cabeçalho com logo centralizado -->
+      <div class="modal-header">
+        <div class="modal-logo"></div>
+        <h2>Acesso ao Sistema</h2>
+      </div>
+      
+      <!-- Botões principais (Login/Cadastro) -->
+      <div class="modal-actions" id="mainActions">
+        <button class="btn-primary" onclick="mostrarLogin()">Entrar</button>
+        <button class="btn-secondary" onclick="mostrarCadastro()">Cadastrar</button>
+      </div>
+      
+      <!-- Formulário de Login -->
+      <form id="formLogin">
+        <div class="form-group">
+          <input type="email" id="loginEmail" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input type="password" id="loginSenha" placeholder="Senha">
+        </div>
+        <div class="erro" id="loginErro"></div>
+        <button type="button" onclick="loginFirebase()">Entrar</button>
+        <div class="switch-link" onclick="mostrarCadastro()">
+          Não tem conta? <span>Cadastre-se</span>
+        </div>
+      </form>
+      
+      <!-- Formulário de Cadastro -->
+      <form id="formCadastro">
+        <div class="form-group">
+          <input type="text" id="cadEmpresa" placeholder="Nome da Empresa">
+        </div>
+        <div class="form-group">
+          <input type="text" id="cadCnpj" placeholder="CNPJ (apenas números)" 
+                 oninput="this.value = this.value.replace(/\D/g, '')">
+        </div>
+        <div class="form-group">
+          <input type="email" id="cadEmail" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input type="password" id="cadSenha" placeholder="Senha">
+        </div>
+        <div class="form-group">
+          <input type="password" id="cadConfirmar" placeholder="Confirmar Senha">
+        </div>
+        <div class="erro" id="cadErro"></div>
+        <button type="button" onclick="cadastrarUsuario()">Cadastrar</button>
+        <div class="switch-link" onclick="mostrarLogin()">
+          Já tem conta? <span>Faça login</span>
+        </div>
+      </form>
     </div>
-
-    <!-- CADASTRO -->
-    <div id="formCadastro" style="display:none">
-      <h3>Criar conta</h3>
-
-      <input id="cadEmpresa" placeholder="Nome da empresa">
-      <input id="cadCnpj" placeholder="CNPJ (obrigatório)">
-      <input id="cadEmail" placeholder="Email">
-      <input id="cadSenha" type="password" placeholder="Senha">
-      <input id="cadConfirmar" type="password" placeholder="Confirmar senha">
-
-      <p id="cadErro" class="erro"></p>
-
-      <button onclick="cadastrarUsuario()">Cadastrar</button>
-
-      <p>
-        Já tem conta?
-        <a href="#" onclick="mostrarLogin()">Entrar</a>
-      </p>
-    </div>
-
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
 
 <script type="module">
 /* ===============================
@@ -396,12 +395,17 @@ window.cadastrarUsuario = async function () {
   }
 
   if (cnpj.replace(/\D/g, "").length !== 14) {
-    if (erro) erro.innerText = "CNPJ inválido";
+    if (erro) erro.innerText = "CNPJ inválido (14 dígitos)";
     return;
   }
 
   if (senha !== confirmar) {
     if (erro) erro.innerText = "As senhas não conferem";
+    return;
+  }
+
+  if (senha.length < 6) {
+    if (erro) erro.innerText = "A senha deve ter pelo menos 6 caracteres";
     return;
   }
 
@@ -416,13 +420,21 @@ window.cadastrarUsuario = async function () {
     });
 
     if (erro) erro.innerText = "";
-  } catch {
-    if (erro) erro.innerText = "Erro ao cadastrar. Email já existe?";
+  } catch (error) {
+    if (erro) {
+      if (error.code === 'auth/email-already-in-use') {
+        erro.innerText = "Email já cadastrado";
+      } else if (error.code === 'auth/weak-password') {
+        erro.innerText = "Senha muito fraca";
+      } else {
+        erro.innerText = "Erro ao cadastrar";
+      }
+    }
   }
 };
 
 /* ===============================
-   🪟 MODAL (ANTI-ERRO)
+   🪟 MODAL FUNCTIONS
 =============================== */
 window.abrirModal = function () {
   const modal = document.getElementById("modalLogin");
@@ -430,6 +442,21 @@ window.abrirModal = function () {
     console.error("modalLogin não encontrado no HTML");
     return;
   }
+  
+  // Resetar para estado inicial
+  mostrarLogin();
+  document.getElementById("loginErro").innerText = "";
+  document.getElementById("cadErro").innerText = "";
+  
+  // Limpar campos
+  document.getElementById("loginEmail").value = "";
+  document.getElementById("loginSenha").value = "";
+  document.getElementById("cadEmpresa").value = "";
+  document.getElementById("cadCnpj").value = "";
+  document.getElementById("cadEmail").value = "";
+  document.getElementById("cadSenha").value = "";
+  document.getElementById("cadConfirmar").value = "";
+  
   modal.style.display = "flex";
 };
 
@@ -442,23 +469,27 @@ window.fecharModal = function () {
 window.mostrarCadastro = function () {
   const login = document.getElementById("formLogin");
   const cadastro = document.getElementById("formCadastro");
-  if (!login || !cadastro) return;
+  const mainActions = document.getElementById("mainActions");
+  
+  if (!login || !cadastro || !mainActions) return;
 
   login.style.display = "none";
   cadastro.style.display = "block";
+  mainActions.style.display = "none";
 };
 
 window.mostrarLogin = function () {
   const login = document.getElementById("formLogin");
   const cadastro = document.getElementById("formCadastro");
-  if (!login || !cadastro) return;
+  const mainActions = document.getElementById("mainActions");
+  
+  if (!login || !cadastro || !mainActions) return;
 
   cadastro.style.display = "none";
   login.style.display = "block";
+  mainActions.style.display = "flex";
 };
 </script>
-
-
 
     
 
