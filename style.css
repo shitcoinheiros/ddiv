@@ -673,7 +673,7 @@ form input {
   padding: 12px;
   border-radius: 10px;
   border: 1px solid rgba(204, 204, 204, 0.5);
-    background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+    background: white;
   color: #fff;
   font-size: 14px;
   transition: border-color 0.3s;
@@ -753,7 +753,7 @@ form button:hover {
   }
   
   .modal-card::before {
-      background: green;
+      background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   }
 }
 
