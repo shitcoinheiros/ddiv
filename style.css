@@ -563,7 +563,7 @@ footer {
 
 
 /* ===============================
-   OVERLAY
+   OVERLAY PADRÃO (CENTRALIZADO)
 =============================== */
 #modalLogin {
   position: fixed;
@@ -571,38 +571,35 @@ footer {
   background: rgba(0, 0, 0, 0.65);
   display: none;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center; /* Centralizado por padrão (desktop) */
   z-index: 9999;
 }
 
 /* ===============================
-   CARD (BOTTOM SHEET) - NOVO ESTILO PARA COMBINAR COM SEUS CARDS
+   CARD MODAL - ESTILO PADRÃO (DESKTOP)
 =============================== */
 .modal-card {
   width: 100%;
-  max-width: 420px;
-  /* Usando a mesma imagem de fundo dos cards */
+  max-width: 450px;
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   background-size: cover;
   background-position: center;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px; /* Bordas arredondadas em todos os lados por padrão */
   padding: 24px;
   animation: slideUp 0.35s ease-out;
-  /* Box-shadow mais suave para combinar com os cards */
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Sombra em todos os lados */
   color: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-  /* Borda igual aos cards */
   border: 1px solid rgba(204, 204, 204, 0.5);
   position: relative;
   overflow: hidden;
 }
 
-/* Adicionando uma sobreposição escura para melhor legibilidade do texto */
+/* Sobreposição escura para legibilidade */
 .modal-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(15, 17, 21, 0.85);
+  background: rgba(15, 17, 21, 0.85); /* Mantendo o overlay escuro por padrão */
   z-index: 0;
 }
 
@@ -616,9 +613,11 @@ footer {
 =============================== */
 @keyframes slideUp {
   from {
-    transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
+    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -741,20 +740,32 @@ form button {
 }
 
 /* ===============================
-   DESKTOP AJUSTE
+   MOBILE AJUSTE (TELAS PEQUENAS APENAS)
 =============================== */
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   #modalLogin {
-    align-items: center;
+    align-items: flex-end; /* Bottom sheet apenas no mobile */
   }
 
   .modal-card {
-    border-radius: 20px;
-    max-width: 450px;
+    border-radius: 20px 20px 0 0; /* Topo arredondado, fundo reto no mobile */
+    max-width: 100%;
+    animation: slideUpMobile 0.35s ease-out;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3); /* Sombra apenas no topo */
   }
   
+  /* Mantendo o overlay escuro mesmo no mobile */
   .modal-card::before {
-      background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+    background: rgba(15, 17, 21, 0.85);
+  }
+
+  @keyframes slideUpMobile {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 }
 
@@ -762,7 +773,6 @@ form button {
 @media (max-width: 400px) {
   .modal-card {
     padding: 20px;
-    max-width: 100%;
   }
   
   .modal-header .modal-logo {
