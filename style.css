@@ -673,8 +673,8 @@ form input {
   padding: 12px;
   border-radius: 10px;
   border: 1px solid rgba(204, 204, 204, 0.5);
-    background: white;
-  color: #fff;
+  background: white;
+  color: #074508;
   font-size: 14px;
   transition: border-color 0.3s;
 }
