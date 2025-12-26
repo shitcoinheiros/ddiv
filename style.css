@@ -584,17 +584,17 @@ footer {
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   border-radius: 20px; /* Bordas arredondadas em todos os lados por padrão */
   padding: 24px;
   animation: slideUp 0.35s ease-out;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Sombra em todos os lados */
-  color: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   border: 1px solid rgba(204, 204, 204, 0.5);
   position: relative;
   overflow: hidden;
 }
 
-/* Sobreposição escura para legibilidade */
+/* Sobreposição escura para legibilidade - APLICADA EM TODOS OS DISPOSITIVOS */
 .modal-card::before {
   content: '';
   position: absolute;
@@ -647,7 +647,7 @@ footer {
   font-size: 18px;
   font-weight: 600;
   margin: 0;
-  color: #030303;
+  color: #ffffff; /* Alterado para branco para melhor contraste */
 }
 
 /* ===============================
@@ -678,6 +678,7 @@ form input {
 
 form input:focus {
   border-color: #16a34a; /* verde fluorescente */
+  outline: none;
 }
 
 form input::placeholder {
@@ -720,13 +721,14 @@ form button {
   margin-top: 12px;
   text-align: center;
   font-size: 13px;
-  color: #9ca3af;
+  color: #ffffff; /* Alterado para branco para melhor contraste */
   cursor: pointer;
 }
 
 .switch-link span {
-  color: #6366f1;
+  color: #22c55e; /* Verde para links, melhor contraste */
   font-weight: 600;
+  text-decoration: underline;
 }
 
 /* ===============================
@@ -745,16 +747,23 @@ form button {
 @media (max-width: 767px) {
   #modalLogin {
     align-items: flex-end; /* Bottom sheet apenas no mobile */
+    justify-content: center;
   }
 
   .modal-card {
     border-radius: 20px 20px 0 0; /* Topo arredondado, fundo reto no mobile */
     max-width: 100%;
+    width: 100%;
     animation: slideUpMobile 0.35s ease-out;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.3); /* Sombra apenas no topo */
+    /* MANTÉM A MESMA IMAGEM DE BACKGROUND DO DESKTOP */
+    background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
-  /* Mantendo o overlay escuro mesmo no mobile */
+  /* MANTÉM O MESMO OVERLAY ESCURO DO DESKTOP */
   .modal-card::before {
     background: rgba(15, 17, 21, 0.85);
   }
@@ -778,5 +787,9 @@ form button {
   .modal-header .modal-logo {
     width: 50px;
     height: 50px;
+  }
+  
+  .modal-header h2 {
+    font-size: 16px;
   }
 }
