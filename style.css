@@ -563,7 +563,7 @@ footer {
 
 
 /* ===============================
-   OVERLAY (PADRÃO PC)
+   OVERLAY (PC É O PADRÃO)
 =============================== */
 #modalLogin {
   position: fixed;
@@ -571,7 +571,7 @@ footer {
   background: rgba(0, 0, 0, 0.65);
   display: none;
   justify-content: center;
-  align-items: center; /* PC é o padrão */
+  align-items: center; /* PC como base */
   z-index: 9999;
 }
 
@@ -584,9 +584,10 @@ footer {
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   background-size: cover;
   background-position: center;
-  border-radius: 20px; /* PC */
+  border-radius: 20px; /* remove bottom-sheet */
   padding: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  animation: slideUp 0.35s ease-out;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   border: 1px solid rgba(204, 204, 204, 0.5);
   position: relative;
   overflow: hidden;
@@ -604,6 +605,20 @@ footer {
 .modal-content {
   position: relative;
   z-index: 1;
+}
+
+/* ===============================
+   ANIMAÇÃO (MANTIDA)
+=============================== */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ===============================
@@ -632,20 +647,20 @@ footer {
 }
 
 /* ===============================
-   FORMULÁRIO (PC COMO BASE)
+   FORMULÁRIOS (AJUSTE REAL)
 =============================== */
 form {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* centraliza inputs e botão */
 }
 
 #formCadastro {
   display: none;
 }
 
-/* largura única PC */
+/* largura única e consistente */
 .form-group,
 form button {
   width: 100%;
@@ -661,18 +676,24 @@ form input {
   padding: 12px;
   border-radius: 10px;
   border: 1px solid rgba(204, 204, 204, 0.5);
-  background: #ffffff;
+  background: white;
   color: #030303;
   font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 form input:focus {
-  border-color: #22c55e;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22,163,74,0.3);
   outline: none;
 }
 
+form input::placeholder {
+  color: #6b7280;
+}
+
 /* ===============================
-   BOTÃO (PC)
+   BOTÃO (SEU ESTILO MANTIDO)
 =============================== */
 form button {
   padding: 14px;
@@ -683,8 +704,8 @@ form button {
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
-  font-size: 15px;
   transition: transform 0.3s ease, background 0.3s ease;
+  font-size: 15px;
 }
 
 form button:hover {
@@ -696,7 +717,7 @@ form button:hover {
    LINKS
 =============================== */
 .switch-link {
-  margin-top: 14px;
+  margin-top: 12px;
   text-align: center;
   font-size: 13px;
   color: #9ca3af;
@@ -704,7 +725,7 @@ form button:hover {
 }
 
 .switch-link span {
-  color: #22c55e;
+  color: #6366f1;
   font-weight: 600;
 }
 
@@ -719,16 +740,16 @@ form button:hover {
 }
 
 /* ===============================
-   MOBILE (SÓ AJUSTES DE ESPAÇO)
-   NÃO MUDA ESTILO
+   MOBILE (APENAS ESPAÇAMENTO)
+   NÃO ALTERA ESTILO
 =============================== */
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .modal-card {
-    padding: 20px; /* só respiração */
+    padding: 20px;
   }
 
   .modal-header .modal-logo {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
   }
 }
