@@ -562,6 +562,8 @@ footer {
 
 
 
+/* ... (mantenha todo o CSS anterior que você tem) ... */
+
 /* ===============================
    OVERLAY PADRÃO (CENTRALIZADO)
 =============================== */
@@ -703,44 +705,51 @@ footer {
   text-align: center; /* Placeholder também centralizado */
 }
 
-/* Container para centralizar TODOS OS BOTÕES */
+/* BOTÕES DO MODAL - ESTILOS ESPECÍFICOS PARA CENTRALIZAÇÃO */
 #formLogin .form-button-container,
 #formCadastro .form-button-container {
   width: 100%;
-  display: flex;
-  justify-content: center; /* Centraliza o botão horizontalmente */
+  display: flex !important;
+  justify-content: center !important;
   margin-top: 10px;
 }
 
-/* APLICANDO ESTILO PARA TODOS OS BOTÕES NOS FORMULÁRIOS */
+/* BOTÕES ESPECÍFICOS DO MODAL - IMPORTANTE! */
+#modalLogin button,
 #formLogin button,
 #formCadastro button {
-  width: 100%;
-  max-width: 320px; /* MESMA largura máxima dos inputs */
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: none;
-  background: linear-gradient(135deg, #022c22, #00ff88);
-  color: black;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  font-size: 15px;
-  text-align: center;
+  width: 100% !important;
+  max-width: 320px !important; /* MESMA largura máxima dos inputs */
+  padding: 14px 16px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  background: linear-gradient(135deg, #022c22, #00ff88) !important;
+  color: black !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease-in-out !important;
+  font-size: 15px !important;
+  text-align: center !important;
+  display: block !important;
+  margin: 0 auto !important; /* Isso é crucial para centralizar */
 }
 
-/* Botão primário */
-.btn-primary {
+/* Botão primário do modal */
+#modalLogin .btn-primary,
+#formLogin .btn-primary,
+#formCadastro .btn-primary {
   background: linear-gradient(135deg, #064e3b, #065f46) !important;
   border: 1px solid #064e3b !important;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* Hover: verde mais claro */
-.btn-primary:hover {
+#modalLogin button:hover,
+#formLogin button:hover,
+#formCadastro button:hover {
   background: linear-gradient(135deg, #22c55e, #4ade80) !important;
   border-color: #22c55e !important;
-  transform: scale(1.02);
+  transform: scale(1.02) !important;
 }
 
 /* ===============================
@@ -820,10 +829,11 @@ footer {
   
   #formLogin input,
   #formCadastro input,
+  #modalLogin button,
   #formLogin button,
   #formCadastro button {
-    max-width: 100%; /* Em mobile usa 100% da largura disponível */
-    padding: 13px 15px;
+    max-width: 100% !important; /* Em mobile usa 100% da largura disponível */
+    padding: 13px 15px !important;
   }
 }
 
@@ -844,10 +854,11 @@ footer {
   
   #formLogin input,
   #formCadastro input,
+  #modalLogin button,
   #formLogin button,
   #formCadastro button {
-    padding: 12px 14px;
-    font-size: 14px;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
   }
   
   .switch-link {
@@ -863,8 +874,9 @@ footer {
   
   #formLogin input,
   #formCadastro input,
+  #modalLogin button,
   #formLogin button,
   #formCadastro button {
-    max-width: 340px; /* Ligeiramente maior em tablets */
+    max-width: 340px !important; /* Ligeiramente maior em tablets */
   }
 }
