@@ -584,7 +584,7 @@ footer {
   width: 100%;
   max-width: 450px;
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-    background-size: cover;
+    background-size: auto;
   background-position: center;
   background-repeat: repeat;
 
