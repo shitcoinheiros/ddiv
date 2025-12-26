@@ -586,7 +586,7 @@ footer {
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 20px; /* Bordas arredondadas em todos os lados por padrão */
-  padding: 24px;
+  padding: 30px 24px; /* Aumentei padding vertical */
   animation: slideUp 0.35s ease-out;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Sombra em todos os lados */
   border: 1px solid rgba(204, 204, 204, 0.5);
@@ -606,6 +606,9 @@ footer {
 .modal-content {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza tudo horizontalmente */
 }
 
 /* ===============================
@@ -629,13 +632,14 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  width: 100%; /* Garante que ocupa toda a largura disponível */
 }
 
 /* Logo centralizado sem bordas */
 .modal-header .modal-logo {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   margin-bottom: 15px;
   background: url('https://i.postimg.cc/JzQSByZ9/logo-ddvf-removebg-preview.png') center center no-repeat;
   background-size: contain;
@@ -644,17 +648,22 @@ footer {
 }
   
 .modal-header h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   margin: 0;
-  color: #ffffff; /* Alterado para branco para melhor contraste */
+  color: #ffffff;
+  text-align: center;
 }
 
 /* ===============================
-   FORMULÁRIOS
+   FORMULÁRIOS - TOTALMENTE CENTRALIZADOS
 =============================== */
 form {
   margin-top: 10px;
+  width: 100%; /* Ocupa toda a largura do container */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza todos os elementos do formulário */
 }
 
 #formCadastro {
@@ -662,33 +671,42 @@ form {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  width: 100%; /* Todos os inputs com mesma largura */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form input {
-  width: 100%;
-  padding: 12px;
+  width: 100%; /* Mesma largura que o botão */
+  max-width: 320px; /* Largura máxima igual para todos */
+  padding: 14px 16px; /* Padding similar ao botão */
   border-radius: 10px;
   border: 1px solid rgba(204, 204, 204, 0.5);
   background: white;
   color: #030303;
-  font-size: 14px;
-  transition: border-color 0.3s;
+  font-size: 15px;
+  transition: all 0.3s;
+  text-align: center; /* Texto centralizado dentro do input */
 }
 
 form input:focus {
-  border-color: #16a34a; /* verde fluorescente */
+  border-color: #16a34a;
   outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
 }
 
 form input::placeholder {
-  color: #6b7280; /* cinza neutro */
+  color: #6b7280;
+  text-align: center; /* Placeholder também centralizado */
 }
 
-/* Botão dos formulários */
+/* Botão dos formulários - MESMA LARGURA DOS INPUTS */
 form button {
-  width: 100%;
-  padding: 14px;
+  width: 100%; /* Mesma largura dos inputs */
+  max-width: 320px; /* Mesma largura máxima */
+  padding: 14px 16px;
   border-radius: 10px;
   border: none;
   background: linear-gradient(135deg, #022c22, #00ff88);
@@ -696,49 +714,53 @@ form button {
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   font-size: 15px;
+  text-align: center;
 }
 
 /* Botão primário */
 .btn-primary {
-  background: linear-gradient(135deg, #064e3b, #065f46) !important; /* verde escuro */
+  background: linear-gradient(135deg, #064e3b, #065f46) !important;
   border: 1px solid #064e3b !important;
   color: #ffffff;
 }
 
 /* Hover: verde mais claro */
 .btn-primary:hover {
-  background: linear-gradient(135deg, #22c55e, #4ade80) !important; /* verde claro */
+  background: linear-gradient(135deg, #22c55e, #4ade80) !important;
   border-color: #22c55e !important;
   transform: scale(1.02);
 }
 
 /* ===============================
-   LINKS
+   LINKS CENTRALIZADOS
 =============================== */
 .switch-link {
-  margin-top: 12px;
+  margin-top: 15px;
   text-align: center;
-  font-size: 13px;
-  color: #ffffff; /* Alterado para branco para melhor contraste */
+  font-size: 14px;
+  color: #ffffff;
   cursor: pointer;
+  width: 100%; /* Ocupa toda largura */
 }
 
 .switch-link span {
-  color: #22c55e; /* Verde para links, melhor contraste */
+  color: #22c55e;
   font-weight: 600;
   text-decoration: underline;
 }
 
 /* ===============================
-   ERROS
+   ERROS CENTRALIZADOS
 =============================== */
 .erro {
   color: #f87171;
   font-size: 13px;
   text-align: center;
   margin-bottom: 8px;
+  width: 100%; /* Ocupa toda largura */
+  max-width: 320px; /* Mesma largura dos inputs */
 }
 
 /* ===============================
@@ -751,16 +773,16 @@ form button {
   }
 
   .modal-card {
-    border-radius: 20px 20px 0 0; /* Topo arredondado, fundo reto no mobile */
+    border-radius: 20px 20px 0 0;
     max-width: 100%;
     width: 100%;
     animation: slideUpMobile 0.35s ease-out;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.3); /* Sombra apenas no topo */
-    /* MANTÉM A MESMA IMAGEM DE BACKGROUND DO DESKTOP */
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
     background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 25px 20px;
   }
   
   /* MANTÉM O MESMO OVERLAY ESCURO DO DESKTOP */
@@ -776,12 +798,28 @@ form button {
       transform: translateY(0);
     }
   }
+  
+  /* Ajustes de tamanho para mobile */
+  .modal-header .modal-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .modal-header h2 {
+    font-size: 18px;
+  }
+  
+  form input,
+  form button {
+    max-width: 100%; /* Em mobile usa 100% da largura disponível */
+    padding: 13px 15px;
+  }
 }
 
 /* Ajuste para telas muito pequenas */
 @media (max-width: 400px) {
   .modal-card {
-    padding: 20px;
+    padding: 20px 15px;
   }
   
   .modal-header .modal-logo {
@@ -791,5 +829,27 @@ form button {
   
   .modal-header h2 {
     font-size: 16px;
+  }
+  
+  form input,
+  form button {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  
+  .switch-link {
+    font-size: 13px;
+  }
+}
+
+/* Para telas maiores, garantir que fique bem centralizado */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .modal-card {
+    max-width: 400px;
+  }
+  
+  form input,
+  form button {
+    max-width: 340px; /* Ligeiramente maior em tablets */
   }
 }
