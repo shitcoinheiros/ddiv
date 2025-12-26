@@ -650,7 +650,7 @@ footer {
   font-size: 18px;
   font-weight: 600;
   margin: 0;
-  color: #030303;
+  color: linear-gradient(135deg, #064e3b, #065f46);
 }
 
 /* ===============================
