@@ -606,9 +606,6 @@ footer {
 .modal-content {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza tudo horizontalmente */
 }
 
 /* ===============================
@@ -633,7 +630,7 @@ footer {
   flex-direction: column;
   align-items: center;
   margin-bottom: 25px;
-  width: 100%; /* Garante que ocupa toda a largura disponível */
+  text-align: center; /* Garante texto centralizado */
 }
 
 /* Logo centralizado sem bordas */
@@ -652,7 +649,6 @@ footer {
   font-weight: 600;
   margin: 0;
   color: #ffffff;
-  text-align: center;
 }
 
 /* ===============================
@@ -660,7 +656,6 @@ footer {
 =============================== */
 form {
   margin-top: 10px;
-  width: 100%; /* Ocupa toda a largura do container */
   display: flex;
   flex-direction: column;
   align-items: center; /* Centraliza todos os elementos do formulário */
@@ -672,15 +667,15 @@ form {
 
 .form-group {
   margin-bottom: 18px;
-  width: 100%; /* Todos os inputs com mesma largura */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Garante que inputs fiquem centralizados */
 }
 
 form input {
-  width: 100%; /* Mesma largura que o botão */
-  max-width: 320px; /* Largura máxima igual para todos */
+  width: 100%;
+  max-width: 320px; /* Largura máxima para todos os elementos */
   padding: 14px 16px; /* Padding similar ao botão */
   border-radius: 10px;
   border: 1px solid rgba(204, 204, 204, 0.5);
@@ -702,17 +697,24 @@ form input::placeholder {
   text-align: center; /* Placeholder também centralizado */
 }
 
-/* Botão dos formulários - MESMA LARGURA DOS INPUTS */
+/* Container para centralizar o botão */
+.form-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centraliza o botão horizontalmente */
+  margin-top: 10px;
+}
+
+/* Botão dos formulários - CENTRALIZADO */
 form button {
-  width: 100%; /* Mesma largura dos inputs */
-  max-width: 320px; /* Mesma largura máxima */
+  width: 100%;
+  max-width: 320px; /* MESMA largura máxima dos inputs */
   padding: 14px 16px;
   border-radius: 10px;
   border: none;
   background: linear-gradient(135deg, #022c22, #00ff88);
   color: black;
   font-weight: 600;
-  margin-top: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   font-size: 15px;
@@ -742,7 +744,7 @@ form button {
   font-size: 14px;
   color: #ffffff;
   cursor: pointer;
-  width: 100%; /* Ocupa toda largura */
+  width: 100%;
 }
 
 .switch-link span {
@@ -759,8 +761,7 @@ form button {
   font-size: 13px;
   text-align: center;
   margin-bottom: 8px;
-  width: 100%; /* Ocupa toda largura */
-  max-width: 320px; /* Mesma largura dos inputs */
+  width: 100%;
 }
 
 /* ===============================
