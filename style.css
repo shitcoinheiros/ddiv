@@ -702,14 +702,18 @@ form button {
   font-size: 15px;
 }
 
-form button:hover {
-  transform: scale(1.02);
+/* Botão primário */
+.btn-primary {
+  background: linear-gradient(135deg, #064e3b, #065f46) !important; /* verde escuro */
+  border: 1px solid #064e3b !important;
+  color: #ffffff;
 }
 
-/* Estilo do botão primário */
-.btn-primary {
-  background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
-  border: 1px solid #4f46e5 !important;
+/* Hover: verde mais claro */
+.btn-primary:hover {
+  background: linear-gradient(135deg, #22c55e, #4ade80) !important; /* verde claro */
+  border-color: #22c55e !important;
+  transform: scale(1.02);
 }
 
 /* ===============================
