@@ -689,7 +689,7 @@ footer {
   color: #030303;
   font-size: 15px;
   transition: all 0.3s;
-  text-align: center; /* Texto centralizado dentro do input */
+  text-align: left; /* Texto centralizado dentro do input */
 }
 
 #formLogin input:focus,
@@ -832,7 +832,7 @@ footer {
   #modalLogin button,
   #formLogin button,
   #formCadastro button {
-    max-width: 100% !important; /* Em mobile usa 100% da largura disponível */
+    max-width: 90% !important; /* Em mobile usa 100% da largura disponível */
     padding: 13px 15px !important;
   }
 }
