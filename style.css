@@ -602,7 +602,7 @@ footer {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(15, 17, 21, 0.3); /* Mantendo o overlay escuro por padrão */
+/*  background: rgba(15, 17, 21, 0.3); /* Mantendo o overlay escuro por padrão */
   z-index: 0;
 }
 
