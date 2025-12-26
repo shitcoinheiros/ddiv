@@ -702,7 +702,7 @@ footer {
 #formLogin input::placeholder,
 #formCadastro input::placeholder {
   color: #6b7280;
-  text-align: center; /* Placeholder também centralizado */
+  text-align: left; /* Placeholder também centralizado */
 }
 
 /* BOTÕES DO MODAL - ESTILOS ESPECÍFICOS PARA CENTRALIZAÇÃO */
@@ -792,8 +792,8 @@ footer {
 
   .modal-card {
     border-radius: 20px 20px 0 0;
-    max-width: 100%;
-    width: 100%;
+    max-width: 95%;
+    width: 95%;
     animation: slideUpMobile 0.35s ease-out;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
     background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
