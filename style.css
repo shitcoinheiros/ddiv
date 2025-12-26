@@ -570,7 +570,7 @@ footer {
 #modalLogin {
   position: fixed;
   inset: 0;
-   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+    background: rgba(0, 0, 0, 0.65);
   display: none;
   justify-content: center;
   align-items: center; /* Centralizado por padrão (desktop) */
@@ -584,9 +584,7 @@ footer {
   width: 100%;
   max-width: 450px;
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
   border-radius: 20px; /* Bordas arredondadas em todos os lados por padrão */
   padding: 30px 24px; /* Aumentei padding vertical */
   animation: slideUp 0.35s ease-out;
