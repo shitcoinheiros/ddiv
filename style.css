@@ -584,6 +584,9 @@ footer {
   width: 100%;
   max-width: 450px;
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   border-radius: 20px; /* Bordas arredondadas em todos os lados por padrão */
   padding: 30px 24px; /* Aumentei padding vertical */
@@ -599,7 +602,7 @@ footer {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(15, 17, 21, 0.85); /* Mantendo o overlay escuro por padrão */
+  background: rgba(15, 17, 21, 0.45); /* Mantendo o overlay escuro por padrão */
   z-index: 0;
 }
 
