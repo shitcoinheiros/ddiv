@@ -561,9 +561,8 @@ footer {
 
 
 
-
 /* ===============================
-   OVERLAY (PC É O PADRÃO)
+   OVERLAY
 =============================== */
 #modalLogin {
   position: fixed;
@@ -571,12 +570,12 @@ footer {
   background: rgba(0, 0, 0, 0.65);
   display: none;
   justify-content: center;
-  align-items: center; /* PC como base */
+  align-items: flex-end; /* mantém seu comportamento */
   z-index: 9999;
 }
 
 /* ===============================
-   CARD (PADRÃO PC)
+   CARD (BOTTOM SHEET)
 =============================== */
 .modal-card {
   width: 100%;
@@ -584,16 +583,16 @@ footer {
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   background-size: cover;
   background-position: center;
-  border-radius: 20px; /* remove bottom-sheet */
+  border-radius: 20px 20px 0 0;
   padding: 24px;
   animation: slideUp 0.35s ease-out;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
   border: 1px solid rgba(204, 204, 204, 0.5);
   position: relative;
   overflow: hidden;
 }
 
-/* Overlay interno */
+/* Overlay escuro */
 .modal-card::before {
   content: '';
   position: absolute;
@@ -611,14 +610,8 @@ footer {
    ANIMAÇÃO (MANTIDA)
 =============================== */
 @keyframes slideUp {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
 /* ===============================
@@ -643,7 +636,7 @@ footer {
   font-size: 18px;
   font-weight: 600;
   margin: 0;
-  color: #ffffff;
+  color: #030303;
 }
 
 /* ===============================
@@ -653,14 +646,14 @@ form {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centraliza inputs e botão */
+  align-items: center; /* CENTRALIZA */
 }
 
 #formCadastro {
   display: none;
 }
 
-/* largura única e consistente */
+/* largura única (inputs = botão) */
 .form-group,
 form button {
   width: 100%;
@@ -679,12 +672,11 @@ form input {
   background: white;
   color: #030303;
   font-size: 14px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s;
 }
 
 form input:focus {
-  border-color: #16a34a;
-  box-shadow: 0 0 0 2px rgba(22,163,74,0.3);
+  border-color: #16a34a; /* SUA cor */
   outline: none;
 }
 
@@ -693,23 +685,30 @@ form input::placeholder {
 }
 
 /* ===============================
-   BOTÃO (SEU ESTILO MANTIDO)
+   BOTÃO (CORES ORIGINAIS)
 =============================== */
 form button {
   padding: 14px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, #064e3b, #065f46);
-  color: #ffffff;
+  background: linear-gradient(135deg, #022c22, #00ff88); /* MANTIDO */
+  color: black;
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease-in-out;
   font-size: 15px;
 }
 
-form button:hover {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
+.btn-primary {
+  background: linear-gradient(135deg, #064e3b, #065f46) !important;
+  border: 1px solid #064e3b !important;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #22c55e, #4ade80) !important;
+  border-color: #22c55e !important;
   transform: scale(1.02);
 }
 
@@ -740,8 +739,21 @@ form button:hover {
 }
 
 /* ===============================
-   MOBILE (APENAS ESPAÇAMENTO)
-   NÃO ALTERA ESTILO
+   DESKTOP (SÓ POSICIONAMENTO)
+=============================== */
+@media (min-width: 768px) {
+  #modalLogin {
+    align-items: center;
+  }
+
+  .modal-card {
+    border-radius: 20px;
+    max-width: 450px;
+  }
+}
+
+/* ===============================
+   MOBILE PEQUENO
 =============================== */
 @media (max-width: 400px) {
   .modal-card {
