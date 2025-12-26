@@ -654,11 +654,13 @@ footer {
 /* ===============================
    FORMULÁRIOS - TOTALMENTE CENTRALIZADOS
 =============================== */
-form {
+#formLogin,
+#formCadastro {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center; /* Centraliza todos os elementos do formulário */
+  width: 100%;
 }
 
 #formCadastro {
@@ -673,7 +675,9 @@ form {
   align-items: center; /* Garante que inputs fiquem centralizados */
 }
 
-form input {
+/* APLICANDO ESTILO PARA TODOS OS INPUTS NOS FORMULÁRIOS */
+#formLogin input,
+#formCadastro input {
   width: 100%;
   max-width: 320px; /* Largura máxima para todos os elementos */
   padding: 14px 16px; /* Padding similar ao botão */
@@ -686,27 +690,31 @@ form input {
   text-align: center; /* Texto centralizado dentro do input */
 }
 
-form input:focus {
+#formLogin input:focus,
+#formCadastro input:focus {
   border-color: #16a34a;
   outline: none;
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
 }
 
-form input::placeholder {
+#formLogin input::placeholder,
+#formCadastro input::placeholder {
   color: #6b7280;
   text-align: center; /* Placeholder também centralizado */
 }
 
-/* Container para centralizar o botão */
-.form-button-container {
+/* Container para centralizar TODOS OS BOTÕES */
+#formLogin .form-button-container,
+#formCadastro .form-button-container {
   width: 100%;
   display: flex;
   justify-content: center; /* Centraliza o botão horizontalmente */
   margin-top: 10px;
 }
 
-/* Botão dos formulários - CENTRALIZADO */
-form button {
+/* APLICANDO ESTILO PARA TODOS OS BOTÕES NOS FORMULÁRIOS */
+#formLogin button,
+#formCadastro button {
   width: 100%;
   max-width: 320px; /* MESMA largura máxima dos inputs */
   padding: 14px 16px;
@@ -810,8 +818,10 @@ form button {
     font-size: 18px;
   }
   
-  form input,
-  form button {
+  #formLogin input,
+  #formCadastro input,
+  #formLogin button,
+  #formCadastro button {
     max-width: 100%; /* Em mobile usa 100% da largura disponível */
     padding: 13px 15px;
   }
@@ -832,8 +842,10 @@ form button {
     font-size: 16px;
   }
   
-  form input,
-  form button {
+  #formLogin input,
+  #formCadastro input,
+  #formLogin button,
+  #formCadastro button {
     padding: 12px 14px;
     font-size: 14px;
   }
@@ -849,8 +861,10 @@ form button {
     max-width: 400px;
   }
   
-  form input,
-  form button {
+  #formLogin input,
+  #formCadastro input,
+  #formLogin button,
+  #formCadastro button {
     max-width: 340px; /* Ligeiramente maior em tablets */
   }
 }
