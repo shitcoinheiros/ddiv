@@ -561,6 +561,7 @@ footer {
 
 
 
+
 /* ===============================
    OVERLAY
 =============================== */
@@ -570,29 +571,33 @@ footer {
   background: rgba(0, 0, 0, 0.65);
   display: none;
   justify-content: center;
-  align-items: flex-end; /* mantém seu comportamento */
+  align-items: flex-end;
   z-index: 9999;
 }
 
 /* ===============================
-   CARD (BOTTOM SHEET)
+   CARD (BOTTOM SHEET) - NOVO ESTILO PARA COMBINAR COM SEUS CARDS
 =============================== */
 .modal-card {
   width: 100%;
   max-width: 420px;
+  /* Usando a mesma imagem de fundo dos cards */
   background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
   background-size: cover;
   background-position: center;
   border-radius: 20px 20px 0 0;
   padding: 24px;
   animation: slideUp 0.35s ease-out;
+  /* Box-shadow mais suave para combinar com os cards */
   box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  color: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+  /* Borda igual aos cards */
   border: 1px solid rgba(204, 204, 204, 0.5);
   position: relative;
   overflow: hidden;
 }
 
-/* Overlay escuro */
+/* Adicionando uma sobreposição escura para melhor legibilidade do texto */
 .modal-card::before {
   content: '';
   position: absolute;
@@ -607,15 +612,19 @@ footer {
 }
 
 /* ===============================
-   ANIMAÇÃO (MANTIDA)
+   ANIMAÇÃO
 =============================== */
 @keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 /* ===============================
-   HEADER
+   HEADER / LOGO CENTRALIZADO NO TOPO
 =============================== */
 .modal-header {
   display: flex;
@@ -624,14 +633,17 @@ footer {
   margin-bottom: 20px;
 }
 
+/* Logo centralizado sem bordas */
 .modal-header .modal-logo {
   width: 60px;
   height: 60px;
   margin-bottom: 15px;
-  background: url('https://i.postimg.cc/JzQSByZ9/logo-ddvf-removebg-preview.png') center no-repeat;
+  background: url('https://i.postimg.cc/JzQSByZ9/logo-ddvf-removebg-preview.png') center center no-repeat;
   background-size: contain;
+  border: none !important;
+  box-shadow: none !important;
 }
-
+  
 .modal-header h2 {
   font-size: 18px;
   font-weight: 600;
@@ -640,24 +652,14 @@ footer {
 }
 
 /* ===============================
-   FORMULÁRIOS (AJUSTE REAL)
+   FORMULÁRIOS
 =============================== */
 form {
   margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* CENTRALIZA */
 }
 
 #formCadastro {
   display: none;
-}
-
-/* largura única (inputs = botão) */
-.form-group,
-form button {
-  width: 100%;
-  max-width: 340px;
 }
 
 .form-group {
@@ -676,22 +678,20 @@ form input {
 }
 
 form input:focus {
-  border-color: #16a34a; /* SUA cor */
-  outline: none;
+  border-color: #16a34a; /* verde fluorescente */
 }
 
 form input::placeholder {
-  color: #6b7280;
+  color: #6b7280; /* cinza neutro */
 }
 
-/* ===============================
-   BOTÃO (CORES ORIGINAIS)
-=============================== */
+/* Botão dos formulários */
 form button {
+  width: 100%;
   padding: 14px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, #022c22, #00ff88); /* MANTIDO */
+  background: linear-gradient(135deg, #022c22, #00ff88);
   color: black;
   font-weight: 600;
   margin-top: 10px;
@@ -700,14 +700,16 @@ form button {
   font-size: 15px;
 }
 
+/* Botão primário */
 .btn-primary {
-  background: linear-gradient(135deg, #064e3b, #065f46) !important;
+  background: linear-gradient(135deg, #064e3b, #065f46) !important; /* verde escuro */
   border: 1px solid #064e3b !important;
   color: #ffffff;
 }
 
+/* Hover: verde mais claro */
 .btn-primary:hover {
-  background: linear-gradient(135deg, #22c55e, #4ade80) !important;
+  background: linear-gradient(135deg, #22c55e, #4ade80) !important; /* verde claro */
   border-color: #22c55e !important;
   transform: scale(1.02);
 }
@@ -739,7 +741,7 @@ form button {
 }
 
 /* ===============================
-   DESKTOP (SÓ POSICIONAMENTO)
+   DESKTOP AJUSTE
 =============================== */
 @media (min-width: 768px) {
   #modalLogin {
@@ -750,16 +752,19 @@ form button {
     border-radius: 20px;
     max-width: 450px;
   }
+  
+  .modal-card::before {
+      background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
+  }
 }
 
-/* ===============================
-   MOBILE PEQUENO
-=============================== */
+/* Ajuste para telas muito pequenas */
 @media (max-width: 400px) {
   .modal-card {
     padding: 20px;
+    max-width: 100%;
   }
-
+  
   .modal-header .modal-logo {
     width: 50px;
     height: 50px;
