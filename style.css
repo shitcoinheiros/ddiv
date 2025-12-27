@@ -740,7 +740,7 @@ footer {
 #formLogin .btn-primary,
 #formCadastro .btn-primary {
   background: green;
-*/  border: 1px solid #064e3b !important; 
+/* border: 1px solid #064e3b !important;  */
   color: #ffffff !important;
 } /* linear-gradient(135deg, #064e3b, #065f46) !important */
 
