@@ -745,13 +745,13 @@ footer {
 } /* linear-gradient(135deg, #064e3b, #065f46) !important */
 
 /* Hover: verde mais claro */
-#modalLogin button:hover,
+/* #modalLogin button:hover,
 #formLogin button:hover,
 #formCadastro button:hover {
   background: linear-gradient(135deg, #22c55e, #4ade80) !important;
   border-color: #22c55e !important;
   transform: scale(1.02) !important;
-}
+} */
 
 /* ===============================
    LINKS CENTRALIZADOS
