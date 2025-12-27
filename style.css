@@ -740,11 +740,11 @@ footer {
 #formLogin .btn-primary,
 #formCadastro .btn-primary {
   background: green;
-  border: 1px solid #064e3b !important;
+*/  border: 1px solid #064e3b !important; 
   color: #ffffff !important;
-}
+} /* linear-gradient(135deg, #064e3b, #065f46) !important */
 
-/* Hover: verde mais claro 
+/* Hover: verde mais claro */
 #modalLogin button:hover,
 #formLogin button:hover,
 #formCadastro button:hover {
@@ -752,7 +752,7 @@ footer {
   border-color: #22c55e !important;
   transform: scale(1.02) !important;
 }
-*/
+
 /* ===============================
    LINKS CENTRALIZADOS
 =============================== */
