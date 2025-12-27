@@ -47,38 +47,41 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     
     <style>
-        /* Estilos adicionais para os botões de login/logout */
-        .logout-btn {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s ease;
-            margin-left: 10px;
-        }
+ /* Botão de login apenas ícone */
+.login-btn,
+.logout-btn {
+    background: transparent;   /* sem fundo */
+    border: none;              /* sem borda */
+    padding: 0;                /* sem área de botão */
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;           /* tamanho do ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .logout-btn:hover {
-            background: #ff0000;
-        }
+/* Cor padrão do ícone */
+.login-btn {
+    color: #22c55e; /* verde */
+}
 
-        .login-btn {
-          /*  background: green; */
-            color: white;
-        /*    border: none;
-            padding: 8px 16px;
-           border-radius: 4px; */
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s ease;
-            margin-left: 10px;
-        }
+.logout-btn {
+    color: #ef4444; /* vermelho */
+}
 
-        .login-btn:hover {
-            background: #45a049;
-        }
+/* Hover: muda só a cor */
+.login-btn:hover {
+    color: #16a34a;
+}
+
+.logout-btn:hover {
+    color: #dc2626;
+}
+
+
+
+        
 
         .navbar-links li a i {
             margin-right: 8px;
