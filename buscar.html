@@ -497,5 +497,114 @@
             login.style.display = "block";
         };
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="module">
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+/* 🔗 URL DO SEU WORKER */
+const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev/";
+
+/* 🌎 BUSCAR POR ESTADO */
+window.buscarEstado = async function () {
+    const estado = document.getElementById("estadoSelect").value;
+
+    if (!estado) {
+        alert("Selecione um estado");
+        return;
+    }
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+        alert("Faça login para acessar os dados");
+        return;
+    }
+
+    try {
+        mostrarLoading(true);
+
+        // 🔐 Token Firebase
+        const token = await user.getIdToken();
+
+        // 🔒 Chamada protegida ao Worker
+        const res = await fetch(WORKER_URL, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error("Acesso negado");
+        }
+
+        const json = await res.json();
+
+        // 🔎 Filtrar por estado
+        const filtrados = json.filter(item => item.estado === estado);
+
+        renderizarCards(filtrados);
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao carregar dados");
+    } finally {
+        mostrarLoading(false);
+    }
+};
+
+/* 🧱 RENDERIZA CARDS */
+function renderizarCards(lista) {
+    const container = document.getElementById("cards-container");
+    container.innerHTML = "";
+
+    if (!lista.length) {
+        container.innerHTML = "<p>Nenhum resultado encontrado</p>";
+        return;
+    }
+
+    lista.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <h3>${item.nome}</h3>
+            <p><strong>Empresa:</strong> ${item.empresa}</p>
+            <p><strong>Estado:</strong> ${item.estado}</p>
+            <p><strong>Email:</strong> ${item.email}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
+/* ⏳ LOADING */
+function mostrarLoading(status) {
+    const overlay = document.getElementById("overlay");
+    if (overlay) overlay.style.display = status ? "flex" : "none";
+}
+</script>
+
+
+
+
+
+
+
+    
 </body>
 </html>
