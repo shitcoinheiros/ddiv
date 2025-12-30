@@ -259,317 +259,247 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="module">
-        /* ===============================
-           🔥 IMPORTS FIREBASE
-        =============================== */
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import {
-            getAuth,
-            signInWithEmailAndPassword,
-            createUserWithEmailAndPassword,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+/* ===============================
+   🔥 IMPORTS FIREBASE
+=============================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-        import {
-            getFirestore,
-            doc,
-            setDoc
-        } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import {
+    getFirestore,
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        /* ===============================
-           🔧 CONFIG FIREBASE
-        =============================== */
-        const firebaseConfig = {
-            apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
-            authDomain: "octolusco.firebaseapp.com",
-            projectId: "octolusco",
-            storageBucket: "octolusco.firebasestorage.app",
-            messagingSenderId: "226020419549",
-            appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
-            measurementId: "G-PLDK083FV8"
-        };
+/* ===============================
+   🔧 CONFIG FIREBASE
+=============================== */
+const firebaseConfig = {
+    apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
+    authDomain: "octolusco.firebaseapp.com",
+    projectId: "octolusco",
+    storageBucket: "octolusco.firebasestorage.app",
+    messagingSenderId: "226020419549",
+    appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
+    measurementId: "G-PLDK083FV8"
+};
 
-        /* ===============================
-           🚀 INIT
-        =============================== */
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+/* ===============================
+   🚀 INIT
+=============================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-        window.usuarioLogado = false;
+window.usuarioLogado = false;
 
-        /* ===============================
-           🔒 LOGOUT FUNCTION
-        =============================== */
-        window.logout = async function () {
-            try {
-                await signOut(auth);
-                // Não precisa recarregar a página, o onAuthStateChanged vai atualizar a interface
-            } catch (error) {
-                console.error("Erro ao fazer logout:", error);
-                alert("Erro ao fazer logout. Tente novamente.");
-            }
-        };
-
-        /* ===============================
-           👀 OBSERVA LOGIN
-        =============================== */
-        onAuthStateChanged(auth, (user) => {
-            window.usuarioLogado = !!user;
-
-            // Atualizar menu de navegação
-            const logoutItem = document.getElementById("logoutItem");
-            const loginItem = document.getElementById("loginItem");
-            const cadastroLink = document.getElementById("cadastroLink");
-            
-            if (user) {
-                // Usuário logado: mostrar "Sair", esconder "Entrar"
-                if (logoutItem) logoutItem.style.display = "block";
-                if (loginItem) loginItem.style.display = "none";
-                
-                // Atualizar opção de cadastro para perfil (opcional)
-                if (cadastroLink) {
-                    cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
-                    cadastroLink.href = "#"; // Você pode mudar para "perfil.html" se tiver essa página
-                    cadastroLink.onclick = function(e) {
-                        e.preventDefault();
-                        alert("Página de perfil em desenvolvimento!");
-                    };
-                }
-                
-                fecharModal();
-                if (typeof window.buscarEstado === "function") {
-                    window.buscarEstado();
-                }
-            } else {
-                // Usuário não logado: mostrar "Entrar", esconder "Sair"
-                if (logoutItem) logoutItem.style.display = "none";
-                if (loginItem) loginItem.style.display = "block";
-                
-                // Restaurar opção de cadastro
-                if (cadastroLink) {
-                    cadastroLink.innerHTML = 'Cadastre-se';
-                    cadastroLink.href = "cadastro.html";
-                    cadastroLink.onclick = null;
-                }
-            }
-        });
-
-        /* ===============================
-           🔑 LOGIN
-        =============================== */
-        window.loginFirebase = async function () {
-            const email = document.getElementById("loginEmail")?.value;
-            const senha = document.getElementById("loginSenha")?.value;
-            const erro = document.getElementById("loginErro");
-
-            if (!email || !senha) {
-                if (erro) erro.innerText = "Preencha email e senha";
-                return;
-            }
-
-            try {
-                await signInWithEmailAndPassword(auth, email, senha);
-                // Login bem-sucedido - o onAuthStateChanged irá fechar o modal automaticamente
-            } catch (error) {
-                if (erro) {
-                    if (error.code === 'auth/invalid-email') {
-                        erro.innerText = "Email inválido";
-                    } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                        erro.innerText = "Email ou senha inválidos";
-                    } else {
-                        erro.innerText = "Erro ao fazer login";
-                    }
-                }
-            }
-        };
-
-        /* ===============================
-           🆕 CADASTRO
-        =============================== */
-        window.cadastrarUsuario = async function () {
-            const empresa = document.getElementById("cadEmpresa")?.value;
-            const cnpj = document.getElementById("cadCnpj")?.value;
-            const email = document.getElementById("cadEmail")?.value;
-            const senha = document.getElementById("cadSenha")?.value;
-            const confirmar = document.getElementById("cadConfirmar")?.value;
-            const erro = document.getElementById("cadErro");
-
-            if (!empresa || !cnpj || !email || !senha || !confirmar) {
-                if (erro) erro.innerText = "Preencha todos os campos";
-                return;
-            }
-
-            if (cnpj.replace(/\D/g, "").length !== 14) {
-                if (erro) erro.innerText = "CNPJ inválido (14 dígitos)";
-                return;
-            }
-
-            if (senha !== confirmar) {
-                if (erro) erro.innerText = "As senhas não conferem";
-                return;
-            }
-
-            if (senha.length < 6) {
-                if (erro) erro.innerText = "A senha deve ter pelo menos 6 caracteres";
-                return;
-            }
-
-            try {
-                const cred = await createUserWithEmailAndPassword(auth, email, senha);
-
-                await setDoc(doc(db, "usuarios", cred.user.uid), {
-                    empresa,
-                    cnpj,
-                    email,
-                    criadoEm: new Date()
-                });
-
-                if (erro) erro.innerText = "";
-                // Cadastro bem-sucedido - o usuário já estará logado automaticamente
-            } catch (error) {
-                if (erro) {
-                    if (error.code === 'auth/email-already-in-use') {
-                        erro.innerText = "Email já cadastrado";
-                    } else if (error.code === 'auth/weak-password') {
-                        erro.innerText = "Senha muito fraca";
-                    } else if (error.code === 'auth/invalid-email') {
-                        erro.innerText = "Email inválido";
-                    } else {
-                        erro.innerText = "Erro ao cadastrar: " + error.message;
-                    }
-                }
-            }
-        };
-
-        /* ===============================
-           🪟 MODAL FUNCTIONS
-        =============================== */
-        window.abrirModal = function () {
-            const modal = document.getElementById("modalLogin");
-            if (!modal) {
-                console.error("modalLogin não encontrado no HTML");
-                return;
-            }
-            
-            // Resetar para estado inicial
-            mostrarLogin();
-            document.getElementById("loginErro").innerText = "";
-            document.getElementById("cadErro").innerText = "";
-            
-            // Limpar campos
-            document.getElementById("loginEmail").value = "";
-            document.getElementById("loginSenha").value = "";
-            document.getElementById("cadEmpresa").value = "";
-            document.getElementById("cadCnpj").value = "";
-            document.getElementById("cadEmail").value = "";
-            document.getElementById("cadSenha").value = "";
-            document.getElementById("cadConfirmar").value = "";
-            
-            modal.style.display = "flex";
-        };
-
-        window.fecharModal = function () {
-            const modal = document.getElementById("modalLogin");
-            if (!modal) return;
-            modal.style.display = "none";
-        };
-
-        window.mostrarCadastro = function () {
-            const login = document.getElementById("formLogin");
-            const cadastro = document.getElementById("formCadastro");
-            
-            if (!login || !cadastro) return;
-
-            login.style.display = "none";
-            cadastro.style.display = "block";
-        };
-
-        window.mostrarLogin = function () {
-            const login = document.getElementById("formLogin");
-            const cadastro = document.getElementById("formCadastro");
-            
-            if (!login || !cadastro) return;
-
-            cadastro.style.display = "none";
-            login.style.display = "block";
-        };
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="module">
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-
-/* 🔗 URL DO SEU WORKER */
-const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
-
-/* 🌎 BUSCAR POR ESTADO */
-window.buscarEstado = async function () {
-    const estado = document.getElementById("estadoSelect").value;
-
-    if (!estado) {
-        alert("Selecione um estado");
-        return;
+/* ===============================
+   🔒 LOGOUT
+=============================== */
+window.logout = async () => {
+    try {
+        await signOut(auth);
+    } catch (e) {
+        alert("Erro ao sair");
+        console.error(e);
     }
+};
 
-    const auth = getAuth();
-    const user = auth.currentUser;
+/* ===============================
+   👀 OBSERVA LOGIN
+=============================== */
+onAuthStateChanged(auth, (user) => {
+    window.usuarioLogado = !!user;
 
-    if (!user) {
-        alert("Faça login para acessar os dados");
+    const logoutItem = document.getElementById("logoutItem");
+    const loginItem = document.getElementById("loginItem");
+    const cadastroLink = document.getElementById("cadastroLink");
+
+    if (user) {
+        if (logoutItem) logoutItem.style.display = "block";
+        if (loginItem) loginItem.style.display = "none";
+
+        if (cadastroLink) {
+            cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
+            cadastroLink.href = "#";
+            cadastroLink.onclick = (e) => {
+                e.preventDefault();
+                alert("Perfil em desenvolvimento");
+            };
+        }
+
+        fecharModal();
+    } else {
+        if (logoutItem) logoutItem.style.display = "none";
+        if (loginItem) loginItem.style.display = "block";
+
+        if (cadastroLink) {
+            cadastroLink.innerHTML = "Cadastre-se";
+            cadastroLink.href = "cadastro.html";
+            cadastroLink.onclick = null;
+        }
+    }
+});
+
+/* ===============================
+   🔑 LOGIN
+=============================== */
+window.loginFirebase = async () => {
+    const email = document.getElementById("loginEmail").value;
+    const senha = document.getElementById("loginSenha").value;
+    const erro = document.getElementById("loginErro");
+
+    if (!email || !senha) {
+        erro.innerText = "Preencha email e senha";
         return;
     }
 
     try {
+        await signInWithEmailAndPassword(auth, email, senha);
+    } catch (e) {
+        erro.innerText = "Email ou senha inválidos";
+    }
+};
+
+/* ===============================
+   🆕 CADASTRO
+=============================== */
+window.cadastrarUsuario = async () => {
+    const empresa = document.getElementById("cadEmpresa").value;
+    const cnpj = document.getElementById("cadCnpj").value;
+    const email = document.getElementById("cadEmail").value;
+    const senha = document.getElementById("cadSenha").value;
+    const confirmar = document.getElementById("cadConfirmar").value;
+    const erro = document.getElementById("cadErro");
+
+    if (!empresa || !cnpj || !email || !senha || !confirmar) {
+        erro.innerText = "Preencha todos os campos";
+        return;
+    }
+
+    if (senha !== confirmar) {
+        erro.innerText = "As senhas não conferem";
+        return;
+    }
+
+    try {
+        const cred = await createUserWithEmailAndPassword(auth, email, senha);
+        await setDoc(doc(db, "usuarios", cred.user.uid), {
+            empresa,
+            cnpj,
+            email,
+            criadoEm: new Date()
+        });
+        erro.innerText = "";
+    } catch (e) {
+        erro.innerText = "Erro ao cadastrar";
+    }
+};
+
+/* ===============================
+   🪟 MODAL
+=============================== */
+window.abrirModal = () => {
+    document.getElementById("modalLogin").style.display = "flex";
+    mostrarLogin();
+};
+
+window.fecharModal = () => {
+    document.getElementById("modalLogin").style.display = "none";
+};
+
+window.mostrarCadastro = () => {
+    document.getElementById("formLogin").style.display = "none";
+    document.getElementById("formCadastro").style.display = "block";
+};
+
+window.mostrarLogin = () => {
+    document.getElementById("formCadastro").style.display = "none";
+    document.getElementById("formLogin").style.display = "block";
+};
+
+/* ===============================
+   🔗 WORKER
+=============================== */
+const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
+
+/* ===============================
+   🌎 BUSCAR POR ESTADO (AJUSTADO)
+=============================== */
+window.buscarEstado = async () => {
+    const estado = document.getElementById("estadoSelect").value;
+    if (!estado) return alert("Selecione um estado");
+
+    const user = auth.currentUser;
+    if (!user) return alert("Faça login");
+
+    try {
         mostrarLoading(true);
 
-        // 🔐 Token Firebase
         const token = await user.getIdToken();
-
-        // 🔒 Chamada protegida ao Worker
         const res = await fetch(WORKER_URL, {
-            headers: {
-                Authorization: "Bearer " + token
-            }
+            headers: { Authorization: "Bearer " + token }
         });
 
-        if (!res.ok) {
-            throw new Error("Acesso negado");
+        if (!res.ok) throw new Error("Acesso negado");
+
+        const resposta = await res.json();
+
+        // ✅ AJUSTE CRÍTICO AQUI
+        let lista = [];
+
+        if (Array.isArray(resposta)) {
+            lista = resposta;
+        } else if (typeof resposta === "object") {
+            const possivelArray = Object.values(resposta).find(v => Array.isArray(v));
+            if (possivelArray) lista = possivelArray;
         }
 
-        const json = await res.json();
-
-        // 🔎 Filtrar por estado
-        const filtrados = json.filter(item => item.estado === estado);
-
+        const filtrados = lista.filter(item => item.estado === estado);
         renderizarCards(filtrados);
-    } catch (err) {
-        console.error(err);
+
+    } catch (e) {
+        console.error(e);
         alert("Erro ao carregar dados");
     } finally {
         mostrarLoading(false);
     }
 };
 
-/* 🧱 RENDERIZA CARDS */
+/* ===============================
+   🧱 RENDERIZA
+=============================== */
 function renderizarCards(lista) {
     const container = document.getElementById("cards-container");
     container.innerHTML = "";
@@ -583,16 +513,18 @@ function renderizarCards(lista) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-            <h3>${item.nome}</h3>
-            <p><strong>Empresa:</strong> ${item.empresa}</p>
-            <p><strong>Estado:</strong> ${item.estado}</p>
-            <p><strong>Email:</strong> ${item.email}</p>
+            <h3>${item.nome || "-"}</h3>
+            <p><strong>Empresa:</strong> ${item.empresa || "-"}</p>
+            <p><strong>Estado:</strong> ${item.estado || "-"}</p>
+            <p><strong>Email:</strong> ${item.email || "-"}</p>
         `;
         container.appendChild(card);
     });
 }
 
-/* ⏳ LOADING */
+/* ===============================
+   ⏳ LOADING
+=============================== */
 function mostrarLoading(status) {
     const overlay = document.getElementById("overlay");
     if (overlay) overlay.style.display = status ? "flex" : "none";
