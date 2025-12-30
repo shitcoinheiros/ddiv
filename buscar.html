@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço." />
 
-    <script src="https://jade-detailed-slug-469.mypinata.cloud/ipfs/bafkreifdbwrz62u2bymeps3gcs7df6eqvpf5hckbnr57zae6osp3ph4azi"></script>
-
     <title>DDFV</title>
 
     <!-- Basic Page Information -->
@@ -47,41 +45,43 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     
     <style>
- /* Botão de login apenas ícone */
-.login-btn,
-.logout-btn {
-    background: transparent;   /* sem fundo */
-    border: none;              /* sem borda */
-    padding: 0;                /* sem área de botão */
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 18px;           /* tamanho do ícone */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* Botões de login/logout com texto */
+        .login-btn,
+        .logout-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
 
-/* Cor padrão do ícone */
-.login-btn {
-    color: green; /* verde */
-}
+        /* Botão Entrar - Verde */
+        .login-btn {
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
 
-.logout-btn {
-    color: red; /* vermelho */
-}
+        .login-btn:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-/* Hover: muda só a cor */
-.login-btn:hover {
-    color: #16a34a;
-}
+        /* Botão Sair - Vermelho */
+        .logout-btn {
+            color: #f44336;
+            border: 2px solid #f44336;
+        }
 
-.logout-btn:hover {
-    color: #dc2626;
-}
-
-
-
-        
+        .logout-btn:hover {
+            background-color: #f44336;
+            color: white;
+        }
 
         .navbar-links li a i {
             margin-right: 8px;
@@ -89,6 +89,102 @@
 
         .navbar-links li {
             list-style: none;
+        }
+        
+        /* Overlay de carregamento */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Cards container */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .verification-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .contato-bloqueado {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .btn-login {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -111,19 +207,19 @@
             <li><a href="duvidas.html">Dúvidas</a></li>
             <li><a href="contato.html">Contato</a></li>
             
-    <!-- Item de logout (inicialmente escondido) -->
-<li id="logoutItem" style="display: none;">
-   <a onclick="abrirModal()" class="login-btn">
-        Sair
-    </a>
-</li>
+            <!-- Item de logout (inicialmente escondido) -->
+            <li id="logoutItem" style="display: none;">
+                <a href="#" onclick="logout(); return false;" class="logout-btn">
+                    Sair
+                </a>
+            </li>
 
-<!-- Item de login (mostrado quando não está logado) -->
-<li id="loginItem">
-    <a onclick="abrirModal()" class="login-btn">
-    Entrar
-    </a>
-</li>
+            <!-- Item de login (mostrado quando não está logado) -->
+            <li id="loginItem">
+                <a href="#" onclick="abrirModal(); return false;" class="login-btn">
+                    Entrar
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -174,20 +270,24 @@
             <option value="DF">Distrito Federal</option>
         </select>
 
-        <buttoncadastro onclick="buscarEstado()">Buscar</buttoncadastro>
+        <button onclick="buscarEstado()">Buscar</button>
     </center>
     
     <!-- Sobreposição e Spinner -->
     <div id="overlay">
-        <div id="progress-container">
-            <div id="progress-bar"></div>
-            <p>Carregando...</p>
-        </div>
+        <div class="spinner"></div>
+        <p style="color: white; font-size: 18px;">Carregando vistoriadores...</p>
     </div>
+    
     <br>
     <br>
     <div id="cards-container">
         <!-- Aqui serão exibidos os cards filtrados -->
+        <div class="instrucao" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+            <i class="fas fa-map-marker-alt" style="font-size: 48px; color: #666; margin-bottom: 20px;"></i>
+            <h3>Selecione um estado acima</h3>
+            <p>Escolha um estado para ver os vistoriadores disponíveis na região</p>
+        </div>
     </div>
     <br>
     <br>
@@ -225,14 +325,16 @@
                         <input type="password" id="loginSenha" placeholder="Senha">
                     </div>
                     <div class="erro" id="loginErro"></div>
-               <center>    <button type="button" class="btn-primary" onclick="loginFirebase()">Entrar</button> </center> 
+                    <center>
+                        <button type="button" class="btn-primary" onclick="loginFirebase()">Entrar</button>
+                    </center>
                     <div class="switch-link" onclick="mostrarCadastro()">
                         Não tem conta? <span>Cadastre-se</span>
                     </div>
                 </form>
                 
                 <!-- Formulário de Cadastro (inicialmente oculto) -->
-                <form id="formCadastro">
+                <form id="formCadastro" style="display: none;">
                     <div class="form-group">
                         <input type="text" id="cadEmpresa" placeholder="Nome da Empresa">
                     </div>
@@ -250,7 +352,9 @@
                         <input type="password" id="cadConfirmar" placeholder="Confirmar Senha">
                     </div>
                     <div class="erro" id="cadErro"></div>
-                  <center></center>  <button type="button" class="btn-primary" onclick="cadastrarUsuario()">Cadastrar</button> </center> 
+                    <center>
+                        <button type="button" class="btn-primary" onclick="cadastrarUsuario()">Cadastrar</button>
+                    </center>
                     <div class="switch-link" onclick="mostrarLogin()">
                         Já tem conta? <span>Faça login</span>
                     </div>
@@ -259,6 +363,7 @@
         </div>
     </div>
 
+    <!-- SCRIPT ÚNICO E UNIFICADO -->
     <script type="module">
         /* ===============================
            🔥 IMPORTS FIREBASE
@@ -301,12 +406,205 @@
         window.usuarioLogado = false;
 
         /* ===============================
+           📊 DADOS DOS VISTORIADORES
+        =============================== */
+        const dadosVistoriadores = {
+            "cards": [
+                {
+                    "titulo": "",
+                    "nome": "William Garcia ⚙ NR:007.2023",
+                    "telefone": "(21)975279648",
+                    "email": "horus.inspetoria@gmail.com",
+                    "especialidades": "Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.",
+                    "area": "Teresópolis.",
+                    "estado": "RJ",
+                    "imagem": "https://lh3.googleusercontent.com/a/ACg8ocK1_7DgQrOzDmXyiqNCdXKsO3Xpl8Wf47BIIVq5jxpTR3Q=s260-c-no",
+                    "verificado": true
+                },
+                {
+                    "titulo": "",
+                    "nome": "Fabricio Abreu ⚙ NR:026.2023",
+                    "telefone": "(22)997837643",
+                    "email": "famape1800@gmail.com",
+                    "especialidades": "Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.",
+                    "area": "Região dos Lagos, Macaé e Campos dos Goytacazes.",
+                    "estado": "RJ",
+                    "imagem": "https://i.postimg.cc/7h6qjKrX/IMG-20231217-153245116.jpg",
+                    "verificado": false
+                },
+                {
+                    "titulo": "",
+                    "nome": "Marcio Costa ⚙ NR:008.2025",
+                    "telefone": "(21)969916718",
+                    "email": "marciocosta77@live.com",
+                    "especialidades": "Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.",
+                    "area": "Rio de Janeiro.",
+                    "estado": "RJ",
+                    "imagem": "https://i.postimg.cc/j5vJ3Pz3/inbound1307297000303089178.jpg",
+                    "verificado": false
+                },
+                // Adicione todos os outros cards aqui seguindo o mesmo padrão
+                // ... (coloque todo o seu JSON aqui)
+                {
+                    "titulo": "",
+                    "nome": "Mauro Toneto ⚙ NR:007.2025",
+                    "telefone": "(69)992466804",
+                    "email": "mauromackert@gmail.com",
+                    "especialidades": "Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.",
+                    "area": "Jaru e Adjacências.",
+                    "estado": "RO",
+                    "imagem": "https://i.postimg.cc/jSs3RB2z/inbound8824273639350211215.jpg",
+                    "verificado": false
+                }
+            ]
+        };
+
+        /* ===============================
+           🔍 BUSCAR POR ESTADO
+        =============================== */
+        window.buscarEstado = async function () {
+            const estadoSelecionado = document.getElementById('estadoSelect').value;
+            
+            if (!estadoSelecionado) {
+                alert('Por favor, selecione um estado.');
+                return;
+            }
+            
+            // Verifica se está logado
+            const user = auth.currentUser;
+            if (!user && estadoSelecionado) {
+                // Se não está logado mas selecionou um estado, mostra os cards sem contato
+                const cardsFiltrados = dadosVistoriadores.cards.filter(card => card.estado === estadoSelecionado);
+                exibirCards(cardsFiltrados);
+                return;
+            }
+            
+            // Mostra overlay de carregamento
+            document.getElementById('overlay').style.display = 'flex';
+            
+            // Simula um delay (pode remover se quiser mais rápido)
+            setTimeout(() => {
+                const cardsFiltrados = dadosVistoriadores.cards.filter(card => card.estado === estadoSelecionado);
+                exibirCards(cardsFiltrados);
+                document.getElementById('overlay').style.display = 'none';
+            }, 1000);
+        };
+
+        /* ===============================
+           🎴 EXIBIR CARDS
+        =============================== */
+        function exibirCards(cardsParaExibir) {
+            const cardsContainer = document.getElementById('cards-container');
+            
+            if (!cardsParaExibir || cardsParaExibir.length === 0) {
+                cardsContainer.innerHTML = `
+                    <div class="instrucao" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <i class="fas fa-search" style="font-size: 48px; color: #666; margin-bottom: 20px;"></i>
+                        <h3>Nenhum vistoriador encontrado</h3>
+                        <p>Não há vistoriadores cadastrados para este estado no momento.</p>
+                        <p>Tente selecionar outro estado.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            cardsContainer.innerHTML = '';
+            
+            cardsParaExibir.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('card');
+                
+                // IMAGEM
+                const imagemElement = document.createElement('img');
+                imagemElement.src = card.imagem;
+                imagemElement.alt = `Foto de ${card.nome}`;
+                imagemElement.onerror = function() {
+                    this.src = 'https://via.placeholder.com/300x200/1a237e/ffffff?text=Sem+Imagem';
+                };
+                cardElement.appendChild(imagemElement);
+                
+                // VERIFICADO
+                if (card.verificado) {
+                    const verificationBadge = document.createElement('div');
+                    verificationBadge.classList.add('verification-badge');
+                    verificationBadge.innerHTML = '<i class="fas fa-check"></i>';
+                    cardElement.appendChild(verificationBadge);
+                }
+                
+                const cardContent = document.createElement('div');
+                cardContent.classList.add('card-content');
+                
+                // TÍTULO
+                const tituloElement = document.createElement('h4');
+                tituloElement.textContent = 'Vistoriador Credenciado';
+                cardContent.appendChild(tituloElement);
+                
+                // NOME
+                const nomeElement = document.createElement('p');
+                nomeElement.innerHTML = `<strong>Nome:</strong> ${card.nome}`;
+                cardContent.appendChild(nomeElement);
+                
+                // CONTATOS (com controle de acesso)
+                const user = auth.currentUser;
+                if (user) {
+                    // Usuário logado: mostra telefone e email
+                    const telefoneElement = document.createElement('p');
+                    telefoneElement.innerHTML = `<strong>Telefone:</strong> <a href="tel:${card.telefone.replace(/\D/g, '')}">${card.telefone}</a>`;
+                    cardContent.appendChild(telefoneElement);
+                    
+                    const emailElement = document.createElement('p');
+                    emailElement.innerHTML = `<strong>E-mail:</strong> <a href="mailto:${card.email}">${card.email}</a>`;
+                    cardContent.appendChild(emailElement);
+                } else {
+                    // Usuário não logado: mostra bloqueado
+                    const bloqueado = document.createElement('div');
+                    bloqueado.classList.add('contato-bloqueado');
+                    bloqueado.innerHTML = `
+                        <i class="fas fa-lock"></i>
+                        <p><strong>Contato restrito</strong></p>
+                        <p>Faça login para ver telefone e e-mail</p>
+                        <button class="btn-login" onclick="abrirModal()">Entrar</button>
+                    `;
+                    cardContent.appendChild(bloqueado);
+                }
+                
+                // ESPECIALIDADES
+                const especialidadesElement = document.createElement('p');
+                especialidadesElement.innerHTML = `<strong>Especialidades:</strong> ${card.especialidades}`;
+                cardContent.appendChild(especialidadesElement);
+                
+                // ÁREA
+                const areaElement = document.createElement('p');
+                areaElement.innerHTML = `<strong>Área de Atuação:</strong> ${card.area}`;
+                cardContent.appendChild(areaElement);
+                
+                // ESTADO
+                const estadoElement = document.createElement('p');
+                estadoElement.innerHTML = `<strong>Estado:</strong> ${card.estado}`;
+                cardContent.appendChild(estadoElement);
+                
+                // LOGO
+                const logoElement = document.createElement('div');
+                logoElement.style.height = '30px';
+                logoElement.style.background = 'url(https://i.postimg.cc/1XH3dmb2/vistoria-fotogr-fica-logo-removebg-preview.png) no-repeat center';
+                logoElement.style.backgroundSize = 'contain';
+                logoElement.style.marginTop = '15px';
+                logoElement.style.opacity = '0.7';
+                cardContent.appendChild(logoElement);
+                
+                cardElement.appendChild(cardContent);
+                cardsContainer.appendChild(cardElement);
+            });
+        }
+
+        /* ===============================
            🔒 LOGOUT FUNCTION
         =============================== */
         window.logout = async function () {
             try {
                 await signOut(auth);
-                // Não precisa recarregar a página, o onAuthStateChanged vai atualizar a interface
+                // O onAuthStateChanged vai atualizar a interface automaticamente
+                alert('Logout realizado com sucesso!');
             } catch (error) {
                 console.error("Erro ao fazer logout:", error);
                 alert("Erro ao fazer logout. Tente novamente.");
@@ -318,6 +616,7 @@
         =============================== */
         onAuthStateChanged(auth, (user) => {
             window.usuarioLogado = !!user;
+            const usuarioLogadoElement = window.usuarioLogado;
 
             // Atualizar menu de navegação
             const logoutItem = document.getElementById("logoutItem");
@@ -332,7 +631,7 @@
                 // Atualizar opção de cadastro para perfil (opcional)
                 if (cadastroLink) {
                     cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
-                    cadastroLink.href = "#"; // Você pode mudar para "perfil.html" se tiver essa página
+                    cadastroLink.href = "#";
                     cadastroLink.onclick = function(e) {
                         e.preventDefault();
                         alert("Página de perfil em desenvolvimento!");
@@ -340,8 +639,11 @@
                 }
                 
                 fecharModal();
-                if (typeof window.buscarEstado === "function") {
-                    window.buscarEstado();
+                
+                // Se tem um estado selecionado, recarrega os cards
+                const estadoSelecionado = document.getElementById('estadoSelect').value;
+                if (estadoSelecionado) {
+                    buscarEstado();
                 }
             } else {
                 // Usuário não logado: mostrar "Entrar", esconder "Sair"
@@ -353,6 +655,12 @@
                     cadastroLink.innerHTML = 'Cadastre-se';
                     cadastroLink.href = "cadastro.html";
                     cadastroLink.onclick = null;
+                }
+                
+                // Se tem um estado selecionado, recarrega os cards sem contato
+                const estadoSelecionado = document.getElementById('estadoSelect').value;
+                if (estadoSelecionado) {
+                    buscarEstado();
                 }
             }
         });
@@ -497,114 +805,5 @@
             login.style.display = "block";
         };
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="module">
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-
-/* 🔗 URL DO SEU WORKER */
-const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev/";
-
-/* 🌎 BUSCAR POR ESTADO */
-window.buscarEstado = async function () {
-    const estado = document.getElementById("estadoSelect").value;
-
-    if (!estado) {
-        alert("Selecione um estado");
-        return;
-    }
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (!user) {
-        alert("Faça login para acessar os dados");
-        return;
-    }
-
-    try {
-        mostrarLoading(true);
-
-        // 🔐 Token Firebase
-        const token = await user.getIdToken();
-
-        // 🔒 Chamada protegida ao Worker
-        const res = await fetch(WORKER_URL, {
-            headers: {
-                Authorization: "Bearer " + token
-            }
-        });
-
-        if (!res.ok) {
-            throw new Error("Acesso negado");
-        }
-
-        const json = await res.json();
-
-        // 🔎 Filtrar por estado
-        const filtrados = json.filter(item => item.estado === estado);
-
-        renderizarCards(filtrados);
-    } catch (err) {
-        console.error(err);
-        alert("Erro ao carregar dados");
-    } finally {
-        mostrarLoading(false);
-    }
-};
-
-/* 🧱 RENDERIZA CARDS */
-function renderizarCards(lista) {
-    const container = document.getElementById("cards-container");
-    container.innerHTML = "";
-
-    if (!lista.length) {
-        container.innerHTML = "<p>Nenhum resultado encontrado</p>";
-        return;
-    }
-
-    lista.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-            <h3>${item.nome}</h3>
-            <p><strong>Empresa:</strong> ${item.empresa}</p>
-            <p><strong>Estado:</strong> ${item.estado}</p>
-            <p><strong>Email:</strong> ${item.email}</p>
-        `;
-        container.appendChild(card);
-    });
-}
-
-/* ⏳ LOADING */
-function mostrarLoading(status) {
-    const overlay = document.getElementById("overlay");
-    if (overlay) overlay.style.display = status ? "flex" : "none";
-}
-</script>
-
-
-
-
-
-
-
-    
 </body>
 </html>
