@@ -957,12 +957,15 @@
         };
 
         /* ===============================
-           🔗 WORKER URL (AJUSTE COM SUA URL)
+           🔗 WORKER URL - ALTERE PARA SUA URL
         =============================== */
-        const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev"; // Altere para sua URL
+        // Teste com diferentes URLs:
+        const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
+        // Ou tente esta URL do Pinata:
+        // const WORKER_URL = "https://jade-detailed-slug-469.mypinata.cloud/ipfs/bafkreifdbwrz62u2bymeps3gcs7df6eqvpf5hckbnr57zae6osp3ph4azi";
 
         /* ===============================
-           🌎 BUSCAR POR ESTADO
+           🌎 BUSCAR POR ESTADO - VERSÃO SIMPLIFICADA
         =============================== */
         window.buscarEstado = async () => {
             const estado = document.getElementById('estadoSelect').value;
@@ -976,74 +979,173 @@
                 if (!window.usuarioLogado) {
                     alert('Faça login para ver os contatos dos vistoriadores');
                     abrirModal();
-                    return;
-                }
-                
-                // Pega o token do usuário logado
-                const user = auth.currentUser;
-                if (!user) {
-                    alert('Faça login para ver os contatos');
                     document.getElementById('overlay').style.display = 'none';
                     return;
                 }
                 
-                const token = await user.getIdToken();
+                console.log('Iniciando busca para estado:', estado);
                 
-                // Faz a requisição para o Worker
-                const res = await fetch(WORKER_URL, {
-                    headers: { 
-                        'Authorization': 'Bearer ' + token,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                if (!res.ok) {
-                    throw new Error('Erro ao buscar dados');
-                }
-                
-                const resposta = await res.json();
-                
-                // Processa a resposta corretamente
-                let cardsData = [];
-                
-                if (resposta.cards && Array.isArray(resposta.cards)) {
-                    cardsData = resposta.cards;
-                } else if (Array.isArray(resposta)) {
-                    cardsData = resposta;
-                } else {
-                    for (const key in resposta) {
-                        if (Array.isArray(resposta[key])) {
-                            cardsData = resposta[key];
-                            break;
+                // TENTATIVA 1: Usar fetch diretamente (sem auth primeiro)
+                try {
+                    console.log('Tentando fetch sem autenticação...');
+                    const response = await fetch(WORKER_URL);
+                    console.log('Status da resposta:', response.status);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('Dados recebidos:', data);
+                        
+                        // Processa os dados
+                        let cardsData = [];
+                        
+                        if (data && Array.isArray(data)) {
+                            cardsData = data;
+                        } else if (data && data.cards && Array.isArray(data.cards)) {
+                            cardsData = data.cards;
+                        } else if (data && typeof data === 'object') {
+                            // Procura por arrays no objeto
+                            for (const key in data) {
+                                if (Array.isArray(data[key])) {
+                                    cardsData = data[key];
+                                    break;
+                                }
+                            }
                         }
+                        
+                        console.log('Cards processados:', cardsData.length);
+                        
+                        if (cardsData.length > 0) {
+                            const filtrados = cardsData.filter(card => card.estado === estado);
+                            console.log('Cards filtrados:', filtrados.length);
+                            exibirCards(filtrados);
+                        } else {
+                            alert('Nenhum dado encontrado na resposta');
+                        }
+                        
+                        document.getElementById('overlay').style.display = 'none';
+                        return;
                     }
+                } catch (fetchError) {
+                    console.log('Fetch sem auth falhou:', fetchError);
                 }
                 
-                // Filtra por estado
-                const cardsFiltrados = cardsData.filter(card => card.estado === estado);
+                // TENTATIVA 2: Com autenticação
+                const user = auth.currentUser;
+                if (user) {
+                    console.log('Usuário logado, tentando com token...');
+                    try {
+                        const token = await user.getIdToken();
+                        console.log('Token obtido, fazendo request...');
+                        
+                        const response = await fetch(WORKER_URL, {
+                            headers: { 
+                                'Authorization': 'Bearer ' + token,
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        
+                        console.log('Response status (com auth):', response.status);
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                        
+                        const data = await response.text();
+                        console.log('Resposta bruta:', data.substring(0, 500));
+                        
+                        let jsonData;
+                        try {
+                            jsonData = JSON.parse(data);
+                        } catch (parseError) {
+                            console.error('Erro ao parsear JSON:', parseError);
+                            // Tenta ver se é HTML ou outro formato
+                            if (data.includes('<!DOCTYPE') || data.includes('<html')) {
+                                alert('A URL parece retornar HTML ao invés de JSON');
+                            }
+                            throw new Error('Resposta não é JSON válido');
+                        }
+                        
+                        console.log('JSON parseado:', jsonData);
+                        
+                        // Processa os dados
+                        let cardsData = [];
+                        
+                        if (Array.isArray(jsonData)) {
+                            cardsData = jsonData;
+                        } else if (jsonData && jsonData.cards && Array.isArray(jsonData.cards)) {
+                            cardsData = jsonData.cards;
+                        } else if (jsonData && typeof jsonData === 'object') {
+                            // Procura por arrays no objeto
+                            for (const key in jsonData) {
+                                if (Array.isArray(jsonData[key])) {
+                                    cardsData = jsonData[key];
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        console.log('Total de cards encontrados:', cardsData.length);
+                        
+                        if (cardsData.length === 0) {
+                            // Tenta usar os dados diretamente do seu JavaScript original como fallback
+                            console.log('Usando dados locais como fallback...');
+                            if (window.cards && Array.isArray(window.cards)) {
+                                cardsData = window.cards;
+                            }
+                        }
+                        
+                        const filtrados = cardsData.filter(card => card.estado === estado);
+                        console.log('Cards filtrados para', estado, ':', filtrados.length);
+                        
+                        if (filtrados.length === 0) {
+                            alert(`Nenhum vistoriador encontrado para ${estado}`);
+                        }
+                        
+                        exibirCards(filtrados);
+                        
+                    } catch (authError) {
+                        console.error('Erro com auth:', authError);
+                        throw authError;
+                    }
+                } else {
+                    alert('Faça login primeiro');
+                    abrirModal();
+                }
                 
-                // Exibe os cards
-                exibirCards(cardsFiltrados);
+            } catch (error) {
+                console.error('Erro detalhado:', error);
                 
-            } catch (e) {
-                console.error('Erro:', e);
-                alert('Erro ao carregar dados. Tente novamente.');
+                // Mostra mensagem de erro mais específica
+                let errorMsg = 'Erro ao carregar dados';
+                if (error.message.includes('Failed to fetch')) {
+                    errorMsg = 'Não foi possível conectar ao servidor. Verifique sua conexão.';
+                } else if (error.message.includes('JSON')) {
+                    errorMsg = 'Formato de dados inválido recebido do servidor';
+                }
+                
+                alert(errorMsg + '\n\nDetalhes no console (F12)');
+                
+                // Como fallback, tenta usar os dados locais
+                console.log('Tentando usar dados locais como fallback...');
+                if (window.cards && Array.isArray(window.cards)) {
+                    const filtrados = window.cards.filter(card => card.estado === estado);
+                    exibirCards(filtrados);
+                }
+                
             } finally {
-                // Esconde o loading
                 document.getElementById('overlay').style.display = 'none';
             }
         };
 
         /* ===============================
-           🎴 FUNÇÃO EXIBIR CARDS
+           🎴 FUNÇÃO EXIBIR CARDS (MESMA DO SEU CÓDIGO ORIGINAL)
         =============================== */
         function exibirCards(cardsParaExibir) {
             const cardsContainer = document.getElementById('cards-container');
             cardsContainer.innerHTML = '';
 
-            // Se não houver resultados
             if (!cardsParaExibir || cardsParaExibir.length === 0) {
-                cardsContainer.innerHTML = '<p style="text-align: center; padding: 20px;">Nenhum vistoriador encontrado para este estado.</p>';
+                cardsContainer.innerHTML = '<p style="text-align: center; padding: 20px; color: #666;">Nenhum vistoriador encontrado para este estado.</p>';
                 return;
             }
 
@@ -1120,6 +1222,17 @@
         }
 
         /* ===============================
+           📋 DADOS LOCAIS COMO FALLBACK (DO SEU CÓDIGO ORIGINAL)
+        =============================== */
+        window.cards = [
+            // Rio de janeiro
+            { titulo: '', nome: 'William Garcia ⚙ NR:007.2023', telefone: '(21)975279648 ', email: 'horus.inspetoria@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Teresópolis.', estado: 'RJ', imagem: 'https://lh3.googleusercontent.com/a/ACg8ocK1_7DgQrOzDmXyiqNCdXKsO3Xpl8Wf47BIIVq5jxpTR3Q=s260-c-no', verificado: true },
+            { titulo: '', nome: 'Fabricio Abreu ⚙ NR:026.2023', telefone: '(22)997837643', email: 'famape1800@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Região dos Lagos, Macaé e Campos dos Goytacazes.', estado: 'RJ', imagem: 'https://i.postimg.cc/7h6qjKrX/IMG-20231217-153245116.jpg', verificado: false },
+            { titulo: '', nome: 'Marcio Costa  ⚙ NR:008.2025', telefone: '(21)969916718', email: 'marciocosta77@live.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Rio de Janeiro.', estado: 'RJ', imagem: 'https://i.postimg.cc/j5vJ3Pz3/inbound1307297000303089178.jpg', verificado: false },
+            // ... (adicione todos os outros cards do seu array original aqui)
+        ];
+
+        /* ===============================
            🍔 MENU HAMBURGUER
         =============================== */
         const hamburger = document.querySelector(".navbar-hamburger");
@@ -1130,6 +1243,13 @@
                 navbarLinks.classList.toggle("active");
             });
         }
+
+        /* ===============================
+           🔍 DEPURAÇÃO: TESTE A URL DO WORKER
+        =============================== */
+        console.log('URL do Worker configurada:', WORKER_URL);
+        console.log('Para testar a URL, abra o console (F12) e digite:');
+        console.log('fetch("' + WORKER_URL + '").then(r => r.text()).then(console.log)');
     </script>
 </body>
 </html>
