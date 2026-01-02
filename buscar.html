@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço." />
-    
+
+    <script src="https://jade-detailed-slug-469.mypinata.cloud/ipfs/bafkreifdbwrz62u2bymeps3gcs7df6eqvpf5hckbnr57zae6osp3ph4azi"></script>
+
     <title>DDFV</title>
 
     <!-- Basic Page Information -->
@@ -42,590 +44,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    
     <style>
-        /* NAVBAR */
-        .navbar {
-            width: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #CEE4D0;
-            color: black;
-        }
+ /* Botão de login apenas ícone */
+.login-btn,
+.logout-btn {
+    background: transparent;   /* sem fundo */
+    border: none;              /* sem borda */
+    padding: 0;                /* sem área de botão */
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;           /* tamanho do ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .navbar-title {
-            margin-left: 50px;
-            margin-top: -30px;
-            font-weight: bold;
-        }
+/* Cor padrão do ícone */
+.login-btn {
+    color: green; /* verde */
+}
 
-        .navbar-links {
-            list-style: none;
-            display: flex;
+.logout-btn {
+    color: red; /* vermelho */
+}
+
+/* Hover: muda só a cor */
+.login-btn:hover {
+    color: #16a34a;
+}
+
+.logout-btn:hover {
+    color: #dc2626;
+}
+
+
+
+        
+
+        .navbar-links li a i {
+            margin-right: 8px;
         }
 
         .navbar-links li {
-            margin-right: 20px;
-        }
-
-        .navbar-links a {
-            text-decoration: none;
-            color: black;
-        }
-
-        .navbar-hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px;
-            }
-
-            .navbar-links {
-                display: none;
-                flex-direction: column;
-                align-items: flex-start;
-                margin-top: 10px;
-            }
-
-            .navbar-links.active {
-                display: flex;
-            }
-
-            .navbar-links li {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-
-            .navbar-hamburger {
-                display: block;
-            }
-        }
-
-        .icon {
-            color: #006400;
-        }
-
-        .navbar-logo img {
-            max-height: 40px;
-        }
-
-        /* Botão de login apenas ícone */
-        .login-btn,
-        .logout-btn {
-            background: transparent;
-            border: none;
-            padding: 0;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-btn {
-            color: green;
-        }
-
-        .logout-btn {
-            color: red;
-        }
-
-        .login-btn:hover {
-            color: #16a34a;
-        }
-
-        .logout-btn:hover {
-            color: #dc2626;
-        }
-
-        /* MARQUEE */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background-color: green;
-            height: 40px;
-        }
-
-        .marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 30s linear infinite;
-            color: white;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(140%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* CARDS */
-        #cards-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .card {
-            position: relative;
-            border: 1px solid #ccc;
-            margin: 15px;
-            width: 600px;
-            height: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            display: flex;
-            flex-direction: row;
-            background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-            border-radius: 10px;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card img {
-            width: 100px;
-            height: 120px;
-            border-radius: 10px;
-            border: 1px solid #000;
-        }
-
-        .verification-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 20px;
-            height: 20px;
-            background: url('https://i.postimg.cc/0QZHV18z/Design-sem-nome-25-removebg-preview.png') center center no-repeat;
-            background-size: cover;
-        }
-
-        .logo-cdirv {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 40px;
-            height: 40px;
-            background: url('https://i.postimg.cc/JzQSByZ9/logo-ddvf-removebg-preview.png') center center no-repeat;
-            background-size: contain;
-            z-index: 1;
-        }
-
-        .card-content {
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .card h4 {
-            font-size: 1.2em;
-            margin-bottom: 4px;
-            margin-top: 0;
-        }
-
-        .card p {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        /* Estilo para o contato bloqueado */
-        .contato-bloqueado {
-            background-color: #ffe6e6;
-            border: 1px solid #ff9999;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .contato-bloqueado strong {
-            color: #cc0000;
-        }
-
-        .btn-login {
-            background-color: green;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 8px;
-            font-size: 13px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-login:hover {
-            background-color: #32CD32;
-        }
-
-        /* BOTÕES */
-        buttoncadastro {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: green;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin-left: 10px;
-        }
-
-        buttoncadastro:hover {
-            background-color: #32CD32;
-        }
-
-        select {
-            font-size: 1em;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        /* Estilos para dispositivos móveis */
-        @media screen and (max-width: 768px) {
-            #cards-container {
-                justify-content: flex-start;
-            }
-
-            .card {
-                width: 90%;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card img {
-                width: 40%;
-                height: auto;
-            }
-
-            .verification-badge {
-                width: 30px;
-                height: 30px;
-            }
-        }
-
-        /* LOADING */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        #progress-container {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        #progress-bar {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 5px solid green;
-            border-top: 5px solid #fff;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #006400;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* MODAL */
-        #modalLogin {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .modal-card {
-            width: 100%;
-            max-width: 450px;
-            background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-            background-size: auto;
-            background-position: center;
-            background-repeat: repeat;
-            border-radius: 20px;
-            padding: 30px 24px;
-            animation: slideUp 0.35s ease-out;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            border: 1px solid rgba(204, 204, 204, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .modal-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .modal-header .modal-logo {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 15px;
-            background: url('https://i.postimg.cc/JzQSByZ9/logo-ddvf-removebg-preview.png') center center no-repeat;
-            background-size: contain;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        .modal-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0;
-            color: #030303;
-        }
-
-        #formLogin,
-        #formCadastro {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        #formCadastro {
-            display: none;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #formLogin input,
-        #formCadastro input {
-            width: 100%;
-            max-width: 320px;
-            padding: 14px 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(204, 204, 204, 0.5);
-            background: white;
-            color: #030303;
-            font-size: 15px;
-            transition: all 0.3s;
-            text-align: left;
-        }
-
-        #formLogin input:focus,
-        #formCadastro input:focus {
-            border-color: #16a34a;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
-        }
-
-        #modalLogin button,
-        #formLogin button,
-        #formCadastro button {
-            width: 100% !important;
-            max-width: 320px !important;
-            padding: 14px 16px !important;
-            border-radius: 10px !important;
-            border: none !important;
-            background: green !important;
-            color: black !important;
-            font-weight: 600 !important;
-            cursor: pointer !important;
-            transition: all 0.3s ease-in-out !important;
-            font-size: 15px !important;
-            text-align: center !important;
-            display: block !important;
-            margin: 0 auto !important;
-        }
-
-        #modalLogin .btn-primary,
-        #formLogin .btn-primary,
-        #formCadastro .btn-primary {
-            background: green !important;
-            color: #ffffff !important;
-        }
-
-        #modalLogin button:hover,
-        #formLogin button:hover,
-        #formCadastro button:hover {
-            background: #32CD32 !important;
-            transform: scale(1.02) !important;
-        }
-
-        .switch-link {
-            margin-top: 15px;
-            text-align: center;
-            font-size: 14px;
-            color: #030303;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .switch-link span {
-            color: #4CAF50;
-            font-weight: 600;
-            text-decoration: underline;
-        }
-
-        .erro {
-            color: #f87171;
-            font-size: 13px;
-            text-align: center;
-            margin-bottom: 8px;
-            width: 100%;
-        }
-
-        @media (max-width: 767px) {
-            #modalLogin {
-                align-items: flex-end;
-                justify-content: center;
-            }
-
-            .modal-card {
-                border-radius: 20px 20px 0 0;
-                max-width: 95%;
-                width: 95%;
-                animation: slideUpMobile 0.35s ease-out;
-                box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-                background: url('https://i.postimg.cc/0NMWHhhg/Design-sem-nome-19.png');
-                background-size: auto;
-                background-position: center;
-                background-repeat: repeat;
-                padding: 25px 20px;
-            }
-
-            @keyframes slideUpMobile {
-                from { transform: translateY(100%); }
-                to { transform: translateY(0); }
-            }
-
-            .modal-header .modal-logo {
-                width: 60px;
-                height: 60px;
-            }
-
-            .modal-header h2 {
-                font-size: 18px;
-            }
-
-            #formLogin input,
-            #formCadastro input,
-            #modalLogin button,
-            #formLogin button,
-            #formCadastro button {
-                max-width: 90% !important;
-                padding: 13px 15px !important;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .modal-card {
-                padding: 20px 15px;
-            }
-
-            .modal-header .modal-logo {
-                width: 50px;
-                height: 50px;
-            }
-
-            .modal-header h2 {
-                font-size: 16px;
-            }
-
-            #formLogin input,
-            #formCadastro input,
-            #modalLogin button,
-            #formLogin button,
-            #formCadastro button {
-                padding: 12px 14px !important;
-                font-size: 14px !important;
-            }
-
-            .switch-link {
-                font-size: 13px;
-            }
-        }
-
-        /* BODY */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: #F0FFF0;
-            padding-bottom: 60px; /* Espaço para o footer fixo */
-        }
-
-        center {
-            text-align: center;
-            margin: 20px 0;
+            list-style: none;
         }
     </style>
 </head>
@@ -648,22 +111,33 @@
             <li><a href="duvidas.html">Dúvidas</a></li>
             <li><a href="contato.html">Contato</a></li>
             
-            <!-- Item de logout (inicialmente escondido) -->
-            <li id="logoutItem" style="display: none;">
-                <a onclick="window.logout()" class="logout-btn">
-                    Sair
-                </a>
-            </li>
+    <!-- Item de logout (inicialmente escondido) -->
+<li id="logoutItem" style="display: none;">
+   <a onclick="abrirModal()" class="login-btn">
+        Sair
+    </a>
+</li>
 
-            <!-- Item de login (mostrado quando não está logado) -->
-            <li id="loginItem">
-                <a onclick="abrirModal()" class="login-btn">
-                    Entrar
-                </a>
-            </li>
+<!-- Item de login (mostrado quando não está logado) -->
+<li id="loginItem">
+    <a onclick="abrirModal()" class="login-btn">
+    Entrar
+    </a>
+</li>
         </ul>
     </nav>
 
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        const hamburger = document.querySelector(".navbar-hamburger");
+        const navbarLinks = document.querySelector(".navbar-links");
+
+        hamburger.addEventListener("click", () => {
+            navbarLinks.classList.toggle("active");
+        });
+    </script>
+    
     <div>
         <div class="marquee-container">
             <div class="marquee">
@@ -674,8 +148,9 @@
             </div>
         </div>
     </div>
-    
     <br />
+
+    <br>
     <center>
         Pesquisar por estado:
         <br>
@@ -709,7 +184,6 @@
             <p>Carregando...</p>
         </div>
     </div>
-    
     <br>
     <br>
     <div id="cards-container">
@@ -717,6 +191,7 @@
     </div>
     <br>
     <br>
+
     <br>
     <br>
     <br>
@@ -750,9 +225,7 @@
                         <input type="password" id="loginSenha" placeholder="Senha">
                     </div>
                     <div class="erro" id="loginErro"></div>
-                    <center>
-                        <button type="button" class="btn-primary" onclick="loginFirebase()">Entrar</button>
-                    </center>
+               <center>    <button type="button" class="btn-primary" onclick="loginFirebase()">Entrar</button> </center> 
                     <div class="switch-link" onclick="mostrarCadastro()">
                         Não tem conta? <span>Cadastre-se</span>
                     </div>
@@ -777,9 +250,7 @@
                         <input type="password" id="cadConfirmar" placeholder="Confirmar Senha">
                     </div>
                     <div class="erro" id="cadErro"></div>
-                    <center>
-                        <button type="button" class="btn-primary" onclick="cadastrarUsuario()">Cadastrar</button>
-                    </center>
+                  <center></center>  <button type="button" class="btn-primary" onclick="cadastrarUsuario()">Cadastrar</button> </center> 
                     <div class="switch-link" onclick="mostrarLogin()">
                         Já tem conta? <span>Faça login</span>
                     </div>
@@ -788,468 +259,284 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="module">
-        /* ===============================
-           🔥 IMPORTS FIREBASE
-        =============================== */
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import {
-            getAuth,
-            signInWithEmailAndPassword,
-            createUserWithEmailAndPassword,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+/* ===============================
+   🔥 IMPORTS FIREBASE
+=============================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-        import {
-            getFirestore,
-            doc,
-            setDoc
-        } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import {
+    getFirestore,
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        /* ===============================
-           🔧 CONFIG FIREBASE
-        =============================== */
-        const firebaseConfig = {
-            apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
-            authDomain: "octolusco.firebaseapp.com",
-            projectId: "octolusco",
-            storageBucket: "octolusco.firebasestorage.app",
-            messagingSenderId: "226020419549",
-            appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
-            measurementId: "G-PLDK083FV8"
-        };
+/* ===============================
+   🔧 CONFIG FIREBASE
+=============================== */
+const firebaseConfig = {
+    apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
+    authDomain: "octolusco.firebaseapp.com",
+    projectId: "octolusco",
+    storageBucket: "octolusco.firebasestorage.app",
+    messagingSenderId: "226020419549",
+    appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
+    measurementId: "G-PLDK083FV8"
+};
 
-        /* ===============================
-           🚀 INIT
-        =============================== */
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+/* ===============================
+   🚀 INIT
+=============================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-        // Variável global para controle de login
-        window.usuarioLogado = false;
+window.usuarioLogado = false;
 
-        /* ===============================
-           🔒 LOGOUT
-        =============================== */
-        window.logout = async () => {
-            try {
-                await signOut(auth);
-            } catch (e) {
-                alert("Erro ao sair");
-                console.error(e);
-            }
-        };
+/* ===============================
+   🔒 LOGOUT
+=============================== */
+window.logout = async () => {
+    try {
+        await signOut(auth);
+    } catch (e) {
+        alert("Erro ao sair");
+        console.error(e);
+    }
+};
 
-        /* ===============================
-           👀 OBSERVA LOGIN
-        =============================== */
-        onAuthStateChanged(auth, (user) => {
-            window.usuarioLogado = !!user;
+/* ===============================
+   👀 OBSERVA LOGIN
+=============================== */
+onAuthStateChanged(auth, (user) => {
+    window.usuarioLogado = !!user;
 
-            const logoutItem = document.getElementById("logoutItem");
-            const loginItem = document.getElementById("loginItem");
-            const cadastroLink = document.getElementById("cadastroLink");
+    const logoutItem = document.getElementById("logoutItem");
+    const loginItem = document.getElementById("loginItem");
+    const cadastroLink = document.getElementById("cadastroLink");
 
-            if (user) {
-                if (logoutItem) logoutItem.style.display = "block";
-                if (loginItem) loginItem.style.display = "none";
+    if (user) {
+        if (logoutItem) logoutItem.style.display = "block";
+        if (loginItem) loginItem.style.display = "none";
 
-                if (cadastroLink) {
-                    cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
-                    cadastroLink.href = "#";
-                    cadastroLink.onclick = (e) => {
-                        e.preventDefault();
-                        alert("Perfil em desenvolvimento");
-                    };
-                }
+        if (cadastroLink) {
+            cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
+            cadastroLink.href = "#";
+            cadastroLink.onclick = (e) => {
+                e.preventDefault();
+                alert("Perfil em desenvolvimento");
+            };
+        }
 
-                fecharModal();
-            } else {
-                if (logoutItem) logoutItem.style.display = "none";
-                if (loginItem) loginItem.style.display = "block";
+        fecharModal();
+    } else {
+        if (logoutItem) logoutItem.style.display = "none";
+        if (loginItem) loginItem.style.display = "block";
 
-                if (cadastroLink) {
-                    cadastroLink.innerHTML = "Cadastre-se";
-                    cadastroLink.href = "cadastro.html";
-                    cadastroLink.onclick = null;
-                }
-            }
+        if (cadastroLink) {
+            cadastroLink.innerHTML = "Cadastre-se";
+            cadastroLink.href = "cadastro.html";
+            cadastroLink.onclick = null;
+        }
+    }
+});
+
+/* ===============================
+   🔑 LOGIN
+=============================== */
+window.loginFirebase = async () => {
+    const email = document.getElementById("loginEmail").value;
+    const senha = document.getElementById("loginSenha").value;
+    const erro = document.getElementById("loginErro");
+
+    if (!email || !senha) {
+        erro.innerText = "Preencha email e senha";
+        return;
+    }
+
+    try {
+        await signInWithEmailAndPassword(auth, email, senha);
+    } catch (e) {
+        erro.innerText = "Email ou senha inválidos";
+    }
+};
+
+/* ===============================
+   🆕 CADASTRO
+=============================== */
+window.cadastrarUsuario = async () => {
+    const empresa = document.getElementById("cadEmpresa").value;
+    const cnpj = document.getElementById("cadCnpj").value;
+    const email = document.getElementById("cadEmail").value;
+    const senha = document.getElementById("cadSenha").value;
+    const confirmar = document.getElementById("cadConfirmar").value;
+    const erro = document.getElementById("cadErro");
+
+    if (!empresa || !cnpj || !email || !senha || !confirmar) {
+        erro.innerText = "Preencha todos os campos";
+        return;
+    }
+
+    if (senha !== confirmar) {
+        erro.innerText = "As senhas não conferem";
+        return;
+    }
+
+    try {
+        const cred = await createUserWithEmailAndPassword(auth, email, senha);
+        await setDoc(doc(db, "usuarios", cred.user.uid), {
+            empresa,
+            cnpj,
+            email,
+            criadoEm: new Date()
+        });
+        erro.innerText = "";
+    } catch (e) {
+        erro.innerText = "Erro ao cadastrar";
+    }
+};
+
+/* ===============================
+   🪟 MODAL
+=============================== */
+window.abrirModal = () => {
+    document.getElementById("modalLogin").style.display = "flex";
+    mostrarLogin();
+};
+
+window.fecharModal = () => {
+    document.getElementById("modalLogin").style.display = "none";
+};
+
+window.mostrarCadastro = () => {
+    document.getElementById("formLogin").style.display = "none";
+    document.getElementById("formCadastro").style.display = "block";
+};
+
+window.mostrarLogin = () => {
+    document.getElementById("formCadastro").style.display = "none";
+    document.getElementById("formLogin").style.display = "block";
+};
+
+/* ===============================
+   🔗 WORKER
+=============================== */
+const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
+
+/* ===============================
+   🌎 BUSCAR POR ESTADO (AJUSTADO)
+=============================== */
+window.buscarEstado = async () => {
+    const estado = document.getElementById("estadoSelect").value;
+    if (!estado) return alert("Selecione um estado");
+
+    const user = auth.currentUser;
+    if (!user) return alert("Faça login");
+
+    try {
+        mostrarLoading(true);
+
+        const token = await user.getIdToken();
+        const res = await fetch(WORKER_URL, {
+            headers: { Authorization: "Bearer " + token }
         });
 
-        /* ===============================
-           🔑 LOGIN
-        =============================== */
-        window.loginFirebase = async () => {
-            const email = document.getElementById("loginEmail").value;
-            const senha = document.getElementById("loginSenha").value;
-            const erro = document.getElementById("loginErro");
+        if (!res.ok) throw new Error("Acesso negado");
 
-            if (!email || !senha) {
-                erro.innerText = "Preencha email e senha";
-                return;
-            }
+        const resposta = await res.json();
 
-            try {
-                await signInWithEmailAndPassword(auth, email, senha);
-                erro.innerText = "";
-            } catch (e) {
-                erro.innerText = "Email ou senha inválidos";
-            }
-        };
+        // ✅ AJUSTE CRÍTICO AQUI
+        let lista = [];
 
-        /* ===============================
-           🆕 CADASTRO
-        =============================== */
-        window.cadastrarUsuario = async () => {
-            const empresa = document.getElementById("cadEmpresa").value;
-            const cnpj = document.getElementById("cadCnpj").value;
-            const email = document.getElementById("cadEmail").value;
-            const senha = document.getElementById("cadSenha").value;
-            const confirmar = document.getElementById("cadConfirmar").value;
-            const erro = document.getElementById("cadErro");
-
-            if (!empresa || !cnpj || !email || !senha || !confirmar) {
-                erro.innerText = "Preencha todos os campos";
-                return;
-            }
-
-            if (senha !== confirmar) {
-                erro.innerText = "As senhas não conferem";
-                return;
-            }
-
-            try {
-                const cred = await createUserWithEmailAndPassword(auth, email, senha);
-                await setDoc(doc(db, "usuarios", cred.user.uid), {
-                    empresa,
-                    cnpj,
-                    email,
-                    criadoEm: new Date()
-                });
-                erro.innerText = "";
-            } catch (e) {
-                erro.innerText = "Erro ao cadastrar";
-            }
-        };
-
-        /* ===============================
-           🪟 MODAL
-        =============================== */
-        window.abrirModal = () => {
-            document.getElementById("modalLogin").style.display = "flex";
-            mostrarLogin();
-        };
-
-        window.fecharModal = () => {
-            document.getElementById("modalLogin").style.display = "none";
-        };
-
-        window.mostrarCadastro = () => {
-            document.getElementById("formLogin").style.display = "none";
-            document.getElementById("formCadastro").style.display = "block";
-        };
-
-        window.mostrarLogin = () => {
-            document.getElementById("formCadastro").style.display = "none";
-            document.getElementById("formLogin").style.display = "block";
-        };
-
-        /* ===============================
-           🔗 WORKER URL - ALTERE PARA SUA URL
-        =============================== */
-        // Teste com diferentes URLs:
-        const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
-        // Ou tente esta URL do Pinata:
-        // const WORKER_URL = "https://jade-detailed-slug-469.mypinata.cloud/ipfs/bafkreifdbwrz62u2bymeps3gcs7df6eqvpf5hckbnr57zae6osp3ph4azi";
-
-        /* ===============================
-           🌎 BUSCAR POR ESTADO - VERSÃO SIMPLIFICADA
-        =============================== */
-        window.buscarEstado = async () => {
-            const estado = document.getElementById('estadoSelect').value;
-            if (!estado) return alert('Selecione um estado');
-            
-            // Mostra o loading
-            document.getElementById('overlay').style.display = 'flex';
-            
-            try {
-                // Verifica se o usuário está logado
-                if (!window.usuarioLogado) {
-                    alert('Faça login para ver os contatos dos vistoriadores');
-                    abrirModal();
-                    document.getElementById('overlay').style.display = 'none';
-                    return;
-                }
-                
-                console.log('Iniciando busca para estado:', estado);
-                
-                // TENTATIVA 1: Usar fetch diretamente (sem auth primeiro)
-                try {
-                    console.log('Tentando fetch sem autenticação...');
-                    const response = await fetch(WORKER_URL);
-                    console.log('Status da resposta:', response.status);
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        console.log('Dados recebidos:', data);
-                        
-                        // Processa os dados
-                        let cardsData = [];
-                        
-                        if (data && Array.isArray(data)) {
-                            cardsData = data;
-                        } else if (data && data.cards && Array.isArray(data.cards)) {
-                            cardsData = data.cards;
-                        } else if (data && typeof data === 'object') {
-                            // Procura por arrays no objeto
-                            for (const key in data) {
-                                if (Array.isArray(data[key])) {
-                                    cardsData = data[key];
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        console.log('Cards processados:', cardsData.length);
-                        
-                        if (cardsData.length > 0) {
-                            const filtrados = cardsData.filter(card => card.estado === estado);
-                            console.log('Cards filtrados:', filtrados.length);
-                            exibirCards(filtrados);
-                        } else {
-                            alert('Nenhum dado encontrado na resposta');
-                        }
-                        
-                        document.getElementById('overlay').style.display = 'none';
-                        return;
-                    }
-                } catch (fetchError) {
-                    console.log('Fetch sem auth falhou:', fetchError);
-                }
-                
-                // TENTATIVA 2: Com autenticação
-                const user = auth.currentUser;
-                if (user) {
-                    console.log('Usuário logado, tentando com token...');
-                    try {
-                        const token = await user.getIdToken();
-                        console.log('Token obtido, fazendo request...');
-                        
-                        const response = await fetch(WORKER_URL, {
-                            headers: { 
-                                'Authorization': 'Bearer ' + token,
-                                'Content-Type': 'application/json'
-                            }
-                        });
-                        
-                        console.log('Response status (com auth):', response.status);
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                        }
-                        
-                        const data = await response.text();
-                        console.log('Resposta bruta:', data.substring(0, 500));
-                        
-                        let jsonData;
-                        try {
-                            jsonData = JSON.parse(data);
-                        } catch (parseError) {
-                            console.error('Erro ao parsear JSON:', parseError);
-                            // Tenta ver se é HTML ou outro formato
-                            if (data.includes('<!DOCTYPE') || data.includes('<html')) {
-                                alert('A URL parece retornar HTML ao invés de JSON');
-                            }
-                            throw new Error('Resposta não é JSON válido');
-                        }
-                        
-                        console.log('JSON parseado:', jsonData);
-                        
-                        // Processa os dados
-                        let cardsData = [];
-                        
-                        if (Array.isArray(jsonData)) {
-                            cardsData = jsonData;
-                        } else if (jsonData && jsonData.cards && Array.isArray(jsonData.cards)) {
-                            cardsData = jsonData.cards;
-                        } else if (jsonData && typeof jsonData === 'object') {
-                            // Procura por arrays no objeto
-                            for (const key in jsonData) {
-                                if (Array.isArray(jsonData[key])) {
-                                    cardsData = jsonData[key];
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        console.log('Total de cards encontrados:', cardsData.length);
-                        
-                        if (cardsData.length === 0) {
-                            // Tenta usar os dados diretamente do seu JavaScript original como fallback
-                            console.log('Usando dados locais como fallback...');
-                            if (window.cards && Array.isArray(window.cards)) {
-                                cardsData = window.cards;
-                            }
-                        }
-                        
-                        const filtrados = cardsData.filter(card => card.estado === estado);
-                        console.log('Cards filtrados para', estado, ':', filtrados.length);
-                        
-                        if (filtrados.length === 0) {
-                            alert(`Nenhum vistoriador encontrado para ${estado}`);
-                        }
-                        
-                        exibirCards(filtrados);
-                        
-                    } catch (authError) {
-                        console.error('Erro com auth:', authError);
-                        throw authError;
-                    }
-                } else {
-                    alert('Faça login primeiro');
-                    abrirModal();
-                }
-                
-            } catch (error) {
-                console.error('Erro detalhado:', error);
-                
-                // Mostra mensagem de erro mais específica
-                let errorMsg = 'Erro ao carregar dados';
-                if (error.message.includes('Failed to fetch')) {
-                    errorMsg = 'Não foi possível conectar ao servidor. Verifique sua conexão.';
-                } else if (error.message.includes('JSON')) {
-                    errorMsg = 'Formato de dados inválido recebido do servidor';
-                }
-                
-                alert(errorMsg + '\n\nDetalhes no console (F12)');
-                
-                // Como fallback, tenta usar os dados locais
-                console.log('Tentando usar dados locais como fallback...');
-                if (window.cards && Array.isArray(window.cards)) {
-                    const filtrados = window.cards.filter(card => card.estado === estado);
-                    exibirCards(filtrados);
-                }
-                
-            } finally {
-                document.getElementById('overlay').style.display = 'none';
-            }
-        };
-
-        /* ===============================
-           🎴 FUNÇÃO EXIBIR CARDS (MESMA DO SEU CÓDIGO ORIGINAL)
-        =============================== */
-        function exibirCards(cardsParaExibir) {
-            const cardsContainer = document.getElementById('cards-container');
-            cardsContainer.innerHTML = '';
-
-            if (!cardsParaExibir || cardsParaExibir.length === 0) {
-                cardsContainer.innerHTML = '<p style="text-align: center; padding: 20px; color: #666;">Nenhum vistoriador encontrado para este estado.</p>';
-                return;
-            }
-
-            cardsParaExibir.forEach(card => {
-                const cardElement = document.createElement('div');
-                cardElement.classList.add('card');
-
-                // IMAGEM
-                const imagemElement = document.createElement('img');
-                imagemElement.src = card.imagem || 'https://i.postimg.cc/0jWGphbG/OIP.jpg';
-                imagemElement.alt = 'Foto do vistoriador';
-                imagemElement.onerror = function() {
-                    this.src = 'https://i.postimg.cc/0jWGphbG/OIP.jpg';
-                };
-                cardElement.appendChild(imagemElement);
-
-                // VERIFICADO
-                if (card.verificado) {
-                    const verificationBadge = document.createElement('div');
-                    verificationBadge.classList.add('verification-badge');
-                    cardElement.appendChild(verificationBadge);
-                }
-
-                const cardContent = document.createElement('div');
-                cardContent.classList.add('card-content');
-
-                const nomeElement = document.createElement('h4');
-                nomeElement.textContent = `Vistoriador${card.titulo}`;
-                cardContent.appendChild(nomeElement);
-
-                const idElement = document.createElement('p');
-                idElement.textContent = `Nome: ${card.nome}`;
-                cardContent.appendChild(idElement);
-
-                // 🔐 CONTROLE DE TELEFONE / EMAIL
-                if (window.usuarioLogado) {
-                    const telefoneElement = document.createElement('p');
-                    telefoneElement.innerHTML = `Telefone: <a href="tel:${card.telefone.replace(/\D/g, '')}">${card.telefone}</a>`;
-                    cardContent.appendChild(telefoneElement);
-
-                    const emailElement = document.createElement('p');
-                    emailElement.innerHTML = `E-mail: <a href="mailto:${card.email}">${card.email}</a>`;
-                    cardContent.appendChild(emailElement);
-                } else {
-                    const bloqueado = document.createElement('div');
-                    bloqueado.classList.add('contato-bloqueado');
-                    bloqueado.innerHTML = `
-                        🔒 <strong>Contato restrito</strong><br>
-                        <button class="btn-login" onclick="abrirModal()">Entrar para ver</button>
-                    `;
-                    cardContent.appendChild(bloqueado);
-                }
-
-                const especialidadesElement = document.createElement('p');
-                especialidadesElement.textContent = `Especialidades: ${card.especialidades}`;
-                cardContent.appendChild(especialidadesElement);
-
-                const areaElement = document.createElement('p');
-                areaElement.textContent = `Área de Atuação: ${card.area}`;
-                cardContent.appendChild(areaElement);
-
-                const estadoElement = document.createElement('p');
-                estadoElement.textContent = `Estado: ${card.estado}`;
-                cardContent.appendChild(estadoElement);
-
-                // LOGO CDIRV
-                const logoCDIRV = document.createElement('div');
-                logoCDIRV.classList.add('logo-cdirv');
-                cardElement.appendChild(logoCDIRV);
-
-                cardElement.appendChild(cardContent);
-                cardsContainer.appendChild(cardElement);
-            });
+        if (Array.isArray(resposta)) {
+            lista = resposta;
+        } else if (typeof resposta === "object") {
+            const possivelArray = Object.values(resposta).find(v => Array.isArray(v));
+            if (possivelArray) lista = possivelArray;
         }
 
-        /* ===============================
-           📋 DADOS LOCAIS COMO FALLBACK (DO SEU CÓDIGO ORIGINAL)
-        =============================== */
-        window.cards = [
-            // Rio de janeiro
-            { titulo: '', nome: 'William Garcia ⚙ NR:007.2023', telefone: '(21)975279648 ', email: 'horus.inspetoria@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Teresópolis.', estado: 'RJ', imagem: 'https://lh3.googleusercontent.com/a/ACg8ocK1_7DgQrOzDmXyiqNCdXKsO3Xpl8Wf47BIIVq5jxpTR3Q=s260-c-no', verificado: true },
-            { titulo: '', nome: 'Fabricio Abreu ⚙ NR:026.2023', telefone: '(22)997837643', email: 'famape1800@gmail.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Região dos Lagos, Macaé e Campos dos Goytacazes.', estado: 'RJ', imagem: 'https://i.postimg.cc/7h6qjKrX/IMG-20231217-153245116.jpg', verificado: false },
-            { titulo: '', nome: 'Marcio Costa  ⚙ NR:008.2025', telefone: '(21)969916718', email: 'marciocosta77@live.com', especialidades: 'Regulação de sinistros, vistorias de desmobilização, prévia, ramos elementares, constatação, imóveis e mais.', area: 'Rio de Janeiro.', estado: 'RJ', imagem: 'https://i.postimg.cc/j5vJ3Pz3/inbound1307297000303089178.jpg', verificado: false },
-            // ... (adicione todos os outros cards do seu array original aqui)
-        ];
+        const filtrados = lista.filter(item => item.estado === estado);
+        renderizarCards(filtrados);
 
-        /* ===============================
-           🍔 MENU HAMBURGUER
-        =============================== */
-        const hamburger = document.querySelector(".navbar-hamburger");
-        const navbarLinks = document.querySelector(".navbar-links");
+    } catch (e) {
+        console.error(e);
+        alert("Erro ao carregar dados");
+    } finally {
+        mostrarLoading(false);
+    }
+};
 
-        if (hamburger && navbarLinks) {
-            hamburger.addEventListener("click", () => {
-                navbarLinks.classList.toggle("active");
-            });
-        }
+/* ===============================
+   🧱 RENDERIZA
+=============================== */
+function renderizarCards(lista) {
+    const container = document.getElementById("cards-container");
+    container.innerHTML = "";
 
-        /* ===============================
-           🔍 DEPURAÇÃO: TESTE A URL DO WORKER
-        =============================== */
-        console.log('URL do Worker configurada:', WORKER_URL);
-        console.log('Para testar a URL, abra o console (F12) e digite:');
-        console.log('fetch("' + WORKER_URL + '").then(r => r.text()).then(console.log)');
-    </script>
+    if (!lista.length) {
+        container.innerHTML = "<p>Nenhum resultado encontrado</p>";
+        return;
+    }
+
+    lista.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <h3>${item.nome || "-"}</h3>
+            <p><strong>Empresa:</strong> ${item.empresa || "-"}</p>
+            <p><strong>Estado:</strong> ${item.estado || "-"}</p>
+            <p><strong>Email:</strong> ${item.email || "-"}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
+/* ===============================
+   ⏳ LOADING
+=============================== */
+function mostrarLoading(status) {
+    const overlay = document.getElementById("overlay");
+    if (overlay) overlay.style.display = status ? "flex" : "none";
+}
+</script>
+
+
+
+
+
+
+
+    
 </body>
 </html>
