@@ -187,6 +187,13 @@
 
 
 
+.card h3 span {
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
 
 
 
@@ -214,11 +221,14 @@
             <li><a href="contato.html">Contato</a></li>
             
     <!-- Item de logout (inicialmente escondido) -->
-<li id="logoutItem" style="display: none;">
-   <a onclick="abrirModal()" class="login-btn">
-        Sair
-    </a>
+
+
+            <li id="logoutItem" style="display: none;">
+   <a onclick="logout()" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+   </a>
 </li>
+
 
 <!-- Item de login (mostrado quando não está logado) -->
 <li id="loginItem">
