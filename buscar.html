@@ -283,7 +283,7 @@
 
 
 
-    <script type="module">
+<script type="module">
 /* ===============================
    🔥 IMPORTS FIREBASE
 =============================== */
@@ -311,8 +311,7 @@ const firebaseConfig = {
     projectId: "octolusco",
     storageBucket: "octolusco.firebasestorage.app",
     messagingSenderId: "226020419549",
-    appId: "1:226020419549:web:b5bb13be6dc7e29337f834",
-    measurementId: "G-PLDK083FV8"
+    appId: "1:226020419549:web:b5bb13be6dc7e29337f834"
 };
 
 /* ===============================
@@ -347,28 +346,24 @@ onAuthStateChanged(auth, (user) => {
     const cadastroLink = document.getElementById("cadastroLink");
 
     if (user) {
-        if (logoutItem) logoutItem.style.display = "block";
-        if (loginItem) loginItem.style.display = "none";
+        logoutItem.style.display = "block";
+        loginItem.style.display = "none";
 
-        if (cadastroLink) {
-            cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
-            cadastroLink.href = "#";
-            cadastroLink.onclick = (e) => {
-                e.preventDefault();
-                alert("Perfil em desenvolvimento");
-            };
-        }
+        cadastroLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
+        cadastroLink.href = "#";
+        cadastroLink.onclick = (e) => {
+            e.preventDefault();
+            alert("Perfil em desenvolvimento");
+        };
 
         fecharModal();
     } else {
-        if (logoutItem) logoutItem.style.display = "none";
-        if (loginItem) loginItem.style.display = "block";
+        logoutItem.style.display = "none";
+        loginItem.style.display = "block";
 
-        if (cadastroLink) {
-            cadastroLink.innerHTML = "Cadastre-se";
-            cadastroLink.href = "cadastro.html";
-            cadastroLink.onclick = null;
-        }
+        cadastroLink.innerHTML = "Cadastre-se";
+        cadastroLink.href = "cadastro.html";
+        cadastroLink.onclick = null;
     }
 });
 
@@ -387,7 +382,7 @@ window.loginFirebase = async () => {
 
     try {
         await signInWithEmailAndPassword(auth, email, senha);
-    } catch (e) {
+    } catch {
         erro.innerText = "Email ou senha inválidos";
     }
 };
@@ -422,7 +417,7 @@ window.cadastrarUsuario = async () => {
             criadoEm: new Date()
         });
         erro.innerText = "";
-    } catch (e) {
+    } catch {
         erro.innerText = "Erro ao cadastrar";
     }
 };
@@ -455,14 +450,14 @@ window.mostrarLogin = () => {
 const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
 
 /* ===============================
-   🌎 BUSCAR POR ESTADO (AJUSTADO)
+   🌎 BUSCAR POR ESTADO (CORRETO)
 =============================== */
 window.buscarEstado = async () => {
     const estado = document.getElementById("estadoSelect").value;
     if (!estado) return alert("Selecione um estado");
 
     const user = auth.currentUser;
-    if (!user) return alert("Faça login");
+    if (!user) return alert("Faça login para pesquisar");
 
     try {
         mostrarLoading(true);
@@ -476,15 +471,8 @@ window.buscarEstado = async () => {
 
         const resposta = await res.json();
 
-        // ✅ AJUSTE CRÍTICO AQUI
-        let lista = [];
-
-        if (Array.isArray(resposta)) {
-            lista = resposta;
-        } else if (typeof resposta === "object") {
-            const possivelArray = Object.values(resposta).find(v => Array.isArray(v));
-            if (possivelArray) lista = possivelArray;
-        }
+        // ✅ JSON correto
+        const lista = resposta.cards || [];
 
         const filtrados = lista.filter(item => item.estado === estado);
         renderizarCards(filtrados);
@@ -498,7 +486,7 @@ window.buscarEstado = async () => {
 };
 
 /* ===============================
-   🧱 RENDERIZA
+   🧱 RENDERIZAÇÃO COMPLETA
 =============================== */
 function renderizarCards(lista) {
     const container = document.getElementById("cards-container");
@@ -510,14 +498,34 @@ function renderizarCards(lista) {
     }
 
     lista.forEach(item => {
+        const telefoneLimpo = item.telefone.replace(/\D/g, "");
+
         const card = document.createElement("div");
         card.className = "card";
+
         card.innerHTML = `
-            <h3>${item.nome || "-"}</h3>
-            <p><strong>Empresa:</strong> ${item.empresa || "-"}</p>
-            <p><strong>Estado:</strong> ${item.estado || "-"}</p>
-            <p><strong>Email:</strong> ${item.email || "-"}</p>
+            <img src="${item.imagem}" alt="${item.nome}" class="card-img">
+
+            <h3>
+                ${item.nome}
+                ${item.verificado ? "<span class='verificado'>✔ Verificado</span>" : ""}
+            </h3>
+
+            <p><strong>Estado:</strong> ${item.estado}</p>
+            <p><strong>Área:</strong> ${item.area}</p>
+            <p><strong>Especialidades:</strong> ${item.especialidades}</p>
+
+            <p><strong>Email:</strong>
+                <a href="mailto:${item.email}">${item.email}</a>
+            </p>
+
+            <p><strong>Telefone:</strong>
+                <a href="https://wa.me/55${telefoneLimpo}" target="_blank">
+                    ${item.telefone}
+                </a>
+            </p>
         `;
+
         container.appendChild(card);
     });
 }
@@ -530,7 +538,6 @@ function mostrarLoading(status) {
     if (overlay) overlay.style.display = status ? "flex" : "none";
 }
 </script>
-
 
 
 
