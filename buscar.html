@@ -571,7 +571,12 @@ window.buscarEstado = async () => {
     if (!estado) return alert("Selecione um estado");
 
     const user = auth.currentUser;
-    if (!user) return alert("Faça login para pesquisar");
+    
+    // Se o usuário NÃO estiver logado, abra o modal
+    if (!user) {
+        abrirModal();  // Abre o modal de login
+        return;  // Para a execução da função
+    }
 
     try {
         mostrarLoading(true);
@@ -598,7 +603,6 @@ window.buscarEstado = async () => {
         mostrarLoading(false);
     }
 };
-
 /* ===============================
    🧱 RENDERIZAÇÃO COMPLETA
 =============================== */
