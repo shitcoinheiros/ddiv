@@ -47,41 +47,37 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     
     <style>
- /* Botão de login apenas ícone */
-.login-btn,
-.logout-btn {
-    background: transparent;   /* sem fundo */
-    border: none;              /* sem borda */
-    padding: 0;                /* sem área de botão */
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 18px;           /* tamanho do ícone */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* Botão de login apenas ícone */
+        .login-btn,
+        .logout-btn {
+            background: transparent;   /* sem fundo */
+            border: none;              /* sem borda */
+            padding: 0;                /* sem área de botão */
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 18px;           /* tamanho do ícone */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* Cor padrão do ícone */
-.login-btn {
-    color: green; /* verde */
-}
+        /* Cor padrão do ícone */
+        .login-btn {
+            color: green; /* verde */
+        }
 
-.logout-btn {
-    color: red; /* vermelho */
-}
+        .logout-btn {
+            color: red; /* vermelho */
+        }
 
-/* Hover: muda só a cor */
-.login-btn:hover {
-    color: #16a34a;
-}
+        /* Hover: muda só a cor */
+        .login-btn:hover {
+            color: #16a34a;
+        }
 
-.logout-btn:hover {
-    color: #dc2626;
-}
-
-
-
-        
+        .logout-btn:hover {
+            color: #dc2626;
+        }
 
         .navbar-links li a i {
             margin-right: 8px;
@@ -91,115 +87,177 @@
             list-style: none;
         }
 
+        /* Container geral dos cards */
+        #cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
 
+        /* Card individual */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: hidden;
+            word-wrap: break-word;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
 
+        /* Imagem do card */
+        .card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
 
+        /* Nome */
+        .card h5 {
+            font-size: 16px;
+            margin: 0;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
 
+        /* Texto geral */
+        .card p {
+            font-size: 14px;
+            margin: 0;
+            color: #374151;
+            line-height: 1.4;
+            text-align: left; 
+        }
 
+        /* Links */
+        .card a {
+            color: #2563eb;
+            text-decoration: none;
+            word-break: break-all;
+        }
 
+        .card a:hover {
+            text-decoration: underline;
+        }
 
+        /* Badge verificado */
+        .card h3 span {
+            font-size: 14px;
+            color: #16a34a;
+        }
 
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .card {
+                padding: 14px;
+            }
 
-/* Container geral dos cards */
-#cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
+            .card-img {
+                height: 140px;
+            }
+        }
 
-/* Card individual */
-.card {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    overflow: hidden;
-    word-wrap: break-word;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+        .card h3 span {
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
+        /* LOADING SPINNER */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #16a34a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
 
-/* Imagem do card */
-.card-img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 8px;
-}
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-/* Nome */
-.card h5 {
-    font-size: 16px;
-    margin: 0;
-    color: #111827;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-}
+        /* Container do loading no modal */
+        #modalLoading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
 
-/* Texto geral */
-.card p {
-    font-size: 14px;
-    margin: 0;
-    color: #374151;
-    line-height: 1.4;
-    text-align: left; 
-}
+        #modalLoading p {
+            margin-top: 15px;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+        }
 
-/* Links */
-.card a {
-    color: #2563eb;
-    text-decoration: none;
-    word-break: break-all;
-}
+        /* Estilos para botões desabilitados durante loading */
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
 
-.card a:hover {
-    text-decoration: underline;
-}
+        /* Ajuste no overlay de loading da página */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
 
-/* Badge verificado */
-.card h3 span {
-    font-size: 14px;
-    color: #16a34a;
-}
+        #overlay .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #16a34a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
 
-/* Responsivo */
-@media (max-width: 480px) {
-    .card {
-        padding: 14px;
-    }
+        #overlay p {
+            color: white;
+            font-size: 18px;
+        }
 
-    .card-img {
-        height: 140px;
-    }
-}
+        /* Estilo para botões com spinner */
+        .btn-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-
-
-
-
-.card h3 span {
-    background: #dcfce7;
-    color: #15803d;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 6px;
-}
-
-
-
-
-        
+        .btn-spinner .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
     </style>
 </head>
 <body>
@@ -215,29 +273,25 @@
         <ul class="navbar-links">
             <br />
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="cadastro.html">Cadastre-se</a></li>
+            <li><a href="cadastro.html" id="cadastroLink">Cadastre-se</a></li>
             <li><a href="buscar.html">Buscar Vistoriador</a></li>
-          <!--  <li><a href="clube.html">Clube</a></li> -->
+            <!--  <li><a href="clube.html">Clube</a></li> -->
             <li><a href="duvidas.html">Dúvidas</a></li>
             <li><a href="contato.html">Contato</a></li>
             
-    <!-- Item de logout (inicialmente escondido) -->
-
-
+            <!-- Item de logout (inicialmente escondido) -->
             <li id="logoutItem" style="display: none;">
-   <a onclick="logout()" class="logout-btn">
-      Sair
-       
-   </a>
-</li>
+                <a onclick="logout()" class="logout-btn">
+                    Sair
+                </a>
+            </li>
 
-
-<!-- Item de login (mostrado quando não está logado) -->
-<li id="loginItem">
-    <a onclick="abrirModal()" class="login-btn">
-    Entrar
-    </a>
-</li>
+            <!-- Item de login (mostrado quando não está logado) -->
+            <li id="loginItem">
+                <a onclick="abrirModal()" class="login-btn">
+                    Entrar
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -330,6 +384,12 @@
                     <h2>Acessar Sistema</h2>
                 </div>
                 
+                <!-- Container de Loading -->
+                <div id="modalLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Autenticando...</p>
+                </div>
+                
                 <!-- Formulário de Login (sempre visível inicialmente) -->
                 <form id="formLogin">
                     <div class="form-group">
@@ -339,7 +399,11 @@
                         <input type="password" id="loginSenha" placeholder="Senha">
                     </div>
                     <div class="erro" id="loginErro"></div>
-               <center>    <button type="button" class="btn-primary" onclick="loginFirebase()">Entrar</button> </center> 
+                    <center>
+                        <button type="button" class="btn-primary" id="loginButton" onclick="loginFirebase()">
+                            <span id="loginButtonText">Entrar</span>
+                        </button>
+                    </center>
                     <div class="switch-link" onclick="mostrarCadastro()">
                         Não tem conta? <span>Cadastre-se</span>
                     </div>
@@ -364,7 +428,11 @@
                         <input type="password" id="cadConfirmar" placeholder="Confirmar Senha">
                     </div>
                     <div class="erro" id="cadErro"></div>
-                  <center></center>  <button type="button" class="btn-primary" onclick="cadastrarUsuario()">Cadastrar</button> </center> 
+                    <center>
+                        <button type="button" class="btn-primary" id="cadastroButton" onclick="cadastrarUsuario()">
+                            <span id="cadastroButtonText">Cadastrar</span>
+                        </button>
+                    </center>
                     <div class="switch-link" onclick="mostrarLogin()">
                         Já tem conta? <span>Faça login</span>
                     </div>
@@ -373,295 +441,419 @@
         </div>
     </div>
 
+    <script type="module">
+        /* ===============================
+           🔥 IMPORTS FIREBASE
+        =============================== */
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
+        import {
+            getFirestore,
+            doc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="module">
-/* ===============================
-   🔥 IMPORTS FIREBASE
-=============================== */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    setDoc
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-
-/* ===============================
-   🔧 CONFIG FIREBASE
-=============================== */
-const firebaseConfig = {
-    apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
-    authDomain: "octolusco.firebaseapp.com",
-    projectId: "octolusco",
-    storageBucket: "octolusco.firebasestorage.app",
-    messagingSenderId: "226020419549",
-    appId: "1:226020419549:web:b5bb13be6dc7e29337f834"
-};
-
-/* ===============================
-   🚀 INIT
-=============================== */
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-window.usuarioLogado = false;
-
-/* ===============================
-   🔒 LOGOUT
-=============================== */
-window.logout = async () => {
-    try {
-        await signOut(auth);
-    } catch (e) {
-        alert("Erro ao sair");
-        console.error(e);
-    }
-};
-
-/* ===============================
-   👀 OBSERVA LOGIN
-=============================== */
-onAuthStateChanged(auth, (user) => {
-    window.usuarioLogado = !!user;
-
-    const logoutItem = document.getElementById("logoutItem");
-    const loginItem = document.getElementById("loginItem");
-    const cadastroLink = document.getElementById("cadastroLink");
-
-    if (user) {
-        logoutItem.style.display = "block";
-        loginItem.style.display = "none";
-
-      
-        cadastroLink.href = "#";
-        cadastroLink.onclick = (e) => {
-            e.preventDefault();
-            alert("Perfil em desenvolvimento");
+        /* ===============================
+           🔧 CONFIG FIREBASE
+        =============================== */
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5vn2A781Kf5IGxxULRe_PVpViXbGGdzE",
+            authDomain: "octolusco.firebaseapp.com",
+            projectId: "octolusco",
+            storageBucket: "octolusco.firebasestorage.app",
+            messagingSenderId: "226020419549",
+            appId: "1:226020419549:web:b5bb13be6dc7e29337f834"
         };
 
-        fecharModal();
-    } else {
-        logoutItem.style.display = "none";
-        loginItem.style.display = "block";
+        /* ===============================
+           🚀 INIT
+        =============================== */
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        cadastroLink.innerHTML = "Cadastre-se";
-        cadastroLink.href = "cadastro.html";
-        cadastroLink.onclick = null;
-    }
-});
+        window.usuarioLogado = false;
 
-/* ===============================
-   🔑 LOGIN
-=============================== */
-window.loginFirebase = async () => {
-    const email = document.getElementById("loginEmail").value;
-    const senha = document.getElementById("loginSenha").value;
-    const erro = document.getElementById("loginErro");
+        /* ===============================
+           🔒 LOGOUT
+        =============================== */
+        window.logout = async () => {
+            try {
+                await signOut(auth);
+            } catch (e) {
+                alert("Erro ao sair");
+                console.error(e);
+            }
+        };
 
-    if (!email || !senha) {
-        erro.innerText = "Preencha email e senha";
-        return;
-    }
+        /* ===============================
+           🌀 FUNÇÕES DE LOADING DO MODAL
+        =============================== */
+        function showModalLoading(show) {
+            const modalLoading = document.getElementById("modalLoading");
+            const formLogin = document.getElementById("formLogin");
+            const formCadastro = document.getElementById("formCadastro");
+            
+            if (show) {
+                modalLoading.style.display = "flex";
+                formLogin.style.display = "none";
+                formCadastro.style.display = "none";
+            } else {
+                modalLoading.style.display = "none";
+                // Restaura o formulário que estava visível
+                if (formCadastro.style.display === "block") {
+                    formCadastro.style.display = "block";
+                } else {
+                    formLogin.style.display = "block";
+                }
+            }
+        }
 
-    try {
-        await signInWithEmailAndPassword(auth, email, senha);
-    } catch {
-        erro.innerText = "Email ou senha inválidos";
-    }
-};
+        /* ===============================
+           👀 OBSERVA LOGIN
+        =============================== */
+        onAuthStateChanged(auth, (user) => {
+            window.usuarioLogado = !!user;
 
-/* ===============================
-   🆕 CADASTRO
-=============================== */
-window.cadastrarUsuario = async () => {
-    const empresa = document.getElementById("cadEmpresa").value;
-    const cnpj = document.getElementById("cadCnpj").value;
-    const email = document.getElementById("cadEmail").value;
-    const senha = document.getElementById("cadSenha").value;
-    const confirmar = document.getElementById("cadConfirmar").value;
-    const erro = document.getElementById("cadErro");
+            const logoutItem = document.getElementById("logoutItem");
+            const loginItem = document.getElementById("loginItem");
+            const cadastroLink = document.getElementById("cadastroLink");
 
-    if (!empresa || !cnpj || !email || !senha || !confirmar) {
-        erro.innerText = "Preencha todos os campos";
-        return;
-    }
+            if (user) {
+                logoutItem.style.display = "block";
+                loginItem.style.display = "none";
 
-    if (senha !== confirmar) {
-        erro.innerText = "As senhas não conferem";
-        return;
-    }
+                cadastroLink.href = "#";
+                cadastroLink.onclick = (e) => {
+                    e.preventDefault();
+                    alert("Perfil em desenvolvimento");
+                };
 
-    try {
-        const cred = await createUserWithEmailAndPassword(auth, email, senha);
-        await setDoc(doc(db, "usuarios", cred.user.uid), {
-            empresa,
-            cnpj,
-            email,
-            criadoEm: new Date()
+                // Fecha o modal após 0.5 segundos para mostrar o loading
+                setTimeout(() => {
+                    fecharModal();
+                    
+                    // Reseta os botões
+                    const loginButton = document.getElementById("loginButton");
+                    const cadastroButton = document.getElementById("cadastroButton");
+                    const loginButtonText = document.getElementById("loginButtonText");
+                    const cadastroButtonText = document.getElementById("cadastroButtonText");
+                    
+                    if (loginButton) {
+                        loginButton.disabled = false;
+                        loginButtonText.textContent = 'Entrar';
+                    }
+                    
+                    if (cadastroButton) {
+                        cadastroButton.disabled = false;
+                        cadastroButtonText.textContent = 'Cadastrar';
+                    }
+                    
+                    // Esconde o loading do modal
+                    showModalLoading(false);
+                    
+                }, 500);
+                
+            } else {
+                logoutItem.style.display = "none";
+                loginItem.style.display = "block";
+
+                cadastroLink.innerHTML = "Cadastre-se";
+                cadastroLink.href = "cadastro.html";
+                cadastroLink.onclick = null;
+                
+                // Reseta os botões quando não está logado
+                const loginButton = document.getElementById("loginButton");
+                const cadastroButton = document.getElementById("cadastroButton");
+                const loginButtonText = document.getElementById("loginButtonText");
+                const cadastroButtonText = document.getElementById("cadastroButtonText");
+                
+                if (loginButton) {
+                    loginButton.disabled = false;
+                    loginButtonText.textContent = 'Entrar';
+                }
+                
+                if (cadastroButton) {
+                    cadastroButton.disabled = false;
+                    cadastroButtonText.textContent = 'Cadastrar';
+                }
+                
+                // Esconde o loading do modal
+                showModalLoading(false);
+            }
         });
-        erro.innerText = "";
-    } catch {
-        erro.innerText = "Erro ao cadastrar";
-    }
-};
 
-/* ===============================
-   🪟 MODAL
-=============================== */
-window.abrirModal = () => {
-    document.getElementById("modalLogin").style.display = "flex";
-    mostrarLogin();
-};
+        /* ===============================
+           🔑 LOGIN COM LOADING
+        =============================== */
+        window.loginFirebase = async () => {
+            const email = document.getElementById("loginEmail").value;
+            const senha = document.getElementById("loginSenha").value;
+            const erro = document.getElementById("loginErro");
+            const loginButton = document.getElementById("loginButton");
+            const loginButtonText = document.getElementById("loginButtonText");
 
-window.fecharModal = () => {
-    document.getElementById("modalLogin").style.display = "none";
-};
+            if (!email || !senha) {
+                erro.innerText = "Preencha email e senha";
+                return;
+            }
 
-window.mostrarCadastro = () => {
-    document.getElementById("formLogin").style.display = "none";
-    document.getElementById("formCadastro").style.display = "block";
-};
+            try {
+                // Mostra loading no modal
+                showModalLoading(true);
+                
+                // Atualiza o botão para mostrar loading
+                loginButton.disabled = true;
+                loginButtonText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
 
-window.mostrarLogin = () => {
-    document.getElementById("formCadastro").style.display = "none";
-    document.getElementById("formLogin").style.display = "block";
-};
+                await signInWithEmailAndPassword(auth, email, senha);
+                
+                // Login bem sucedido - o modal será fechado automaticamente pelo onAuthStateChanged
+                
+            } catch (error) {
+                // Esconde loading em caso de erro
+                showModalLoading(false);
+                loginButton.disabled = false;
+                loginButtonText.textContent = 'Entrar';
+                
+                if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
+                    erro.innerText = "Email ou senha inválidos";
+                } else if (error.code === 'auth/user-not-found') {
+                    erro.innerText = "Usuário não encontrado";
+                } else {
+                    erro.innerText = "Erro ao fazer login. Tente novamente.";
+                }
+                console.error("Erro no login:", error);
+            }
+        };
 
-/* ===============================
-   🔗 WORKER
-=============================== */
-const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
+        /* ===============================
+           🆕 CADASTRO COM LOADING
+        =============================== */
+        window.cadastrarUsuario = async () => {
+            const empresa = document.getElementById("cadEmpresa").value;
+            const cnpj = document.getElementById("cadCnpj").value;
+            const email = document.getElementById("cadEmail").value;
+            const senha = document.getElementById("cadSenha").value;
+            const confirmar = document.getElementById("cadConfirmar").value;
+            const erro = document.getElementById("cadErro");
+            const cadastroButton = document.getElementById("cadastroButton");
+            const cadastroButtonText = document.getElementById("cadastroButtonText");
 
-/* ===============================
-   🌎 BUSCAR POR ESTADO (CORRETO)
-=============================== */
-window.buscarEstado = async () => {
-    const estado = document.getElementById("estadoSelect").value;
-    if (!estado) return alert("Selecione um estado");
+            if (!empresa || !cnpj || !email || !senha || !confirmar) {
+                erro.innerText = "Preencha todos os campos";
+                return;
+            }
 
-    const user = auth.currentUser;
-    
-    // Se o usuário NÃO estiver logado, abra o modal
-    if (!user) {
-        abrirModal();  // Abre o modal de login
-        return;  // Para a execução da função
-    }
+            if (senha !== confirmar) {
+                erro.innerText = "As senhas não conferem";
+                return;
+            }
 
-    try {
-        mostrarLoading(true);
+            try {
+                // Mostra loading no modal
+                showModalLoading(true);
+                
+                // Atualiza o botão para mostrar loading
+                cadastroButton.disabled = true;
+                cadastroButtonText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
 
-        const token = await user.getIdToken();
-        const res = await fetch(WORKER_URL, {
-            headers: { Authorization: "Bearer " + token }
-        });
+                const cred = await createUserWithEmailAndPassword(auth, email, senha);
+                await setDoc(doc(db, "usuarios", cred.user.uid), {
+                    empresa,
+                    cnpj,
+                    email,
+                    criadoEm: new Date()
+                });
+                
+                erro.innerText = "";
+                // Cadastro bem sucedido - o modal será fechado automaticamente
+                
+            } catch (error) {
+                // Esconde loading em caso de erro
+                showModalLoading(false);
+                cadastroButton.disabled = false;
+                cadastroButtonText.textContent = 'Cadastrar';
+                
+                if (error.code === 'auth/email-already-in-use') {
+                    erro.innerText = "Este email já está cadastrado";
+                } else if (error.code === 'auth/weak-password') {
+                    erro.innerText = "Senha muito fraca (mínimo 6 caracteres)";
+                } else {
+                    erro.innerText = "Erro ao cadastrar. Tente novamente.";
+                }
+                console.error("Erro no cadastro:", error);
+            }
+        };
 
-        if (!res.ok) throw new Error("Acesso negado");
+        /* ===============================
+           🪟 MODAL
+        =============================== */
+        window.abrirModal = () => {
+            document.getElementById("modalLogin").style.display = "flex";
+            mostrarLogin();
+            
+            // Reseta o loading ao abrir o modal
+            showModalLoading(false);
+            
+            // Reseta os botões
+            const loginButton = document.getElementById("loginButton");
+            const cadastroButton = document.getElementById("cadastroButton");
+            const loginButtonText = document.getElementById("loginButtonText");
+            const cadastroButtonText = document.getElementById("cadastroButtonText");
+            
+            if (loginButton) {
+                loginButton.disabled = false;
+                loginButtonText.textContent = 'Entrar';
+            }
+            
+            if (cadastroButton) {
+                cadastroButton.disabled = false;
+                cadastroButtonText.textContent = 'Cadastrar';
+            }
+            
+            // Limpa os erros
+            document.getElementById("loginErro").innerText = "";
+            document.getElementById("cadErro").innerText = "";
+        };
 
-        const resposta = await res.json();
+        window.fecharModal = () => {
+            document.getElementById("modalLogin").style.display = "none";
+            
+            // Limpa os campos ao fechar
+            document.getElementById("loginEmail").value = "";
+            document.getElementById("loginSenha").value = "";
+            document.getElementById("cadEmpresa").value = "";
+            document.getElementById("cadCnpj").value = "";
+            document.getElementById("cadEmail").value = "";
+            document.getElementById("cadSenha").value = "";
+            document.getElementById("cadConfirmar").value = "";
+            document.getElementById("loginErro").innerText = "";
+            document.getElementById("cadErro").innerText = "";
+        };
 
-        // ✅ JSON correto
-        const lista = resposta.cards || [];
+        window.mostrarCadastro = () => {
+            document.getElementById("formLogin").style.display = "none";
+            document.getElementById("formCadastro").style.display = "block";
+            document.getElementById("cadErro").innerText = "";
+            showModalLoading(false);
+        };
 
-        const filtrados = lista.filter(item => item.estado === estado);
-        renderizarCards(filtrados);
+        window.mostrarLogin = () => {
+            document.getElementById("formCadastro").style.display = "none";
+            document.getElementById("formLogin").style.display = "block";
+            document.getElementById("loginErro").innerText = "";
+            showModalLoading(false);
+        };
 
-    } catch (e) {
-        console.error(e);
-        alert("Erro ao carregar dados");
-    } finally {
-        mostrarLoading(false);
-    }
-};
-/* ===============================
-   🧱 RENDERIZAÇÃO COMPLETA
-=============================== */
-function renderizarCards(lista) {
-    const container = document.getElementById("cards-container");
-    container.innerHTML = "";
+        /* ===============================
+           🔗 WORKER
+        =============================== */
+        const WORKER_URL = "https://gentle-night-2a6f.wsg13sac.workers.dev";
 
-    if (!lista.length) {
-        container.innerHTML = "<p>Nenhum resultado encontrado</p>";
-        return;
-    }
+        /* ===============================
+           🌎 BUSCAR POR ESTADO (CORRETO)
+        =============================== */
+        window.buscarEstado = async () => {
+            const estado = document.getElementById("estadoSelect").value;
+            if (!estado) return alert("Selecione um estado");
 
-    lista.forEach(item => {
-        const telefoneLimpo = item.telefone.replace(/\D/g, "");
+            const user = auth.currentUser;
+            
+            // Se o usuário NÃO estiver logado, abra o modal
+            if (!user) {
+                abrirModal();
+                return;
+            }
 
-        const card = document.createElement("div");
-        card.className = "card";
+            try {
+                mostrarLoading(true);
 
-        card.innerHTML = `
-            <img src="${item.imagem}" alt="${item.nome}" class="card-img">
+                const token = await user.getIdToken();
+                const res = await fetch(WORKER_URL, {
+                    headers: { Authorization: "Bearer " + token }
+                });
 
-            <h3>
-                ${item.nome}
-                ${item.verificado ? "<span class='verificado'>✔ Verificado</span>" : ""}
-            </h3>
+                if (!res.ok) throw new Error("Acesso negado");
 
-            <p><strong>Estado:</strong> ${item.estado}</p>
-            <p><strong>Área:</strong> ${item.area}</p>
-            <p><strong>Especialidades:</strong> ${item.especialidades}</p>
+                const resposta = await res.json();
 
-            <p><strong>Email:</strong>
-                <a href="mailto:${item.email}">${item.email}</a>
-            </p>
+                // ✅ JSON correto
+                const lista = resposta.cards || [];
 
-            <p><strong>Telefone:</strong>
-                <a href="https://wa.me/55${telefoneLimpo}" target="_blank">
-                    ${item.telefone}
-                </a>
-            </p>
-        `;
+                const filtrados = lista.filter(item => item.estado === estado);
+                renderizarCards(filtrados);
 
-        container.appendChild(card);
-    });
-}
+            } catch (e) {
+                console.error(e);
+                alert("Erro ao carregar dados");
+            } finally {
+                mostrarLoading(false);
+            }
+        };
 
-/* ===============================
-   ⏳ LOADING
-=============================== */
-function mostrarLoading(status) {
-    const overlay = document.getElementById("overlay");
-    if (overlay) overlay.style.display = status ? "flex" : "none";
-}
-</script>
+        /* ===============================
+           🧱 RENDERIZAÇÃO COMPLETA
+        =============================== */
+        function renderizarCards(lista) {
+            const container = document.getElementById("cards-container");
+            container.innerHTML = "";
 
+            if (!lista.length) {
+                container.innerHTML = "<p style='text-align: center; padding: 40px; color: #666;'>Nenhum resultado encontrado para este estado</p>";
+                return;
+            }
 
+            lista.forEach(item => {
+                const telefoneLimpo = item.telefone ? item.telefone.replace(/\D/g, "") : "";
 
+                const card = document.createElement("div");
+                card.className = "card";
 
+                card.innerHTML = `
+                    <img src="${item.imagem || 'https://via.placeholder.com/300x160?text=Sem+Imagem'}" 
+                         alt="${item.nome}" 
+                         class="card-img"
+                         onerror="this.src='https://via.placeholder.com/300x160?text=Sem+Imagem'">
 
+                    <h3>
+                        ${item.nome || 'Nome não informado'}
+                        ${item.verificado ? "<span class='verificado'>✔ Verificado</span>" : ""}
+                    </h3>
 
-    
+                    <p><strong>Estado:</strong> ${item.estado || 'Não informado'}</p>
+                    <p><strong>Área:</strong> ${item.area || 'Não informado'}</p>
+                    <p><strong>Especialidades:</strong> ${item.especialidades || 'Não informado'}</p>
+
+                    ${item.email ? `<p><strong>Email:</strong>
+                        <a href="mailto:${item.email}">${item.email}</a>
+                    </p>` : ''}
+
+                    ${item.telefone ? `<p><strong>Telefone:</strong>
+                        <a href="https://wa.me/55${telefoneLimpo}" target="_blank">
+                            ${item.telefone}
+                        </a>
+                    </p>` : ''}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        /* ===============================
+           ⏳ LOADING
+        =============================== */
+        function mostrarLoading(status) {
+            const overlay = document.getElementById("overlay");
+            if (overlay) overlay.style.display = status ? "flex" : "none";
+        }
+    </script>
 </body>
 </html>
