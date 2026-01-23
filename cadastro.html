@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço. "
+      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço."
     />
-<script src="script.js"></script>
+    <script src="script.js" defer></script>
     
     <title>DDFV</title>
 
     <!-- Basic Page Information -->
-
     <meta
       name="description"
-      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço. "
+      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço."
     />
     <meta
       name="keywords"
-      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço. "
+      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço."
     />
 
     <!-- Open Graph Meta Tags (for social sharing) -->
@@ -29,7 +28,7 @@
     />
     <meta
       property="og:description"
-      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço. "
+      content="DDVF é o diretório digital dos vistoriadores fotográficos o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.ddvf.org" />
@@ -47,7 +46,7 @@
     />
     <meta
       name="twitter:description"
-      content="DDVF é o diretório digital dos vistoriadores fotográficos do Brasil o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço. "
+      content="DDVF é o diretório digital dos vistoriadores fotográficos do Brasil o lugar aonde reguladoras, vistoriadoras empresas de inspetoria de sinistros encontra profissionais para a sua demanda de serviço."
     />
     <meta
       name="twitter:image"
@@ -85,9 +84,224 @@
     />
 
     <link rel="stylesheet" type="text/css" href="style.css" />
-   
+    
+    <style>
+      /* Botão Entrar */
+      .btn-entrar {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .btn-entrar:hover {
+        background-color: #0056b3;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        animation: fadeIn 0.3s;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        cursor: pointer;
+        color: #666;
+        background: none;
+        border: none;
+      }
+
+      .close-modal:hover {
+        color: #000;
+      }
+
+      .modal-content h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .modal-tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .tab-btn {
+        flex: 1;
+        padding: 12px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+
+      .tab-btn.active {
+        border-bottom: 3px solid #007bff;
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+        animation: fadeIn 0.5s;
+      }
+
+      .tab-content input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      .tab-content input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+      }
+
+      .btn-login, .btn-cadastro {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .btn-login:hover, .btn-cadastro:hover {
+        background-color: #0056b3;
+      }
+
+      /* Seção de estados (exemplo) */
+      .estados-section {
+        margin: 30px auto;
+        max-width: 800px;
+        padding: 20px;
+      }
+
+      .estados-section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .estados-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .estado-btn {
+        padding: 15px;
+        background-color: #f8f9fa;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+
+      .estado-btn:hover {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+        transform: translateY(-2px);
+      }
+
+      /* Botão Cadastre-se no conteúdo */
+      buttoncadastro {
+        padding: 12px 30px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      buttoncadastro:hover {
+        background-color: #0056b3;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .btn-entrar {
+          top: 10px;
+          right: 10px;
+          padding: 8px 15px;
+          font-size: 12px;
+        }
+        
+        .modal-content {
+          margin: 20% auto;
+          padding: 20px;
+        }
+        
+        .estados-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+      }
+    </style>
   </head>
   <body>
+    <!-- Botão Entrar -->
+    <button id="btnEntrar" class="btn-entrar">Entrar</button>
+
     <nav class="navbar">
       <div class="navbar-left">
         <div class="navbar-logo">
@@ -103,7 +317,7 @@
       <ul class="navbar-links">
         <br />
         <li><a href="index.html">Inicio</a></li>
-     
+    
         <li><a href="cadastro.html">Cadastre-se</a></li>
         
         <li><a href="buscar.html">Buscar Vistoriador</a></li>
@@ -118,9 +332,7 @@
       </ul>
     </nav>
 
-  <link rel="stylesheet" href="style.css">
- 
- <script>
+    <script>
       const hamburger = document.querySelector(".navbar-hamburger");
       const navbarLinks = document.querySelector(".navbar-links");
 
@@ -128,9 +340,6 @@
         navbarLinks.classList.toggle("active");
       });
     </script>
-    
-    
-    
     
     <div>
       <div class="marquee-container">
@@ -144,109 +353,241 @@
     </div>
     <br />
     
-    
-   
-    
-
-  
-<center>
-
- <!-- Box de notícia -->
-<div class="news-box">
-  
-    <img class="news-image" src="https://i.postimg.cc/hhRnJBVp/3ec2wx.jpg" alt="Imagem da Notícia">
-
-  
-  
-  
-  <!-- Título da notícia -->
-  <div class="news-title">Vistoriador</div>
-
-  <!-- Corpo da notícia -->
-  <div class="news-content">
- <p>
-   Cadastre-se na plataforma que conecta vistoriadores excepcionais a empresas inovadoras.
-
-O caminho para o seu cadastro é descomplicado e rápido. Basta acionar o botão abaixo, preencher o formulário e após uma análise seu perfil será adicionado no portal. Pronto para ser descoberto por empresas que buscam sua expertise? Não deixe a oportunidade esperando, seja parte da vanguarda!
-    </p><!-- Adicione mais parágrafos conforme necessário -->
-
-  <br>
-    <br>
-  
-<center> <buttoncadastro onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScY3XtYmIcDouc5Q05uuq7bfa_OYYweZtxBj9NIF_18ubUYWQ/viewform?usp=sf_link', '_blank')">Cadastre-se</buttoncadastro>
-</center><br>
-    <br>
+    <!-- Seção de Seleção de Estados (Exemplo) -->
+    <div class="estados-section">
+      <h2>Selecione seu Estado</h2>
+      <p style="text-align: center; margin-bottom: 20px;">Escolha o estado onde deseja encontrar vistoriadores</p>
+      
+      <div class="estados-grid">
+        <button class="estado-btn" data-state="SP">São Paulo</button>
+        <button class="estado-btn" data-state="RJ">Rio de Janeiro</button>
+        <button class="estado-btn" data-state="MG">Minas Gerais</button>
+        <button class="estado-btn" data-state="RS">Rio Grande do Sul</button>
+        <button class="estado-btn" data-state="PR">Paraná</button>
+        <button class="estado-btn" data-state="SC">Santa Catarina</button>
+        <button class="estado-btn" data-state="BA">Bahia</button>
+        <button class="estado-btn" data-state="CE">Ceará</button>
+        <button class="estado-btn" data-state="GO">Goiás</button>
+        <button class="estado-btn" data-state="PE">Pernambuco</button>
+        <button class="estado-btn" data-state="PA">Pará</button>
+        <button class="estado-btn" data-state="MA">Maranhão</button>
+      </div>
     </div>
-</div>
-  
-  
-  
-    <br>
-    <br>
     
+    <center>
+      <!-- Box de notícia -->
+      <div class="news-box">
+        <img class="news-image" src="https://i.postimg.cc/hhRnJBVp/3ec2wx.jpg" alt="Imagem da Notícia">
+
+        <!-- Título da notícia -->
+        <div class="news-title">Vistoriador</div>
+
+        <!-- Corpo da notícia -->
+        <div class="news-content">
+          <p>
+            Cadastre-se na plataforma que conecta vistoriadores excepcionais a empresas inovadoras.
+            O caminho para o seu cadastro é descomplicado e rápido. Basta acionar o botão abaixo, preencher o formulário e após uma análise seu perfil será adicionado no portal. Pronto para ser descoberto por empresas que buscam sua expertise? Não deixe a oportunidade esperando, seja parte da vanguarda!
+          </p>
+
+          <br>
+          <br>
+          
+          <center> 
+            <buttoncadastro id="btnCadastroNoticia">Cadastre-se</buttoncadastro>
+          </center>
+          <br>
+          <br>
+        </div>
+      </div>
     </center>
-    
-    
-    
-    <br>
-    <br>
-    <br>
-    <br>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <footer>
+
+    <!-- Modal de Login/Cadastro -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <h2>Login / Cadastro</h2>
+        <div class="modal-tabs">
+          <button class="tab-btn active" data-tab="login">Login</button>
+          <button class="tab-btn" data-tab="cadastro">Cadastrar</button>
+        </div>
+        
+        <div class="tab-content active" id="login">
+          <form id="loginForm">
+            <input type="email" placeholder="E-mail" required>
+            <input type="password" placeholder="Senha" required>
+            <button type="submit" class="btn-login">Entrar</button>
+          </form>
+        </div>
+        
+        <div class="tab-content" id="cadastro">
+          <form id="cadastroForm">
+            <input type="text" placeholder="Nome Completo" required>
+            <input type="email" placeholder="E-mail" required>
+            <input type="password" placeholder="Senha" required>
+            <input type="password" placeholder="Confirmar Senha" required>
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer>
       <div class="redes-sociais">
         <div class="container">
-          
-           <p>
-             
-            &copy;Todos os direitos reservados / DDVF 2024
-  
-            
-          </p>
-          
-        
+          <p>&copy;Todos os direitos reservados / DDVF 2024</p>
+        </div>
       </div>
-          </div>
     </footer>
 
-</body>
+    <script>
+      // Controle do Modal
+      const loginModal = document.getElementById('loginModal');
+      const btnEntrar = document.getElementById('btnEntrar');
+      const closeModal = document.querySelector('.close-modal');
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+      const estadoBtns = document.querySelectorAll('.estado-btn');
+      const btnCadastroNoticia = document.getElementById('btnCadastroNoticia');
+
+      // Estado do usuário (simulação - no real seria verificado com backend)
+      let usuarioLogado = false;
+
+      // Função para verificar se usuário está logado
+      function isUserLoggedIn() {
+        // Em uma implementação real, isso verificaria cookies/token
+        return usuarioLogado;
+      }
+
+      // Função para abrir o modal
+      function openModal() {
+        loginModal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Previne scroll
+      }
+
+      // Função para fechar o modal
+      function closeModalFunc() {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restaura scroll
+      }
+
+      // Abrir modal ao clicar em "Entrar"
+      btnEntrar.addEventListener('click', openModal);
+
+      // Fechar modal ao clicar no X
+      closeModal.addEventListener('click', closeModalFunc);
+
+      // Fechar modal ao clicar fora
+      window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+          closeModalFunc();
+        }
+      });
+
+      // Trocar entre tabs
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active de todos
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // Adiciona active no selecionado
+          btn.classList.add('active');
+          const tabId = btn.getAttribute('data-tab');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      // Manipular clique nos botões de estado
+      estadoBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const estado = this.getAttribute('data-state');
+          
+          if (!isUserLoggedIn()) {
+            e.preventDefault();
+            openModal();
+            // Salva o estado selecionado para uso posterior
+            localStorage.setItem('selectedState', estado);
+            console.log(`Estado selecionado: ${estado} - Usuário precisa fazer login/cadastro`);
+            
+            // Opcional: Mostrar mensagem no modal
+            const modalTitle = document.querySelector('.modal-content h2');
+            modalTitle.innerHTML = `Faça login para acessar vistoriadores em ${estado}`;
+          } else {
+            // Usuário está logado - redireciona para página do estado
+            window.location.href = `buscar.html?estado=${estado}`;
+          }
+        });
+      });
+
+      // Manipular clique no botão "Cadastre-se" da notícia
+      if (btnCadastroNoticia) {
+        btnCadastroNoticia.addEventListener('click', function(e) {
+          if (!isUserLoggedIn()) {
+            e.preventDefault();
+            openModal();
+            // Muda direto para a tab de cadastro
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            document.querySelector('[data-tab="cadastro"]').classList.add('active');
+            document.getElementById('cadastro').classList.add('active');
+          } else {
+            // Usuário já está logado - redireciona para formulário
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLScY3XtYmIcDouc5Q05uuq7bfa_OYYweZtxBj9NIF_18ubUYWQ/viewform?usp=sf_link', '_blank');
+          }
+        });
+      }
+
+      // Manipular links de cadastro no menu
+      const menuCadastroLinks = document.querySelectorAll('a[href*="cadastro"]');
+      menuCadastroLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (!isUserLoggedIn() && !this.href.includes('cadastro.html')) {
+            e.preventDefault();
+            openModal();
+            document.querySelector('[data-tab="cadastro"]').classList.add('active');
+            document.getElementById('cadastro').classList.add('active');
+          }
+        });
+      });
+
+      // Simular login (apenas para demonstração)
+      document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        usuarioLogado = true;
+        alert('Login realizado com sucesso!');
+        closeModalFunc();
+        
+        // Verifica se há estado salvo para redirecionar
+        const estadoSalvo = localStorage.getItem('selectedState');
+        if (estadoSalvo) {
+          setTimeout(() => {
+            window.location.href = `buscar.html?estado=${estadoSalvo}`;
+          }, 1000);
+        }
+      });
+
+      // Simular cadastro (apenas para demonstração)
+      document.getElementById('cadastroForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        usuarioLogado = true;
+        alert('Cadastro realizado com sucesso!');
+        closeModalFunc();
+        
+        // Verifica se há estado salvo para redirecionar
+        const estadoSalvo = localStorage.getItem('selectedState');
+        if (estadoSalvo) {
+          setTimeout(() => {
+            window.location.href = `buscar.html?estado=${estadoSalvo}`;
+          }, 1000);
+        }
+      });
+
+      // Fechar modal com ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && loginModal.style.display === 'block') {
+          closeModalFunc();
+        }
+      });
+    </script>
+  </body>
 </html>
