@@ -461,7 +461,7 @@
       "email": "tiagoisaque1@gmail.com",
       "especialidades": "Segurança do trabalho, eletricista e 6 anos no ramo de vistorias .",
       "area": "Todo território de Alagoas, áreas de Pernambuco e sergipe.",
-      "estado": ["AL", "PE", "SE"],
+      "estado": "AL", "PE", "SE",
       "imagem": "https://i.postimg.cc/bNksJM0Y/Screenshot-20260123-165611-Instagram.png",
       "verificado": false
     }
